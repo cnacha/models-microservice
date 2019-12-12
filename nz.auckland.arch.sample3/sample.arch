@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="cdsdeployment">
+  <component name="ValidationService" type="client,server" deploymentnode="//@host.2/@node.1" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization,DenialOfService">
+    <port name="validate" role="//@connector.2/@role.1 //@connector.5/@role.0 //@connector.6/@role.0" type="request,response,OutboundPort,InboundPort">
+      <events name="validated"/>
+    </port>
+  </component>
+  <component name="SingleSignOn" type="server" deploymentnode="//@host.1/@node.0" criticalLevel="High" securityCharacters="DefenseInDepth">
+    <port name="gettoken" role="//@connector.1/@role.1" type="response,InboundPort">
+      <events name="granted"/>
+    </port>
+  </component>
+  <component name="PublishCLI" type="client,LinkOverload" valid="false" deploymentnode="//@host.0/@node.0" securityCharacters="LeastPriviledge">
+    <port name="publish" role="//@connector.0/@role.0 //@connector.1/@role.0 //@connector.4/@role.0 //@connector.7/@role.0" type="request,OutboundPort">
+      <events name="published"/>
+    </port>
+    <port name="check" role="//@connector.2/@role.0" type="request,OutboundPort">
+      <events name="checked"/>
+    </port>
+  </component>
+  <component name="PublicationService" type="client,server" deploymentnode="//@host.2/@node.1" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization">
+    <port name="upload" role="//@connector.0/@role.1 //@connector.3/@role.0" type="request,response,OutboundPort,InboundPort">
+      <events name="uploaded"/>
+    </port>
+  </component>
+  <component name="CatelogStore" type="server" deploymentnode="//@host.2/@node.0" criticalLevel="High" securityCharacters="AttackSurface,DenialOfService">
+    <port name="putctl" role="//@connector.3/@role.1" type="response,InboundPort">
+      <events name="ctlstored"/>
+    </port>
+    <port name="fetchctl" role="//@connector.5/@role.1" type="response,InboundPort">
+      <events name="ctlfetched"/>
+    </port>
+  </component>
+  <component name="DeploymentPackageStore" type="server" deploymentnode="//@host.2/@node.0" criticalLevel="High" securityCharacters="AttackSurface,DenialOfService">
+    <port name="putpkg" role="//@connector.4/@role.1" type="response,InboundPort">
+      <events name="pkgstored"/>
+    </port>
+    <port name="fetchpkg" role="//@connector.6/@role.1" type="response,InboundPort">
+      <events name="pkgfetched"/>
+    </port>
+  </component>
+  <component name="BuildTool" type="client" deploymentnode="//@host.0/@node.0" securityCharacters="LeastPriviledge">
+    <port name="build" role="//@connector.5/@role.0 //@connector.6/@role.0 //@connector.8/@role.0" type="request,OutboundPort">
+      <events name="built"/>
+    </port>
+  </component>
+  <component name="VersionControl" type="server" deploymentnode="//@host.3/@node.0" securityCharacters="AttackSurface,DenialOfService">
+    <port name="commit" role="//@connector.7/@role.1" type="response,InboundPort">
+      <events name="committed"/>
+    </port>
+  </component>
+  <component name="TestMonitor" type="server,eventsource" deploymentnode="//@host.2/@node.4">
+    <port name="log" role="//@connector.9/@role.1 //@connector.10/@role.0" type="response,publish,OutboundPort,InboundPort">
+      <events name="logged"/>
+    </port>
+  </component>
+  <component name="Testbed" type="client,server" deploymentnode="//@host.2/@node.2" securityCharacters="AttackSurface,Compartmentalization,DenialOfService">
+    <port name="deployrun" role="//@connector.8/@role.1 //@connector.9/@role.0" type="request,response,OutboundPort,InboundPort">
+      <events name="testexecuted"/>
+    </port>
+  </component>
+  <component name="DeploymentService" type="client,listener,eventconsumer" deploymentnode="//@host.2/@node.1">
+    <port name="deploy" role="//@connector.10/@role.1 //@connector.11/@role.0" type="request,listen,listen,OutboundPort,InboundPort">
+      <events name="sysdeployed"/>
+    </port>
+  </component>
+  <component name="TestLog" type="eventlogger" deploymentnode="//@host.2/@node.3">
+    <port name="writelog" role="//@connector.10/@role.2" type="log,InboundPort">
+      <events name="logwritten"/>
+    </port>
+  </component>
+  <component name="Messenger" type="server" deploymentnode="//@host.2/@node.5" securityCharacters="Compartmentalization">
+    <port name="send" role="//@connector.11/@role.1" type="response,InboundPort">
+      <events name="msgsent"/>
+    </port>
+  </component>
+  <connector name="publishwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.3/@role.0" connector="//@connector.0"/>
+    <communicationlink href="data.json#//@link.15"/>
+  </connector>
+  <connector name="tokenwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.7/@role.0" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.1"/>
+    <communicationlink href="data.json#//@link.12"/>
+  </connector>
+  <connector name="validatewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.2"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.2"/>
+    <communicationlink href="data.json#//@link.17"/>
+  </connector>
+  <connector name="catelogwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
+    <communicationlink href="data.json#//@link.14"/>
+  </connector>
+  <connector name="packagewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.0/@role.0" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.4"/>
+    <communicationlink href="data.json#//@link.13"/>
+  </connector>
+  <connector name="fetchcatelogwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.5"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.5"/>
+    <communicationlink href="data.json#//@link.13"/>
+    <communicationlink href="data.json#//@link.16"/>
+  </connector>
+  <connector name="fetchpackagewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.6"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.6"/>
+    <communicationlink href="data.json#//@link.13"/>
+    <communicationlink href="data.json#//@link.16"/>
+  </connector>
+  <connector name="commitwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.7"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.7"/>
+    <communicationlink href="data.json#//@link.18"/>
+  </connector>
+  <connector name="buildwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.8"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.9/@role.0" connector="//@connector.8"/>
+    <communicationlink href="data.json#//@link.19"/>
+  </connector>
+  <connector name="testwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.9"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.10/@role.0" connector="//@connector.9"/>
+    <communicationlink href="data.json#//@link.20"/>
+  </connector>
+  <connector name="deploywire" type="ESConnector" connectortype="//@archstyle.2/@connectortype.0">
+    <role name="eventpublisher" roletype="//@archstyle.2/@connectortype.0/@roletype.0" type="eventpublisher,out" connector="//@connector.10"/>
+    <role name="eventsubscriber" roletype="//@archstyle.2/@connectortype.0/@roletype.1" type="eventsubscriber,in" nextRoleExpr="//@connector.11/@role.0" connector="//@connector.10"/>
+    <role name="eventstore" roletype="//@archstyle.2/@connectortype.0/@roletype.2" type="eventstore,in" connector="//@connector.10"/>
+    <communicationlink href="data.json#//@link.22"/>
+    <communicationlink href="data.json#//@link.21"/>
+  </connector>
+  <connector name="messagewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.11"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.11"/>
+    <communicationlink href="data.json#//@link.23"/>
+  </connector>
+  <archstyle name="client-server">
+    <connectortype name="CSConnector">
+      <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="responder" porttype="//@archstyle.0/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="client">
+      <porttype name="request"/>
+    </componenttype>
+    <componenttype name="server">
+      <porttype name="response"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="publish-subscribe">
+    <connectortype name="PSConnector" eaConnector="//@archstyle.0/@connectortype.0">
+      <roletype name="publisher" porttype="//@archstyle.1/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.1/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="subscriber" porttype="//@archstyle.1/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="broadcaster">
+      <porttype name="broadcast"/>
+    </componenttype>
+    <componenttype name="listener">
+      <porttype name="listen"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="event-sourcing">
+    <connectortype name="ESConnector">
+      <roletype name="eventpublisher" porttype="//@archstyle.2/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.2/@event.0"/>
+        <event xsi:type="arch:Channel" name="sevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.4" type="input"/>
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.5" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="broadcast" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.3"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="eventsubscriber" porttype="//@archstyle.2/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="eventstore" porttype="//@archstyle.2/@componenttype.2/@porttype.0">
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.3"/>
+        <event xsi:type="arch:Channel" name="sevt" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="eventsource">
+      <porttype name="publish"/>
+    </componenttype>
+    <componenttype name="eventconsumer">
+      <porttype name="listen"/>
+    </componenttype>
+    <componenttype name="eventlogger">
+      <porttype name="log"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="command-responsibility">
+    <connectortype name="CRConnector">
+      <roletype name="readstore" porttype="//@archstyle.3/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+      <roletype name="commander" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="commandendpoint">
+      <porttype name="issue"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="update"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="query-responsibility">
+    <connectortype name="QRConnector">
+      <roletype name="reader" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.0" type="input"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstore" porttype="//@archstyle.4/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="readendpoint">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="query"/>
+    </componenttype>
+  </archstyle>
+  <host name="DeveloperMachine">
+    <node type="APPLICATION_CONTAINER" name="NodeJS" component="//@component.2 //@component.6">
+      <port name="port" portNumber="14116" node="//@host.0/@node.0" namedport="//@component.2/@port.0"/>
+      <port name="port" portNumber="14221" node="//@host.0/@node.0" namedport="//@component.2/@port.0 //@component.6/@port.0"/>
+      <port name="port" portNumber="14222" node="//@host.0/@node.0" namedport="//@component.2/@port.1"/>
+      <port name="port" portNumber="14223" node="//@host.0/@node.0" namedport="//@component.2/@port.0"/>
+      <port name="port" portNumber="14224" node="//@host.0/@node.0" namedport="//@component.6/@port.0"/>
+    </node>
+  </host>
+  <host name="SecureNet">
+    <node type="APPLICATION_CONTAINER" name="AppServer" component="//@component.1">
+      <port name="port" portNumber="4114" node="//@host.1/@node.0" namedport="//@component.1/@port.0" hasFirewall="true"/>
+    </node>
+  </host>
+  <host netAccessType="PUBLIC" name="AWSCloud">
+    <node type="APPLICATION_CONTAINER" name="S3" component="//@component.4 //@component.5">
+      <port name="port" portNumber="443" node="//@host.2/@node.0" namedport="//@component.4/@port.0 //@component.5/@port.1 //@component.5/@port.0 //@component.4/@port.1"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="Lambda" component="//@component.3 //@component.0 //@component.10">
+      <port name="port" portNumber="15111" node="//@host.2/@node.1" namedport="//@component.3/@port.0"/>
+      <port name="port" portNumber="80" node="//@host.2/@node.1" namedport="//@component.3/@port.0 //@component.0/@port.0" hasAuthorization="true" hasInputSanitization="true"/>
+      <port name="port" portNumber="15112" node="//@host.2/@node.1" namedport="//@component.0/@port.0"/>
+      <port name="port" portNumber="81" node="//@host.2/@node.1" namedport="//@component.0/@port.0" hasAuthentication="true" hasAuthorization="true"/>
+      <port name="port" portNumber="49168" node="//@host.2/@node.1" namedport="//@component.10/@port.0"/>
+      <port name="port" portNumber="49169" node="//@host.2/@node.1" namedport="//@component.10/@port.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="ECR" component="//@component.9">
+      <port name="port" portNumber="49163" node="//@host.2/@node.2" namedport="//@component.9/@port.0" hasAuthentication="true" hasAuthorization="true"/>
+      <port name="port" portNumber="49159" node="//@host.2/@node.2" namedport="//@component.9/@port.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="CloudTrail" component="//@component.11">
+      <port name="port" portNumber="80" node="//@host.2/@node.3" namedport="//@component.11/@port.0"/>
+    </node>
+    <node name="CloudWatch" component="//@component.8">
+      <port name="port" portNumber="80" node="//@host.2/@node.4" namedport="//@component.8/@port.0"/>
+      <port name="port" portNumber="49164" node="//@host.2/@node.4" namedport="//@component.8/@port.0"/>
+      <port name="port" portNumber="49165" node="//@host.2/@node.4" namedport="//@component.8/@port.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="SNS" component="//@component.12">
+      <port name="port" portNumber="80" node="//@host.2/@node.5" namedport="//@component.12/@port.0" hasAuthentication="true" hasAuthorization="true"/>
+    </node>
+  </host>
+  <host netAccessType="PUBLIC" name="Github">
+    <node type="FILE_SYSTEM" name="RepositoryService" component="//@component.7">
+      <port name="port" portNumber="443" node="//@host.3/@node.0" namedport="//@component.7/@port.0"/>
+    </node>
+  </host>
+  <link name="link1" linkType="HTTPS" networkType="INTERNET"/>
+  <link name="link2" linkType="HTTPS" networkType="INTERNET"/>
+  <link name="link3"/>
+  <link name="link4"/>
+  <link name="link5"/>
+  <link name="link8" linkType="HTTPS"/>
+  <link name="link9"/>
+  <link name="link10"/>
+  <link name="link11"/>
+  <link name="link12"/>
+  <link name="link13"/>
+  <link name="link14"/>
+  <link name="link16" linkType="HTTPS" source="//@host.0/@node.0/@port.0" target="//@host.1/@node.0/@port.0"/>
+  <link name="link17" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.1" target="//@host.2/@node.0/@port.0"/>
+  <link name="link18" source="//@host.2/@node.1/@port.0" target="//@host.2/@node.0/@port.0"/>
+  <link name="link19" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.1" target="//@host.2/@node.1/@port.1"/>
+  <link name="link20" source="//@host.2/@node.1/@port.2" target="//@host.2/@node.0/@port.0"/>
+  <link name="link21" networkType="INTERNET" source="//@host.0/@node.0/@port.2" target="//@host.2/@node.1/@port.3"/>
+  <link name="link22" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.3" target="//@host.3/@node.0/@port.0"/>
+  <link name="link23" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.4" target="//@host.2/@node.2/@port.0"/>
+  <link name="link24" source="//@host.2/@node.2/@port.1" target="//@host.2/@node.4/@port.0"/>
+  <link name="link25" source="//@host.2/@node.4/@port.1" target="//@host.2/@node.3/@port.0"/>
+  <link name="link26" source="//@host.2/@node.4/@port.2" target="//@host.2/@node.1/@port.4"/>
+  <link name="link27" source="//@host.2/@node.1/@port.5" target="//@host.2/@node.5/@port.0"/>
+</arch:DesignModel>
