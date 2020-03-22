@@ -1,0 +1,4987 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.auckland.ac.nz/ontologies/arch.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.auckland.ac.nz/ontologies/arch.owl">
+    <Prefix name="" IRI="http://www.auckland.ac.nz/ontologies/arch.owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#reverseoracle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DenialOfService"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CloudPlatform"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDeployment"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasOwnerType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LinkOverload"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isPortOf"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasAuthentication"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isInterfaceOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InputSanitizedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DataTamperingConnector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SecurityCharacter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#oracle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UnsecureCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ExecutionEnvironment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Role"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InsecureOracle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LeastPriviledge"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HTTPSLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InboundRole"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInterface"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasSecurityControl"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InsecureReverseOracle"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasNetAccessType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutboundCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SecurePort"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FTPLink"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isCommPortOf"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DockerContainer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DataTampering"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InternetLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AttackSurface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PrivateNode"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Component"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OperatingSystem"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SmellCharacter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isPartOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isNodeOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasBind"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DedicatedServer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isRoleOf"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasDependencies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Connector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FTPSLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UnauthenticatedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AuthorizedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Port"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutboundRole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InsecureComponent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CommunicationPort"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasFirewall"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EncryptedLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ApplicationContainer"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasAuthorization"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isBindTo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HTTPLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PrivateDevice"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasInputSanitization"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasNetworkType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VirtualMachine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NoInputSanitizedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LavaFlow"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InsecurePort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IntranetLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Compartmentalization"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasId"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLinkVia"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InsecureConnector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PublicNode"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AuthenticatedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PlainLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FirewallProtectedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isAttachmentOf"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CriticalComponent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DefenseInDepth"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SecureCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DenialOfServiceConnector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CommunicationLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PublicDevice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UnusedInterface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EAConnector"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAttachment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Interface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutboundPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UnauthorizedCommPort"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasLinkages"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasNode"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InboundPort"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isDeployedOn"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasCriticalValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Device"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ManInMiddleConnector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InboundCommPort"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#contractdeployer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#requester_8375"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FCConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#container3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LifeGuard"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#listen"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#read"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Practitioner"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#soswire"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#readendpoint"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-601-18080"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#emaccess"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#request"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#blocksupplier"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#contractdeploy"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#requester_7147"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-822-23333"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link6"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashsupply"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#EMSRecord"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Ethereum"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#bcstore"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-368-8089"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GoogleCloud"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ptwire"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-913-8080"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#publisher_2989"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PSConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LifeCare"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#subscriber"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#blocksupplier_4944"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#eventlogger"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashlog"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#AppServer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Wristband"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ESConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#J2EEContainer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#responder_4933"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#subscriber_9182"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#issue"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#medquery"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-563-8080"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Spanner"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashcheck"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#emswire"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#EmCenter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#client"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#gnotify"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ROConnector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#blockstorage"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-776-28855"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#requester_5444"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#extquerier_8849"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Patient"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-070-8081"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#orafeed"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#publish"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashvalidate"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#eventsubscriber_9642"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#emcenterwire"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#log"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#server"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#eventconsumer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#eventsubscriber"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#responder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#blocksupply"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-261-234334"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#query"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#viewdb"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#blockchain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#alert"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#extsupplier"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#QRConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-225-25553"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-125-28871"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#readstore"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashsupplier"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#reader"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#broadcaster"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#response"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#commander"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#node1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SOSGateway"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#listener"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-141-14555"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#eventsource"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#cnotify"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#requester"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MedChain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#accept"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-245-4558"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#contractcreate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OSFConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LifeBand"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-753-24444"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-530-27877"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Container4"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#update"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#medwire"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Container2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Container1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#eventpublisher_3739"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#responder_4454"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#contractfactory"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ptaccess"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#responder_1059"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pgaccess"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#sos"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OSPConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#requester_7481"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RequestDispatcher"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Android2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Android0"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Android1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IOConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-979-25555"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashvalidator"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-398-25124"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-793-27889"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#eventpublisher"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#logems"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CSConnector"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-312-23333"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link8"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#dispatchwire"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link9"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#publisher"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashchecker"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#commandendpoint"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#eventstore_7396"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#blockquery"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#eventstore"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pgwire"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#extquerier"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#broadcast"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#contractcreator"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-265-28855"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Mobile2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HMS"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Mobile1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#port-397-25123"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#hashlogger"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#responder_3319"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#storage"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#link10"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#AttackSurface"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <ObjectIntersectionOf>
+                            <Class IRI="#InboundCommPort"/>
+                            <ObjectSomeValuesFrom>
+                                <ObjectProperty IRI="#isCommPortOf"/>
+                                <Class IRI="#InternetLink"/>
+                            </ObjectSomeValuesFrom>
+                        </ObjectIntersectionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#AttackSurface"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#isDeployedOn"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#DockerContainer"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isNodeOf"/>
+                        <ObjectIntersectionOf>
+                            <Class IRI="#CloudPlatform"/>
+                            <Class IRI="#PublicDevice"/>
+                        </ObjectIntersectionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#AuthenticatedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthentication"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#AuthorizedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthorization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#CRConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#commander"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#readstore"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#CSConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#requester"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#responder"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Compartmentalization"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <ObjectUnionOf>
+                            <Class IRI="#AuthenticatedCommPort"/>
+                            <Class IRI="#AuthorizedCommPort"/>
+                        </ObjectUnionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Connector"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasRole"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#CriticalComponent"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCriticalValue"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DataTampering"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <ObjectIntersectionOf>
+                            <Class IRI="#UnauthorizedCommPort"/>
+                            <ObjectSomeValuesFrom>
+                                <ObjectProperty IRI="#isCommPortOf"/>
+                                <ObjectIntersectionOf>
+                                    <Class IRI="#InternetLink"/>
+                                    <Class IRI="#PlainLink"/>
+                                </ObjectIntersectionOf>
+                            </ObjectSomeValuesFrom>
+                        </ObjectIntersectionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DataTamperingConnector"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ManInMiddleConnector"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasLinkVia"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#CommunicationLink"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#hasCommPort"/>
+                        <Class IRI="#UnauthorizedCommPort"/>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DefenseInDepth"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#CriticalComponent"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#SecurePort"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DenialOfService"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#AttackSurface"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <Class IRI="#NoInputSanitizedCommPort"/>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DenialOfServiceConnector"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Connector"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#InboundRole"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isAttachmentOf"/>
+                        <ObjectIntersectionOf>
+                            <Class IRI="#Port"/>
+                            <ObjectSomeValuesFrom>
+                                <ObjectProperty IRI="#isBindTo"/>
+                                <Class IRI="#NoInputSanitizedCommPort"/>
+                            </ObjectSomeValuesFrom>
+                            <ObjectSomeValuesFrom>
+                                <ObjectProperty IRI="#isPortOf"/>
+                                <Class IRI="#AttackSurface"/>
+                            </ObjectSomeValuesFrom>
+                        </ObjectIntersectionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Device"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ESConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#eventpublisher"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#eventstore"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#eventsubscriber"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#FCConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#contractcreator"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#contractdeployer"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#FirewallProtectedCommPort"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasFirewall"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#IOConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#blockstorage"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#extsupplier"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#InboundPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Port"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Class IRI="#InboundRole"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#InputSanitizedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasInputSanitization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#InsecureOracle"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#AttackSurface"/>
+            <Class IRI="#oracle"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#InsecureReverseOracle"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#AttackSurface"/>
+            <Class IRI="#reverseoracle"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LavaFlow"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#UnusedInterface"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LavaFlow"/>
+        <DataHasValue>
+            <DataProperty IRI="#hasDependencies"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+        </DataHasValue>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LinkOverload"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDependencies"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ManInMiddleConnector"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Connector"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasLinkVia"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#InternetLink"/>
+                    <Class IRI="#PlainLink"/>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#NoInputSanitizedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasInputSanitization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OSFConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#hashchecker"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#hashvalidator"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OSPConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#hashlogger"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#hashsupplier"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OutboundPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Port"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Class IRI="#OutboundRole"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PSConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#publisher"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#subscriber"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Port"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PrivateDevice"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasNetAccessType"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PrivateNode"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PublicDevice"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasNetAccessType"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PublicNode"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#QRConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#reader"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#readstore"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ROConnector"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#blocksupplier"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Class IRI="#extquerier"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#SecurePort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Port"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#isBindTo"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#InboundCommPort"/>
+                    <Class IRI="#SecureCommPort"/>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#UnauthenticatedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthentication"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#UnauthorizedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthorization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#UnusedInterface"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Interface"/>
+            <DataHasValue>
+                <DataProperty IRI="#hasLinkages"/>
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+            </DataHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#bcstore"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#blockstorage"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blockchain"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#bcstore"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blockchain"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#blocksupply"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blockchain"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#contractdeploy"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blockchain"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#hashlog"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blockchain"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#hashvalidate"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blockquery"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#extquerier"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#blocksupply"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#blocksupplier"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#broadcast"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#publisher"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#broadcaster"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#broadcast"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#client"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#request"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#commandendpoint"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#issue"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#contractcreate"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#contractcreator"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#contractdeploy"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#contractdeployer"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#contractfactory"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#contractcreate"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#eventconsumer"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#listen"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#eventlogger"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#log"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#eventsource"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#publish"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#hashcheck"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#hashchecker"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#hashlog"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#hashlogger"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#hashsupply"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#hashsupplier"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#hashvalidate"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#hashvalidator"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#issue"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#commander"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#listen"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#eventsubscriber"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#listen"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#subscriber"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#listener"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#listen"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#log"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#eventstore"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#oracle"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#orafeed"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#orafeed"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#extsupplier"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#publish"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#eventpublisher"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#query"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#readstore"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#read"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#reader"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#readendpoint"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#read"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#request"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#requester"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#response"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#responder"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#reverseoracle"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#blockquery"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#server"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#response"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#storage"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#hashcheck"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#storage"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#hashsupply"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#update"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#readstore"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#viewdb"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#query"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#viewdb"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#update"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#UnusedInterface"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+        <DataHasValue>
+            <DataProperty IRI="#hasDependencies"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+        </DataHasValue>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#ApplicationContainer"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AttackSurface"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AttackSurface"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <ObjectIntersectionOf>
+                            <Class IRI="#CommunicationPort"/>
+                            <ObjectSomeValuesFrom>
+                                <ObjectProperty IRI="#isCommPortOf"/>
+                                <Class IRI="#InternetLink"/>
+                            </ObjectSomeValuesFrom>
+                        </ObjectIntersectionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AuthenticatedCommPort"/>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AuthenticatedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthentication"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AuthorizedCommPort"/>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AuthorizedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthorization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CSConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CloudPlatform"/>
+        <Class IRI="#Device"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CloudPlatform"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Compartmentalization"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Compartmentalization"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <ObjectUnionOf>
+                            <Class IRI="#AuthenticatedCommPort"/>
+                            <Class IRI="#AuthorizedCommPort"/>
+                        </ObjectUnionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Connector"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasRole"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CriticalComponent"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CriticalComponent"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCriticalValue"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DataTampering"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DataTamperingConnector"/>
+        <Class IRI="#InsecureConnector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DedicatedServer"/>
+        <Class IRI="#Device"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DedicatedServer"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DefenseInDepth"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DefenseInDepth"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#CriticalComponent"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#SecurePort"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DenialOfService"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DenialOfServiceConnector"/>
+        <Class IRI="#InsecureConnector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Device"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DockerContainer"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EAConnector"/>
+        <Class IRI="#SmellCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ESConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EncryptedLink"/>
+        <Class IRI="#CommunicationLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FCConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FTPLink"/>
+        <Class IRI="#PlainLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FTPSLink"/>
+        <Class IRI="#EncryptedLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FirewallProtectedCommPort"/>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FirewallProtectedCommPort"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasFirewall"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HTTPLink"/>
+        <Class IRI="#PlainLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HTTPSLink"/>
+        <Class IRI="#EncryptedLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IOConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InboundCommPort"/>
+        <Class IRI="#CommunicationPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InboundPort"/>
+        <Class IRI="#Port"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InboundRole"/>
+        <Class IRI="#Role"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InputSanitizedCommPort"/>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InputSanitizedCommPort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasInputSanitization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecureComponent"/>
+        <Class IRI="#SecurityCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecureConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecureConnector"/>
+        <Class IRI="#SecurityCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecureOracle"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecurePort"/>
+        <Class IRI="#Port"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecurePort"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsecureReverseOracle"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InternetLink"/>
+        <Class IRI="#CommunicationLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IntranetLink"/>
+        <Class IRI="#CommunicationLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LavaFlow"/>
+        <Class IRI="#SmellCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LeastPriviledge"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LeastPriviledge"/>
+        <Class IRI="#InsecureComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LeastPriviledge"/>
+        <Class IRI="#LeastPriviledge"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LinkOverload"/>
+        <Class IRI="#SmellCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LinkOverload"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDependencies"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ManInMiddleConnector"/>
+        <Class IRI="#InsecureConnector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NoInputSanitizedCommPort"/>
+        <Class IRI="#UnsecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OSFConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OSPConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OperatingSystem"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutboundCommPort"/>
+        <Class IRI="#CommunicationPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutboundPort"/>
+        <Class IRI="#Port"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutboundRole"/>
+        <Class IRI="#Role"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PSConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PlainLink"/>
+        <Class IRI="#CommunicationLink"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Port"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Port"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PrivateDevice"/>
+        <Class IRI="#Device"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PrivateDevice"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasNetAccessType"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PrivateNode"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PrivateNode"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PublicDevice"/>
+        <Class IRI="#Device"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PublicDevice"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasNetAccessType"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PublicNode"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PublicNode"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#QRConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ROConnector"/>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Role"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SecureCommPort"/>
+        <Class IRI="#CommunicationPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SecurePort"/>
+        <Class IRI="#Port"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SecurePort"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Port"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#isBindTo"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#InboundCommPort"/>
+                    <Class IRI="#SecureCommPort"/>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UnauthenticatedCommPort"/>
+        <Class IRI="#UnsecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UnauthorizedCommPort"/>
+        <Class IRI="#UnsecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UnsecureCommPort"/>
+        <Class IRI="#CommunicationPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UnusedInterface"/>
+        <Class IRI="#SmellCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UnusedInterface"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Interface"/>
+            <DataHasValue>
+                <DataProperty IRI="#hasLinkages"/>
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+            </DataHasValue>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VirtualMachine"/>
+        <Class IRI="#Device"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VirtualMachine"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#bcstore"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#blockchain"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#blockquery"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#blockstorage"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#blocksupplier"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#blocksupply"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#broadcast"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#broadcaster"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#client"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#commandendpoint"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#commander"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#contractcreate"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#contractcreator"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#contractdeploy"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#contractdeployer"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#contractfactory"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eventconsumer"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eventlogger"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eventpublisher"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eventsource"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eventstore"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eventsubscriber"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#extquerier"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#extsupplier"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashcheck"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashchecker"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashlog"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashlogger"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashsupplier"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashsupply"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashvalidate"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#hashvalidator"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#issue"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#listen"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#listener"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#log"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#oracle"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#orafeed"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#publish"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#publisher"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#query"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#read"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#readendpoint"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#reader"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#readstore"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#request"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#requester"/>
+        <Class IRI="#OutboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#responder"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#response"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#reverseoracle"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#server"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#storage"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#subscriber"/>
+        <Class IRI="#InboundRole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#update"/>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#viewdb"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Component"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Port"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="#isBindTo"/>
+                        <ObjectUnionOf>
+                            <Class IRI="#AuthenticatedCommPort"/>
+                            <Class IRI="#AuthorizedCommPort"/>
+                        </ObjectUnionOf>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#Compartmentalization"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#CriticalComponent"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Class IRI="#SecurePort"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#DefenseInDepth"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <Class IRI="#SecureCommPort"/>
+        </ObjectIntersectionOf>
+        <Class IRI="#CommunicationPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <Class IRI="#SecureCommPort"/>
+        </ObjectIntersectionOf>
+        <Class IRI="#InboundCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <Class IRI="#SecureCommPort"/>
+        </ObjectIntersectionOf>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthentication"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#AuthenticatedCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthentication"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthorization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#AuthorizedCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasAuthorization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasInputSanitization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#InputSanitizedCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#InboundCommPort"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasInputSanitization"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Interface"/>
+            <DataHasValue>
+                <DataProperty IRI="#hasLinkages"/>
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+            </DataHasValue>
+        </ObjectIntersectionOf>
+        <Class IRI="#SmellCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Interface"/>
+            <DataHasValue>
+                <DataProperty IRI="#hasLinkages"/>
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+            </DataHasValue>
+        </ObjectIntersectionOf>
+        <Class IRI="#UnusedInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Port"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#isBindTo"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#InboundCommPort"/>
+                    <Class IRI="#SecureCommPort"/>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <Class IRI="#SecurePort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Port"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#isBindTo"/>
+                <ObjectUnionOf>
+                    <Class IRI="#AuthenticatedCommPort"/>
+                    <Class IRI="#AuthorizedCommPort"/>
+                </ObjectUnionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isBindTo"/>
+            <ObjectUnionOf>
+                <Class IRI="#AuthenticatedCommPort"/>
+                <Class IRI="#AuthorizedCommPort"/>
+            </ObjectUnionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#Interface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#Port"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#Device"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasRole"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#Connector"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#PublicNode"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#ExecutionEnvironment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isNodeOf"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Device"/>
+                <DataSomeValuesFrom>
+                    <DataProperty IRI="#hasNetAccessType"/>
+                    <DatatypeRestriction>
+                        <Datatype abbreviatedIRI="xsd:integer"/>
+                        <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                        </FacetRestriction>
+                    </DatatypeRestriction>
+                </DataSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+        <Class IRI="#PrivateNode"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCriticalValue"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCriticalValue"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#CriticalComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDependencies"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#LinkOverload"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDependencies"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#SmellCharacter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasFirewall"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#FirewallProtectedCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasFirewall"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#SecureCommPort"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasNetAccessType"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#PublicDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasNetAccessType"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+        <Class IRI="#PrivateDevice"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Component"/>
+        <Class IRI="#Connector"/>
+        <Class IRI="#Interface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#EncryptedLink"/>
+        <Class IRI="#PlainLink"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Port"/>
+        <Class IRI="#UnusedInterface"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#ApplicationContainer"/>
+        <NamedIndividual IRI="#Android0"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ApplicationContainer"/>
+        <NamedIndividual IRI="#Android1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DockerContainer"/>
+        <NamedIndividual IRI="#Android2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#AppServer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DockerContainer"/>
+        <NamedIndividual IRI="#Container1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DockerContainer"/>
+        <NamedIndividual IRI="#Container2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DockerContainer"/>
+        <NamedIndividual IRI="#Container4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#Ethereum"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#HMS"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ApplicationContainer"/>
+        <NamedIndividual IRI="#J2EEContainer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#Mobile1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#Mobile2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ApplicationContainer"/>
+        <NamedIndividual IRI="#Spanner"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VirtualMachine"/>
+        <NamedIndividual IRI="#Wristband"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#blocksupplier"/>
+        <NamedIndividual IRI="#blocksupplier_4944"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DockerContainer"/>
+        <NamedIndividual IRI="#container3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#eventpublisher"/>
+        <NamedIndividual IRI="#eventpublisher_3739"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#eventstore"/>
+        <NamedIndividual IRI="#eventstore_7396"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#eventsubscriber"/>
+        <NamedIndividual IRI="#eventsubscriber_9642"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#extquerier"/>
+        <NamedIndividual IRI="#extquerier_8849"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPSLink"/>
+        <NamedIndividual IRI="#link1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPLink"/>
+        <NamedIndividual IRI="#link10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#IntranetLink"/>
+        <NamedIndividual IRI="#link10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPLink"/>
+        <NamedIndividual IRI="#link2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#IntranetLink"/>
+        <NamedIndividual IRI="#link2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPLink"/>
+        <NamedIndividual IRI="#link3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#IntranetLink"/>
+        <NamedIndividual IRI="#link3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPSLink"/>
+        <NamedIndividual IRI="#link4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPSLink"/>
+        <NamedIndividual IRI="#link5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPLink"/>
+        <NamedIndividual IRI="#link6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPSLink"/>
+        <NamedIndividual IRI="#link7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPSLink"/>
+        <NamedIndividual IRI="#link8"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link8"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HTTPLink"/>
+        <NamedIndividual IRI="#link9"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InternetLink"/>
+        <NamedIndividual IRI="#link9"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#DockerContainer"/>
+        <NamedIndividual IRI="#node1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#InboundCommPort"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#OutboundCommPort"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#publisher"/>
+        <NamedIndividual IRI="#publisher_2989"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#requester"/>
+        <NamedIndividual IRI="#requester_5444"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#requester"/>
+        <NamedIndividual IRI="#requester_7147"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#requester"/>
+        <NamedIndividual IRI="#requester_7481"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#requester"/>
+        <NamedIndividual IRI="#requester_8375"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#responder"/>
+        <NamedIndividual IRI="#responder_1059"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#responder"/>
+        <NamedIndividual IRI="#responder_3319"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#responder"/>
+        <NamedIndividual IRI="#responder_4454"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#responder"/>
+        <NamedIndividual IRI="#responder_4933"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#subscriber"/>
+        <NamedIndividual IRI="#subscriber_9182"/>
+    </ClassAssertion>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#Android0"/>
+        <NamedIndividual IRI="#Android1"/>
+        <NamedIndividual IRI="#Android2"/>
+        <NamedIndividual IRI="#AppServer"/>
+        <NamedIndividual IRI="#Container1"/>
+        <NamedIndividual IRI="#Container2"/>
+        <NamedIndividual IRI="#Container4"/>
+        <NamedIndividual IRI="#EMSRecord"/>
+        <NamedIndividual IRI="#EmCenter"/>
+        <NamedIndividual IRI="#Ethereum"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+        <NamedIndividual IRI="#HMS"/>
+        <NamedIndividual IRI="#J2EEContainer"/>
+        <NamedIndividual IRI="#LifeBand"/>
+        <NamedIndividual IRI="#LifeCare"/>
+        <NamedIndividual IRI="#LifeGuard"/>
+        <NamedIndividual IRI="#MedChain"/>
+        <NamedIndividual IRI="#Mobile1"/>
+        <NamedIndividual IRI="#Mobile2"/>
+        <NamedIndividual IRI="#Patient"/>
+        <NamedIndividual IRI="#Practitioner"/>
+        <NamedIndividual IRI="#RequestDispatcher"/>
+        <NamedIndividual IRI="#SOSGateway"/>
+        <NamedIndividual IRI="#Spanner"/>
+        <NamedIndividual IRI="#Wristband"/>
+        <NamedIndividual IRI="#accept"/>
+        <NamedIndividual IRI="#alert"/>
+        <NamedIndividual IRI="#blocksupplier_4944"/>
+        <NamedIndividual IRI="#cnotify"/>
+        <NamedIndividual IRI="#container3"/>
+        <NamedIndividual IRI="#dispatchwire"/>
+        <NamedIndividual IRI="#emaccess"/>
+        <NamedIndividual IRI="#emcenterwire"/>
+        <NamedIndividual IRI="#emswire"/>
+        <NamedIndividual IRI="#eventpublisher_3739"/>
+        <NamedIndividual IRI="#eventstore_7396"/>
+        <NamedIndividual IRI="#eventsubscriber_9642"/>
+        <NamedIndividual IRI="#extquerier_8849"/>
+        <NamedIndividual IRI="#gnotify"/>
+        <NamedIndividual IRI="#link1"/>
+        <NamedIndividual IRI="#link10"/>
+        <NamedIndividual IRI="#link2"/>
+        <NamedIndividual IRI="#link3"/>
+        <NamedIndividual IRI="#link4"/>
+        <NamedIndividual IRI="#link5"/>
+        <NamedIndividual IRI="#link6"/>
+        <NamedIndividual IRI="#link7"/>
+        <NamedIndividual IRI="#link8"/>
+        <NamedIndividual IRI="#link9"/>
+        <NamedIndividual IRI="#logems"/>
+        <NamedIndividual IRI="#medquery"/>
+        <NamedIndividual IRI="#medwire"/>
+        <NamedIndividual IRI="#node1"/>
+        <NamedIndividual IRI="#pgaccess"/>
+        <NamedIndividual IRI="#pgwire"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+        <NamedIndividual IRI="#ptaccess"/>
+        <NamedIndividual IRI="#ptwire"/>
+        <NamedIndividual IRI="#publisher_2989"/>
+        <NamedIndividual IRI="#requester_5444"/>
+        <NamedIndividual IRI="#requester_7147"/>
+        <NamedIndividual IRI="#requester_7481"/>
+        <NamedIndividual IRI="#requester_8375"/>
+        <NamedIndividual IRI="#responder_1059"/>
+        <NamedIndividual IRI="#responder_3319"/>
+        <NamedIndividual IRI="#responder_4454"/>
+        <NamedIndividual IRI="#responder_4933"/>
+        <NamedIndividual IRI="#sos"/>
+        <NamedIndividual IRI="#soswire"/>
+        <NamedIndividual IRI="#subscriber_9182"/>
+    </DifferentIndividuals>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Android0"/>
+        <NamedIndividual IRI="#LifeBand"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Android0"/>
+        <NamedIndividual IRI="#Wristband"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Android1"/>
+        <NamedIndividual IRI="#LifeGuard"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Android1"/>
+        <NamedIndividual IRI="#Mobile1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Android2"/>
+        <NamedIndividual IRI="#LifeCare"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Android2"/>
+        <NamedIndividual IRI="#Mobile2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Container1"/>
+        <NamedIndividual IRI="#RequestDispatcher"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Container1"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Container2"/>
+        <NamedIndividual IRI="#EmCenter"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Container2"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Container4"/>
+        <NamedIndividual IRI="#Patient"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Container4"/>
+        <NamedIndividual IRI="#HMS"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#EMSRecord"/>
+        <NamedIndividual IRI="#logems"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#EmCenter"/>
+        <NamedIndividual IRI="#emaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#J2EEContainer"/>
+        <NamedIndividual IRI="#SOSGateway"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#J2EEContainer"/>
+        <NamedIndividual IRI="#AppServer"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#LifeBand"/>
+        <NamedIndividual IRI="#alert"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#LifeCare"/>
+        <NamedIndividual IRI="#cnotify"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#LifeGuard"/>
+        <NamedIndividual IRI="#gnotify"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#MedChain"/>
+        <NamedIndividual IRI="#medquery"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#Patient"/>
+        <NamedIndividual IRI="#ptaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#Practitioner"/>
+        <NamedIndividual IRI="#pgaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#RequestDispatcher"/>
+        <NamedIndividual IRI="#accept"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPort"/>
+        <NamedIndividual IRI="#SOSGateway"/>
+        <NamedIndividual IRI="#sos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#Spanner"/>
+        <NamedIndividual IRI="#EMSRecord"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#Spanner"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#accept"/>
+        <NamedIndividual IRI="#eventpublisher_3739"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#accept"/>
+        <NamedIndividual IRI="#requester_7147"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#accept"/>
+        <NamedIndividual IRI="#responder_4454"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#alert"/>
+        <NamedIndividual IRI="#publisher_2989"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#cnotify"/>
+        <NamedIndividual IRI="#eventsubscriber_9642"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#cnotify"/>
+        <NamedIndividual IRI="#requester_8375"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#container3"/>
+        <NamedIndividual IRI="#Practitioner"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#container3"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#dispatchwire"/>
+        <NamedIndividual IRI="#requester_7481"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#dispatchwire"/>
+        <NamedIndividual IRI="#responder_4454"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#emaccess"/>
+        <NamedIndividual IRI="#requester_5444"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#emaccess"/>
+        <NamedIndividual IRI="#responder_3319"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#emcenterwire"/>
+        <NamedIndividual IRI="#requester_7147"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#emcenterwire"/>
+        <NamedIndividual IRI="#responder_3319"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#emswire"/>
+        <NamedIndividual IRI="#eventpublisher_3739"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#emswire"/>
+        <NamedIndividual IRI="#eventstore_7396"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#emswire"/>
+        <NamedIndividual IRI="#eventsubscriber_9642"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#gnotify"/>
+        <NamedIndividual IRI="#eventsubscriber_9642"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#gnotify"/>
+        <NamedIndividual IRI="#requester_8375"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link1"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link1"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link10"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link10"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link2"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link2"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link3"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link3"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link4"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link4"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link5"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link5"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link6"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link6"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link7"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link7"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link8"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link8"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link9"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <NamedIndividual IRI="#link9"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#logems"/>
+        <NamedIndividual IRI="#eventstore_7396"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#medquery"/>
+        <NamedIndividual IRI="#blocksupplier_4944"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#medwire"/>
+        <NamedIndividual IRI="#blocksupplier_4944"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#medwire"/>
+        <NamedIndividual IRI="#extquerier_8849"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <NamedIndividual IRI="#node1"/>
+        <NamedIndividual IRI="#MedChain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <NamedIndividual IRI="#node1"/>
+        <NamedIndividual IRI="#Ethereum"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#pgaccess"/>
+        <NamedIndividual IRI="#responder_1059"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#pgwire"/>
+        <NamedIndividual IRI="#requester_5444"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#pgwire"/>
+        <NamedIndividual IRI="#responder_1059"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+        <NamedIndividual IRI="#emaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+        <NamedIndividual IRI="#ptaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+        <NamedIndividual IRI="#alert"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+        <NamedIndividual IRI="#accept"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+        <NamedIndividual IRI="#medquery"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+        <NamedIndividual IRI="#emaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+        <NamedIndividual IRI="#ptaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+        <NamedIndividual IRI="#accept"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+        <NamedIndividual IRI="#sos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+        <NamedIndividual IRI="#gnotify"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+        <NamedIndividual IRI="#cnotify"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+        <NamedIndividual IRI="#gnotify"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+        <NamedIndividual IRI="#pgaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+        <NamedIndividual IRI="#logems"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+        <NamedIndividual IRI="#accept"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+        <NamedIndividual IRI="#ptaccess"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+        <NamedIndividual IRI="#cnotify"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+        <NamedIndividual IRI="#accept"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+        <NamedIndividual IRI="#accept"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasBind"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+        <NamedIndividual IRI="#sos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#ptaccess"/>
+        <NamedIndividual IRI="#extquerier_8849"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#ptaccess"/>
+        <NamedIndividual IRI="#responder_4933"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#ptwire"/>
+        <NamedIndividual IRI="#requester_8375"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#ptwire"/>
+        <NamedIndividual IRI="#responder_4933"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#sos"/>
+        <NamedIndividual IRI="#requester_7481"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <NamedIndividual IRI="#sos"/>
+        <NamedIndividual IRI="#subscriber_9182"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#soswire"/>
+        <NamedIndividual IRI="#publisher_2989"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasRole"/>
+        <NamedIndividual IRI="#soswire"/>
+        <NamedIndividual IRI="#subscriber_9182"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#AppServer"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#EMSRecord"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#EMSRecord"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#EmCenter"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#EmCenter"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#Ethereum"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#GoogleCloud"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#HMS"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#LifeBand"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#LifeBand"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#LifeCare"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#LifeCare"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#LifeGuard"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#LifeGuard"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#MedChain"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#MedChain"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#Mobile1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#Mobile2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#Patient"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#Patient"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#Practitioner"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#Practitioner"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#RequestDispatcher"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#RequestDispatcher"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <NamedIndividual IRI="#SOSGateway"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDependencies"/>
+        <NamedIndividual IRI="#SOSGateway"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasNetAccessType"/>
+        <NamedIndividual IRI="#Wristband"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#accept"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#alert"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#cnotify"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#emaccess"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#gnotify"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#logems"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#medquery"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#pgaccess"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-070-8081"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-125-28871"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-141-14555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-225-25553"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-245-4558"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-261-234334"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-265-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-312-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-368-8089"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-397-25123"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-398-25124"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-530-27877"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-563-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-601-18080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-753-24444"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-776-28855"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-793-27889"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-822-23333"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-913-8080"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthentication"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasAuthorization"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasFirewall"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <NamedIndividual IRI="#port-979-25555"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#ptaccess"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLinkages"/>
+        <NamedIndividual IRI="#sos"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasInterface"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasPort"/>
+        <ObjectProperty IRI="#hasInterface"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasRole"/>
+        <ObjectProperty IRI="#hasInterface"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isAttachmentOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isCommPortOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isInterfaceOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isNodeOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isPartOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isPortOf"/>
+        <ObjectProperty IRI="#isInterfaceOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isRoleOf"/>
+        <ObjectProperty IRI="#isInterfaceOf"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <ObjectProperty IRI="#isAttachmentOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasBind"/>
+        <ObjectProperty IRI="#isBindTo"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <ObjectProperty IRI="#isCommPortOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasDeployment"/>
+        <ObjectProperty IRI="#isDeployedOn"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasNode"/>
+        <ObjectProperty IRI="#isNodeOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasPort"/>
+        <ObjectProperty IRI="#isPortOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasRole"/>
+        <ObjectProperty IRI="#isRoleOf"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isPortOf"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isRoleOf"/>
+    </FunctionalObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <Class IRI="#CommunicationLink"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasLinkVia"/>
+        <Class IRI="#Connector"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasNode"/>
+        <Class IRI="#Device"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasNode"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasPort"/>
+        <Class IRI="#Component"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRole"/>
+        <Class IRI="#Connector"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRole"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasRole"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isBindTo"/>
+        <Class IRI="#Interface"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isBindTo"/>
+        <Class IRI="#Port"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isBindTo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttachment"/>
+            <Class IRI="#Role"/>
+        </ObjectSomeValuesFrom>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isPartOf"/>
+        <Class IRI="#Component"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <Class IRI="#Interface"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasAttachment"/>
+        <Class IRI="#Role"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasCommPort"/>
+        <Class IRI="#CommunicationPort"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLinkVia"/>
+        <Class IRI="#CommunicationLink"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasNode"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRole"/>
+        <Class IRI="#Interface"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRole"/>
+        <Class IRI="#Role"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isBindTo"/>
+        <Class IRI="#CommunicationPort"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isDeployedOn"/>
+        <Class IRI="#ExecutionEnvironment"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isPartOf"/>
+        <Class IRI="#Component"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasAuthentication"/>
+        <DataProperty IRI="#hasSecurityControl"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasAuthorization"/>
+        <DataProperty IRI="#hasSecurityControl"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasFirewall"/>
+        <DataProperty IRI="#hasSecurityControl"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasId"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasInputSanitization"/>
+        <DataProperty IRI="#hasSecurityControl"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasNetworkType"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasSecurityControl"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <Class IRI="#Component"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasDependencies"/>
+        <Class IRI="#Component"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasLinkages"/>
+        <Class IRI="#Interface"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasNetworkType"/>
+        <Class IRI="#CommunicationLink"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasOwnerType"/>
+        <Class IRI="#Device"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasOwnerType"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasNode"/>
+            <Class IRI="#ExecutionEnvironment"/>
+        </ObjectSomeValuesFrom>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasCriticalValue"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasDependencies"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasId"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasLinkages"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasOwnerType"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DLSafeRule>
+        <Annotation>
+            <AnnotationProperty IRI="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string"></Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">r2</Literal>
+        </Annotation>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="#comp2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="#comp1"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p2"/>
+                <Variable IRI="#pub"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p4"/>
+                <Variable IRI="#sub"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p1"/>
+                <Variable IRI="#con"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p3"/>
+                <Variable IRI="#pro"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p1"/>
+                <Variable IRI="#comp1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p4"/>
+                <Variable IRI="#comp2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p2"/>
+                <Variable IRI="#comp1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p3"/>
+                <Variable IRI="#comp2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#PSConnector"/>
+                <Variable IRI="#pns"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#pns"/>
+                <Variable IRI="#sub"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#pns"/>
+                <Variable IRI="#pub"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#publisher"/>
+                <Variable IRI="#pub"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#subscriber"/>
+                <Variable IRI="#sub"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#CSConnector"/>
+                <Variable IRI="#cns"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#cns"/>
+                <Variable IRI="#con"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#cns"/>
+                <Variable IRI="#pro"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#requester"/>
+                <Variable IRI="#con"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#responder"/>
+                <Variable IRI="#pro"/>
+            </ClassAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#EAConnector"/>
+                <Variable IRI="#pns"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#EAConnector"/>
+                <Variable IRI="#cns"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Annotation>
+            <AnnotationProperty IRI="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string"></Literal>
+        </Annotation>
+        <Annotation>
+            <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+            <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">r1</Literal>
+        </Annotation>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="#comp2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="#comp1"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p2"/>
+                <Variable IRI="#pub"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p4"/>
+                <Variable IRI="#sub"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p1"/>
+                <Variable IRI="#con"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="#p3"/>
+                <Variable IRI="#pro"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p1"/>
+                <Variable IRI="#comp1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p4"/>
+                <Variable IRI="#comp2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p2"/>
+                <Variable IRI="#comp1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isPortOf"/>
+                <Variable IRI="#p3"/>
+                <Variable IRI="#comp2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#PSConnector"/>
+                <Variable IRI="#pns"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#pns"/>
+                <Variable IRI="#sub"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#pns"/>
+                <Variable IRI="#pub"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#publisher"/>
+                <Variable IRI="#pub"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#subscriber"/>
+                <Variable IRI="#sub"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#CSConnector"/>
+                <Variable IRI="#cns"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#cns"/>
+                <Variable IRI="#con"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="#cns"/>
+                <Variable IRI="#pro"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#requester"/>
+                <Variable IRI="#pro"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#responder"/>
+                <Variable IRI="#con"/>
+            </ClassAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#EAConnector"/>
+                <Variable IRI="#pns"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#EAConnector"/>
+                <Variable IRI="#cns"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="urn:swrl#compa"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="urn:swrl#compb"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Variable IRI="urn:swrl#compa"/>
+                <Variable IRI="urn:swrl#p1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Variable IRI="urn:swrl#compb"/>
+                <Variable IRI="urn:swrl#p2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#Port"/>
+                <Variable IRI="urn:swrl#p1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Port"/>
+                <Variable IRI="urn:swrl#p2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="urn:swrl#con"/>
+                <Variable IRI="urn:swrl#r1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="urn:swrl#con"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#Role"/>
+                <Variable IRI="urn:swrl#r1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Role"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="urn:swrl#p1"/>
+                <Variable IRI="urn:swrl#r1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="urn:swrl#p2"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isBindTo"/>
+                <Variable IRI="urn:swrl#p1"/>
+                <Variable IRI="urn:swrl#cmpra"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isBindTo"/>
+                <Variable IRI="urn:swrl#p2"/>
+                <Variable IRI="urn:swrl#cmprb"/>
+            </ObjectPropertyAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#compa"/>
+                <Variable IRI="urn:swrl#compb"/>
+            </DifferentIndividualsAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#p1"/>
+                <Variable IRI="urn:swrl#p2"/>
+            </DifferentIndividualsAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#r1"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </DifferentIndividualsAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#cmpra"/>
+                <Variable IRI="urn:swrl#cmprb"/>
+            </DifferentIndividualsAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasCommPort"/>
+                <Variable IRI="urn:swrl#comm"/>
+                <Variable IRI="urn:swrl#cmpra"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasCommPort"/>
+                <Variable IRI="urn:swrl#comm"/>
+                <Variable IRI="urn:swrl#cmprb"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#CommunicationLink"/>
+                <Variable IRI="urn:swrl#comm"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#CommunicationPort"/>
+                <Variable IRI="urn:swrl#cmpra"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#CommunicationPort"/>
+                <Variable IRI="urn:swrl#cmprb"/>
+            </ClassAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasLinkVia"/>
+                <Variable IRI="urn:swrl#con"/>
+                <Variable IRI="urn:swrl#comm"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="urn:swrl#comp2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Component"/>
+                <Variable IRI="urn:swrl#comp1"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Variable IRI="urn:swrl#comp1"/>
+                <Variable IRI="urn:swrl#p1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasPort"/>
+                <Variable IRI="urn:swrl#comp2"/>
+                <Variable IRI="urn:swrl#p2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#CriticalComponent"/>
+                <Variable IRI="urn:swrl#comp2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#Connector"/>
+                <Variable IRI="urn:swrl#con"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="urn:swrl#con"/>
+                <Variable IRI="urn:swrl#r1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="urn:swrl#p1"/>
+                <Variable IRI="urn:swrl#r1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasAttachment"/>
+                <Variable IRI="urn:swrl#p2"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#hasRole"/>
+                <Variable IRI="urn:swrl#con"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="#InboundRole"/>
+                <Variable IRI="urn:swrl#r2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#OutboundRole"/>
+                <Variable IRI="urn:swrl#r1"/>
+            </ClassAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#LeastPriviledge"/>
+                <Variable IRI="urn:swrl#comp1"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

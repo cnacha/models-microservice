@@ -94,6 +94,11 @@
       <events name="renderlist"/>
     </port>
   </component>
+  <component name="AdversaryDOS3" type="adversary">
+    <port name="attack3" role="//@connector.3/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
   <connector name="userwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
     <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
     <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.0"/>
@@ -284,6 +289,36 @@
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.0">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS1VerifyProp">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1" role="//@connector.0/@role.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS2VerifyProp">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1" role="//@connector.1/@role.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS3VerifyProp" visitedStates="90518" verifyTime="2.9929167" testport="//@component.15/@port.0" traceExample="init -> AdversaryDOS3_orderwire_requester_request -> orderwire_req!63 -> orderwire_req?63 -> OrdersService_orderwire_responder_invoke -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_eventpublisher_process -> orderlogwire_pevt!63 -> orderlogwire_pevt?63 -> OrdersLog_logorder_orderlogged -> OrdersLog_orderlogwire_eventstore_process -> orderlogwire_sevt!63 -> OrdersLog_orderlogwire_eventstore_persist -> orderlogwire_sevt?63 -> orderlogwire_bevt!63 -> orderlogwire_bevt?63 -> OrdersCommand_insertorder_saveorder -> OrdersCommand_orderupdatewire_commander_process -> orderupdatewire_stmt!63 -> orderupdatewire_stmt?63 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderupdatewire_readstore_process -> OrdersDB_orderupdatewire_readstore_persist -> OrdersCommand_orderupdatewire_commander_Skip -> OrdersCommand_orderlogwire_eventsubscriber_process -> OrdersService_orderlogwire_eventpublisher_broadcast -> OrdersService_orderlogwire_eventpublisher_Skip -> OrdersService_paywire_requester_request -> paywire_req!63 -> paywire_req?63 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_paywire_responder_process -> paywire_res!63 -> paywire_res?63 -> OrdersService_paywire_requester_process -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_request -> shippingwire_req!63 -> shippingwire_req?63 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_eventpublisher_process -> shippinglogwire_pevt!63 -> shippinglogwire_pevt?63 -> ShippingLog_logshipping_logged -> ShippingLog_shippinglogwire_eventstore_process -> shippinglogwire_sevt!63 -> ShippingLog_shippinglogwire_eventstore_persist -> shippinglogwire_sevt?63 -> shippinglogwire_bevt!63 -> shippinglogwire_bevt?63 -> QueueMaster_insertqueue_queueinserted -> QueueMaster_queueinsertwire_commander_process -> queueinsertwire_stmt!63 -> queueinsertwire_stmt?63 -> QueueDB_writequeue_queuewritten -> QueueDB_queueinsertwire_readstore_process -> QueueDB_queueinsertwire_readstore_persist -> QueueMaster_queueinsertwire_commander_Skip -> QueueMaster_shippinglogwire_eventsubscriber_process -> ShippingService_shippinglogwire_eventpublisher_broadcast -> ShippingService_shippinglogwire_eventpublisher_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!63 -> shippingwire_res?63 -> OrdersService_shippingwire_requester_process -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_responder_process -> orderwire_res!63 -> orderwire_res?63 -> AdversaryDOS3_attack3_attacked -> AdversaryDOS3_orderwire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.1" role="//@connector.3/@role.0" port="//@component.15/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS4VerifyProp">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1" role="//@connector.6/@role.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.1/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS5VerifyProp">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.1" role="//@connector.7/@role.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
   <host netAccessType="PUBLIC" name="PublicServer" hostType="CLOUD_PLATFORM">

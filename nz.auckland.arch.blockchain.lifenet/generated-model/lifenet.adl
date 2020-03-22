@@ -1,0 +1,103 @@
+connector CSConnector { 
+	 role requester(j) = request -> req!j -> res?j -> process -> Skip;
+	 role responder() = req?j -> invoke -> process -> res!j -> responder();
+ }
+connector PSConnector { 
+	 role publisher(j) = process -> pub!j -> Skip;
+	 role subscriber() = pub?j -> process -> subscriber();
+ }
+connector ESConnector { 
+	 role eventpublisher(j) = process -> pevt!j -> sevt?j -> bevt!j -> broadcast -> Skip;
+	 role eventsubscriber() = bevt?j -> process -> eventsubscriber();
+	 role eventstore() = pevt?j -> process -> sevt!j -> persist -> eventstore();
+ }
+connector CRConnector { 
+	 role readstore() = stmt?j -> process -> persist -> readstore();
+	 role commander(j) = process -> stmt!j -> Skip;
+ }
+connector QRConnector { 
+	 role reader(j) = process -> stmt!j -> res?j -> Skip;
+	 role readstore() = stmt?j -> process -> res!j -> readstore();
+ }
+connector IOConnector { 
+	 role blockstorage() = token?j -> process -> stored -> blockstorage();
+	 role extsupplier(j) = token!j -> process -> extsupplier(j);
+ }
+connector ROConnector { 
+	 role extquerier(j) = request -> uid!j -> res?j -> process -> Skip;
+	 role blocksupplier() = uid?j -> process -> res!j -> blocksupplier();
+ }
+connector OSPConnector { 
+	 role hashlogger() = hash?j -> process -> hashlogger();
+	 role hashsupplier(j) = process -> calculate -> hash!j -> hashsupplier(j);
+ }
+connector OSFConnector { 
+	 role hashvalidator() = hash?j -> process -> check -> res!j -> hashvalidator();
+	 role hashchecker(j) = hash!j -> calculate -> res?j -> process -> hashchecker(j);
+ }
+connector FCConnector { 
+	 role contractcreator(j) = process -> create -> smcon!j -> contractcreator(j);
+	 role contractdeployer() = process -> deploy -> smcon?j -> contractdeployer();
+ }
+component LifeBand { 
+	 port alert() = onalert->alert();
+}
+component SOSGateway { 
+	 port sos() = acknowledge->alert->sos();
+}
+component RequestDispatcher { 
+	 port accept() = dispatched->accept();
+}
+component LifeGuard { 
+	 port gnotify() = acknowlege->gnotify();
+}
+component LifeCare { 
+	 port cnotify() = acknowlege->cnotify();
+}
+component Practitioner { 
+	 port pgaccess() = return->pgaccess();
+}
+component EmCenter { 
+	 port emaccess() = emaccessed->emaccess();
+}
+component Patient { 
+	 port ptaccess() = ptaccessed->ptaccess();
+}
+component MedChain { 
+	 port medquery() = queried->medquery();
+}
+component EMSRecord { 
+	 port logems() = logged->logems();
+}
+component AdversaryDOS1 { 
+	 port attack1() = attacked->attack1();
+}
+component AdversaryDOS2 { 
+	 port attack2() = attacked->attack2();
+}
+component AdversaryDOS3 { 
+	 port attack3() = attacked->attack3();
+}
+component AdversaryDOS4 { 
+	 port attack4() = attacked->attack4();
+}
+system lifenet { 
+	 declare soswire = PSConnector; 
+	 declare dispatchwire = CSConnector; 
+	 declare pgwire = CSConnector; 
+	 declare ptwire = CSConnector; 
+	 declare medwire = ROConnector; 
+	 declare emswire = ESConnector; 
+	 declare emcenterwire = CSConnector; 
+	 attach SOSGateway.sos() = soswire.subscriber() <*> dispatchwire.requester(24);
+	 attach RequestDispatcher.accept() = dispatchwire.responder() <*> emcenterwire.requester(42) <*> emswire.eventpublisher(93);
+	 attach LifeGuard.gnotify() = emswire.eventsubscriber() <*> ptwire.requester(61);
+	 attach LifeCare.cnotify() = emswire.eventsubscriber() <*> ptwire.requester(91);
+	 attach Practitioner.pgaccess() = pgwire.responder();
+	 attach EmCenter.emaccess() = pgwire.requester(24);
+	 attach Patient.ptaccess() = ptwire.responder() <*> medwire.extquerier(41);
+	 attach MedChain.medquery() = medwire.blocksupplier();
+	 attach EMSRecord.logems() = emswire.eventstore();
+	 attach AdversaryDOS1.attack1() = soswire.publisher(50) <*> dispatchwire.requester(72);
+	 execute SOSGateway.sos() || RequestDispatcher.accept() || LifeGuard.gnotify() || LifeCare.cnotify() || Practitioner.pgaccess() || EmCenter.emaccess() || Patient.ptaccess() || MedChain.medquery() || EMSRecord.logems() || AdversaryDOS1.attack1()
+}

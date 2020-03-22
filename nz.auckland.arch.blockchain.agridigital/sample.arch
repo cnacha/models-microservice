@@ -94,31 +94,6 @@
       <events name="attacked"/>
     </port>
   </component>
-  <component name="AdversaryMIM1" type="adversary">
-    <port name="attack1" role="//@connector.1/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM2" type="adversary">
-    <port name="attack2" role="//@connector.2/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM3" type="adversary">
-    <port name="attack3" role="//@connector.3/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM4" type="adversary">
-    <port name="attack4" role="//@connector.5/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM5" type="adversary">
-    <port name="attack5" role="//@connector.7/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
   <connector name="adapiwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
     <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
     <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.0"/>
@@ -431,48 +406,6 @@
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
       <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.6/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.7/@ltlexpr.0/@expr.1" role="//@connector.5/@role.0" port="//@component.16/@port.0"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.1/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM1VerifyProp" testport="//@component.17/@port.0">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.8/@ltlexpr.0/@expr.1" role="//@connector.1/@role.0" port="//@component.17/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.1/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM1VerifyProp" testport="//@component.17/@port.0">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.9/@ltlexpr.0/@expr.1" role="//@connector.1/@role.0" port="//@component.17/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM2VerifyProp" visitedStates="38014" verifyTime="0.9374053" testport="//@component.18/@port.0" traceExample="init -> AdversaryMIM2_prvapiwire_requester_request -> prvapiwire_req!64 -> prvapiwire_req?64 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!64 -> admsgwire_pevt?64 -> ADMessageBus_adlog_logged -> ADMessageBus_admsgwire_eventstore_process -> admsgwire_sevt!64 -> admsgwire_sevt?64 -> admsgwire_bevt!64 -> ProvenanceInt_admsgwire_eventpublisher_broadcast -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvmsgwire_eventpublisher_process -> prvmsgwire_pevt!64 -> prvmsgwire_pevt?64 -> BCMessageBus_bclog_evntlogged -> BCMessageBus_prvmsgwire_eventstore_process -> prvmsgwire_sevt!64 -> BCMessageBus_prvmsgwire_eventstore_persist -> prvmsgwire_sevt?64 -> prvmsgwire_bevt!64 -> prvmsgwire_bevt?64 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_pubwire_extsupplier_process -> pubwire_token!64 -> pubwire_token?64 -> PublicBlockChain_logfinance_finlogged -> PublicBlockChain_pubwire_blockstorage_process -> PublicBlockChain_pubwire_blockstorage_stored -> BCIntegrator_prvwire_extsupplier_process -> prvwire_token!64 -> prvwire_token?64 -> PrivateBlockChain_logstate_statelogged -> PrivateBlockChain_prvwire_blockstorage_process -> PrivateBlockChain_prvwire_blockstorage_stored -> BCIntegrator_prvmsgwire_eventsubscriber_process -> ProvenanceInt_prvmsgwire_eventpublisher_broadcast -> ProvenanceInt_prvmsgwire_eventpublisher_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!64 -> prvapiwire_res?64 -> AdversaryMIM2_attack2_attacked -> AdversaryMIM2_prvapiwire_requester_process -> ADMessageBus_admsgwire_eventstore_persist -> admsgwire_bevt?64 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.10/@ltlexpr.0/@expr.1" role="//@connector.2/@role.0" port="//@component.18/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM3VerifyProp" visitedStates="802" verifyTime="0.0212568" testport="//@component.19/@port.0" traceExample="init -> AdversaryMIM3_attack3_attacked -> AdversaryMIM3_prvmsgwire_eventpublisher_process -> prvmsgwire_pevt!13 -> prvmsgwire_pevt?13 -> BCMessageBus_bclog_evntlogged -> BCMessageBus_prvmsgwire_eventstore_process -> prvmsgwire_sevt!13 -> prvmsgwire_sevt?13 -> prvmsgwire_bevt!13 -> AdversaryMIM3_prvmsgwire_eventpublisher_broadcast -> prvmsgwire_bevt?13 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_pubwire_extsupplier_process -> pubwire_token!13 -> pubwire_token?13 -> PublicBlockChain_logfinance_finlogged -> PublicBlockChain_pubwire_blockstorage_process -> PublicBlockChain_pubwire_blockstorage_stored -> BCIntegrator_prvwire_extsupplier_process -> prvwire_token!13 -> prvwire_token?13 -> PrivateBlockChain_logstate_statelogged -> PrivateBlockChain_prvwire_blockstorage_process -> PrivateBlockChain_prvwire_blockstorage_stored -> BCIntegrator_prvmsgwire_eventsubscriber_process -> BCMessageBus_prvmsgwire_eventstore_persist">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.11/@ltlexpr.0/@expr.1" role="//@connector.3/@role.0" port="//@component.19/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM3VerifyProp" visitedStates="781" verifyTime="0.021369799999999998" testport="//@component.19/@port.0" traceExample="init -> AdversaryMIM3_attack3_attacked -> AdversaryMIM3_prvmsgwire_eventpublisher_process -> prvmsgwire_pevt!84 -> prvmsgwire_pevt?84 -> BCMessageBus_bclog_evntlogged -> BCMessageBus_prvmsgwire_eventstore_process -> prvmsgwire_sevt!84 -> prvmsgwire_sevt?84 -> prvmsgwire_bevt!84 -> AdversaryMIM3_prvmsgwire_eventpublisher_broadcast -> prvmsgwire_bevt?84 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_pubwire_extsupplier_process -> pubwire_token!84 -> pubwire_token?84 -> PublicBlockChain_logfinance_finlogged -> PublicBlockChain_pubwire_blockstorage_process -> PublicBlockChain_pubwire_blockstorage_stored -> BCIntegrator_prvwire_extsupplier_process -> prvwire_token!84 -> prvwire_token?84 -> PrivateBlockChain_logstate_statelogged -> PrivateBlockChain_prvwire_blockstorage_process -> PrivateBlockChain_prvwire_blockstorage_stored -> BCIntegrator_prvmsgwire_eventsubscriber_process -> BCMessageBus_prvmsgwire_eventstore_persist">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.12/@ltlexpr.0/@expr.1" role="//@connector.3/@role.0" port="//@component.19/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM4VerifyProp" visitedStates="13" verifyTime="0.0050609999999999995" testport="//@component.20/@port.0" traceExample="init -> AdversaryMIM4_walletwire_extquerier_request -> walletwire_uid!35 -> walletwire_uid?35 -> PublicBlockChain_checkfinance_check -> PublicBlockChain_walletwire_blocksupplier_process -> walletwire_res!35 -> walletwire_res?35 -> AdversaryMIM4_attack4_attacked -> AdversaryMIM4_walletwire_extquerier_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.6/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.13/@ltlexpr.0/@expr.1" role="//@connector.5/@role.0" port="//@component.20/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.1/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM5VerifyProp" visitedStates="3462" verifyTime="0.0794076" testport="//@component.21/@port.0" traceExample="init -> AdversaryMIM5_iotreqwire_requester_request -> iotreqwire_req!81 -> iotreqwire_req?81 -> IOTWebAPI_iotreqwire_responder_invoke -> IOTWebAPI_iotpub_published -> IOTWebAPI_prvmsgwire_eventpublisher_process -> prvmsgwire_pevt!81 -> prvmsgwire_pevt?81 -> BCMessageBus_bclog_evntlogged -> BCMessageBus_prvmsgwire_eventstore_process -> prvmsgwire_sevt!81 -> BCMessageBus_prvmsgwire_eventstore_persist -> prvmsgwire_sevt?81 -> prvmsgwire_bevt!81 -> prvmsgwire_bevt?81 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_pubwire_extsupplier_process -> pubwire_token!81 -> pubwire_token?81 -> PublicBlockChain_logfinance_finlogged -> PublicBlockChain_pubwire_blockstorage_process -> PublicBlockChain_pubwire_blockstorage_stored -> BCIntegrator_prvwire_extsupplier_process -> prvwire_token!81 -> prvwire_token?81 -> PrivateBlockChain_logstate_statelogged -> PrivateBlockChain_prvwire_blockstorage_process -> PrivateBlockChain_prvwire_blockstorage_stored -> BCIntegrator_prvmsgwire_eventsubscriber_process -> IOTWebAPI_prvmsgwire_eventpublisher_broadcast -> IOTWebAPI_prvmsgwire_eventpublisher_Skip -> IOTWebAPI_iotreqwire_responder_process -> iotreqwire_res!81 -> iotreqwire_res?81 -> AdversaryMIM5_attack5_attacked -> AdversaryMIM5_iotreqwire_requester_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.14/@ltlexpr.0/@expr.1" role="//@connector.7/@role.0" port="//@component.21/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
   <host name="ADWebServer">
