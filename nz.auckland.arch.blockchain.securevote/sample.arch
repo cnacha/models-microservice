@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="securevote">
+  <component name="AdminUI" type="client" deploymentnode="//@host.0/@node.0">
+    <port name="create" role="//@connector.1/@role.0" type="request,OutboundPort">
+      <events name="createballot"/>
+    </port>
+  </component>
+  <component name="Index" type="client,server" deploymentnode="//@host.1/@node.0" securityCharacters="AttackSurface,Compartmentalization">
+    <port name="log" role="//@connector.1/@role.1 //@connector.0/@role.0" type="request,response,OutboundPort,InboundPort">
+      <events name="logrequest"/>
+    </port>
+  </component>
+  <component name="BallotFactory" type="server,contractfactory" deploymentnode="//@host.1/@node.1">
+    <port name="generate" role="//@connector.0/@role.1 //@connector.2/@role.0" type="response,contractcreate,OutboundPort,InboundPort">
+      <events name="generateballot"/>
+    </port>
+  </component>
+  <component name="BallotContract" type="server,blockchain,blockchain,blockchain,blockchain,blockchain" deploymentnode="//@host.1/@node.2" securityCharacters="AttackSurface,DenialOfService,DataTampering">
+    <port name="newballot" role="//@connector.2/@role.1" type="contractdeploy,InboundPort">
+      <events name="ballotcreated"/>
+    </port>
+    <port name="vote" role="//@connector.3/@role.1" type="response,InboundPort">
+      <events name="logvote"/>
+    </port>
+    <port name="access" role="//@connector.4/@role.1" type="response,InboundPort">
+      <events name="accessscore"/>
+    </port>
+  </component>
+  <component name="VoteUI" type="client" deploymentnode="//@host.3/@node.0">
+    <port name="send" role="//@connector.3/@role.0" type="request,OutboundPort">
+      <events name="votesubmitted"/>
+    </port>
+  </component>
+  <component name="Auditor" type="client" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface">
+    <port name="tally" role="//@connector.4/@role.0" type="request,OutboundPort">
+      <events name="issuetally"/>
+    </port>
+  </component>
+  <component name="AdversaryDOS1" type="adversary">
+    <port name="attack1" role="//@connector.2/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryDOS2" type="adversary">
+    <port name="attack2" role="//@connector.3/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryDOS3" type="adversary">
+    <port name="attack3" role="//@connector.4/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryMIM1" type="adversary">
+    <port name="attack1" role="//@connector.1/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryMIM2" type="adversary">
+    <port name="attack2" role="//@connector.4/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryDTP1" type="adversary">
+    <port name="attack1" role="//@connector.4/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <connector name="factorywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.2/@role.0" connector="//@connector.0"/>
+    <communicationlink href="data.json#//@link.11"/>
+  </connector>
+  <connector name="indexwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.0/@role.0" connector="//@connector.1"/>
+    <communicationlink href="data.json#//@link.10"/>
+  </connector>
+  <connector name="gencontractwire" type="FCConnector" connectortype="//@archstyle.9/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="contractcreator" roletype="//@archstyle.9/@connectortype.0/@roletype.0" type="contractcreator,out" connector="//@connector.2"/>
+    <role name="contractdeployer" roletype="//@archstyle.9/@connectortype.0/@roletype.1" type="contractdeployer,in" connector="//@connector.2"/>
+    <communicationlink href="data.json#//@link.13"/>
+  </connector>
+  <connector name="votewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
+    <communicationlink href="data.json#//@link.14"/>
+  </connector>
+  <connector name="tallywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.4"/>
+    <communicationlink href="data.json#//@link.12"/>
+  </connector>
+  <archstyle name="client-server">
+    <connectortype name="CSConnector">
+      <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="responder" porttype="//@archstyle.0/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="client">
+      <porttype name="request"/>
+    </componenttype>
+    <componenttype name="server">
+      <porttype name="response"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="publish-subscribe">
+    <connectortype name="PSConnector" eaConnector="//@archstyle.0/@connectortype.0">
+      <roletype name="publisher" porttype="//@archstyle.1/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.1/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="subscriber" porttype="//@archstyle.1/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="broadcaster">
+      <porttype name="broadcast"/>
+    </componenttype>
+    <componenttype name="listener">
+      <porttype name="listen"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="event-sourcing">
+    <connectortype name="ESConnector">
+      <roletype name="eventpublisher" porttype="//@archstyle.2/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.2/@event.0"/>
+        <event xsi:type="arch:Channel" name="sevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.4" type="input"/>
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.5" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="broadcast" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.3"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="eventsubscriber" porttype="//@archstyle.2/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+      <roletype name="eventstore" porttype="//@archstyle.2/@componenttype.2/@porttype.0">
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.3"/>
+        <event xsi:type="arch:Channel" name="sevt" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="eventsource">
+      <porttype name="publish"/>
+    </componenttype>
+    <componenttype name="eventconsumer">
+      <porttype name="listen"/>
+    </componenttype>
+    <componenttype name="eventlogger">
+      <porttype name="log"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="command-responsibility">
+    <connectortype name="CRConnector">
+      <roletype name="readstore" porttype="//@archstyle.3/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+      <roletype name="commander" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="commandendpoint">
+      <porttype name="issue"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="update"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="query-responsibility">
+    <connectortype name="QRConnector">
+      <roletype name="reader" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.0" type="input"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstore" porttype="//@archstyle.4/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="readendpoint">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="query"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="oracle">
+    <connectortype name="IOConnector">
+      <roletype name="blockstorage" porttype="//@archstyle.5/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="token" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="stored"/>
+      </roletype>
+      <roletype name="extsupplier" porttype="//@archstyle.5/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="token" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.0/@event.0"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="bcstore"/>
+    </componenttype>
+    <componenttype name="oracle">
+      <porttype name="orafeed"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="reverse-oracle">
+    <connectortype name="ROConnector">
+      <roletype name="extquerier" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="blocksupplier" porttype="//@archstyle.6/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="reverseoracle">
+      <porttype name="blockquery"/>
+    </componenttype>
+    <componenttype name="blockchain">
+      <porttype name="blocksupply"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="offchain-storage-put">
+    <connectortype name="OSPConnector">
+      <roletype name="hashlogger" porttype="//@archstyle.7/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+      <roletype name="hashsupplier" porttype="//@archstyle.7/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.1"/>
+        <event name="calculate" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="hash" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.0/@event.0"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="storage">
+      <porttype name="hashsupply"/>
+    </componenttype>
+    <componenttype name="blockchain">
+      <porttype name="hashlog"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="offchain-storage-fetch">
+    <connectortype name="OSFConnector">
+      <roletype name="hashvalidator" porttype="//@archstyle.8/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="check" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.1/@event.2"/>
+      </roletype>
+      <roletype name="hashchecker" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="calculate" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.3" type="input"/>
+        <event name="process"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="hashvalidate"/>
+    </componenttype>
+    <componenttype name="storage">
+      <porttype name="hashcheck"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="factory-contract">
+    <connectortype name="FCConnector">
+      <roletype name="contractcreator" porttype="//@archstyle.9/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.1"/>
+        <event name="create" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.2"/>
+        <event xsi:type="arch:Channel" name="smcon" type="output" bind="//@archstyle.9/@connectortype.0/@roletype.1/@event.2"/>
+      </roletype>
+      <roletype name="contractdeployer" porttype="//@archstyle.9/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.1"/>
+        <event name="deploy"/>
+        <event xsi:type="arch:Channel" name="smcon" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.0" type="input"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="contractdeploy"/>
+    </componenttype>
+    <componenttype name="contractfactory">
+      <porttype name="contractcreate"/>
+    </componenttype>
+  </archstyle>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS1VerifyProp" visitedStates="98" verifyTime="0.006836" testport="//@component.6/@port.0" traceExample="init -> AdversaryDOS1_attack1_attacked -> (BallotContract_newballot_ballotcreated -> AdversaryDOS1_gencontractwire_contractcreator_process -> AdversaryDOS1_gencontractwire_contractcreator_create -> gencontractwire_smcon!78 -> AdversaryDOS1_attack1_attacked -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy -> gencontractwire_smcon?78 -> BallotContract_newballot_ballotcreated)*">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.9/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1" role="//@connector.2/@role.0" port="//@component.6/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS2VerifyProp" visitedStates="102" verifyTime="0.0035765" testport="//@component.7/@port.0" traceExample="init -> AdversaryDOS2_votewire_requester_request -> votewire_req!33 -> votewire_req?33 -> BallotContract_votewire_responder_invoke -> BallotContract_vote_logvote -> BallotContract_votewire_responder_process -> votewire_res!33 -> votewire_res?33 -> AdversaryDOS2_attack2_attacked -> AdversaryDOS2_votewire_requester_process -> BallotContract_newballot_ballotcreated -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1" role="//@connector.3/@role.0" port="//@component.7/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.1/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS3VerifyProp" visitedStates="102" verifyTime="0.0035356" testport="//@component.8/@port.0" traceExample="init -> AdversaryDOS3_tallywire_requester_request -> tallywire_req!79 -> tallywire_req?79 -> BallotContract_tallywire_responder_invoke -> BallotContract_access_accessscore -> BallotContract_tallywire_responder_process -> tallywire_res!79 -> tallywire_res?79 -> AdversaryDOS3_attack3_attacked -> AdversaryDOS3_tallywire_requester_process -> BallotContract_newballot_ballotcreated -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1" role="//@connector.4/@role.0" port="//@component.8/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.2/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM1VerifyProp" visitedStates="390" verifyTime="0.0078932" testport="//@component.9/@port.0" traceExample="init -> AdversaryMIM1_indexwire_requester_request -> indexwire_req!76 -> BallotContract_newballot_ballotcreated -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy -> indexwire_req?76 -> Index_indexwire_responder_invoke -> Index_factorywire_requester_request -> factorywire_req!76 -> factorywire_req?76 -> BallotFactory_factorywire_responder_invoke -> BallotFactory_generate_generateballot -> BallotFactory_gencontractwire_contractcreator_process -> BallotFactory_gencontractwire_contractcreator_create -> gencontractwire_smcon!76 -> gencontractwire_smcon?76 -> BallotContract_newballot_ballotcreated -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy -> BallotFactory_factorywire_responder_process -> factorywire_res!76 -> factorywire_res?76 -> Index_log_logrequest -> Index_factorywire_requester_process -> Index_factorywire_requester_Skip -> Index_indexwire_responder_process -> indexwire_res!76 -> indexwire_res?76 -> AdversaryMIM1_attack1_attacked -> AdversaryMIM1_indexwire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.1" role="//@connector.1/@role.0" port="//@component.9/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM2VerifyProp" visitedStates="102" verifyTime="0.0040536" testport="//@component.10/@port.0" traceExample="init -> AdversaryMIM2_tallywire_requester_request -> tallywire_req!21 -> tallywire_req?21 -> BallotContract_tallywire_responder_invoke -> BallotContract_access_accessscore -> BallotContract_tallywire_responder_process -> tallywire_res!21 -> tallywire_res?21 -> AdversaryMIM2_attack2_attacked -> AdversaryMIM2_tallywire_requester_process -> BallotContract_newballot_ballotcreated -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1" role="//@connector.4/@role.0" port="//@component.10/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.2/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP1VerifyProp" visitedStates="102" verifyTime="0.0041436" testport="//@component.11/@port.0" traceExample="init -> AdversaryDTP1_tallywire_requester_request -> tallywire_req!36 -> tallywire_req?36 -> BallotContract_tallywire_responder_invoke -> BallotContract_access_accessscore -> BallotContract_tallywire_responder_process -> tallywire_res!36 -> tallywire_res?36 -> AdversaryDTP1_attack1_attacked -> AdversaryDTP1_tallywire_requester_process -> BallotContract_newballot_ballotcreated -> BallotContract_gencontractwire_contractdeployer_process -> BallotContract_gencontractwire_contractdeployer_deploy">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.1" role="//@connector.4/@role.0" port="//@component.11/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.2/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <host name="AdminMachine" hostType="DEDICATED_SERVER">
+    <node type="APPLICATION_CONTAINER" name="WebBrowser1" component="//@component.0">
+      <port name="port" portNumber="12151" node="//@host.0/@node.0" namedport="//@component.0/@port.0"/>
+    </node>
+  </host>
+  <host netAccessType="PUBLIC" name="Ethereum" hostType="DEDICATED_SERVER">
+    <node type="APPLICATION_CONTAINER" name="IndexNode" component="//@component.1">
+      <port name="port" portNumber="8545" node="//@host.1/@node.0" namedport="//@component.1/@port.0" hasAuthentication="true" hasAuthorization="true" hasInputSanitization="true"/>
+      <port name="port" portNumber="12152" node="//@host.1/@node.0" namedport="//@component.1/@port.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="FactoryNode" component="//@component.2">
+      <port name="port" portNumber="8486" node="//@host.1/@node.1" namedport="//@component.2/@port.0"/>
+      <port name="port" portNumber="12155" node="//@host.1/@node.1" namedport="//@component.2/@port.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="BallotNode" component="//@component.3">
+      <port name="port" portNumber="8467" node="//@host.1/@node.2" namedport="//@component.3/@port.2"/>
+      <port name="port" portNumber="8567" node="//@host.1/@node.2" namedport="//@component.3/@port.0"/>
+      <port name="port" portNumber="8468" node="//@host.1/@node.2" namedport="//@component.3/@port.1"/>
+    </node>
+  </host>
+  <host netAccessType="PUBLIC" name="CloudPlatform1" hostType="CLOUD_PLATFORM">
+    <node name="DockerContainer1" component="//@component.5">
+      <port name="port" portNumber="12053" node="//@host.2/@node.0" namedport="//@component.5/@port.0"/>
+    </node>
+  </host>
+  <host name="VoterMachine" hostType="DEDICATED_SERVER">
+    <node type="APPLICATION_CONTAINER" name="WebBrowser2" component="//@component.4">
+      <port name="port" portNumber="12161" node="//@host.3/@node.0" namedport="//@component.4/@port.0"/>
+    </node>
+  </host>
+  <link name="link1"/>
+  <link name="link3" networkType="INTERNET"/>
+  <link name="link2" networkType="INTERNET"/>
+  <link name="link4"/>
+  <link name="link5" networkType="INTERNET"/>
+  <link name="link6"/>
+  <link name="link7" networkType="INTERNET"/>
+  <link name="link8"/>
+  <link name="link9" networkType="INTERNET"/>
+  <link name="link10"/>
+  <link name="link11" networkType="INTERNET" source="//@host.0/@node.0/@port.0" target="//@host.1/@node.0/@port.0"/>
+  <link name="link12" source="//@host.1/@node.0/@port.1" target="//@host.1/@node.1/@port.0"/>
+  <link name="link13" networkType="INTERNET" source="//@host.2/@node.0/@port.0" target="//@host.1/@node.2/@port.0"/>
+  <link name="link14" source="//@host.1/@node.1/@port.1" target="//@host.1/@node.2/@port.1"/>
+  <link name="link15" linkType="HTTPS" networkType="INTERNET" source="//@host.3/@node.0/@port.0" target="//@host.1/@node.2/@port.2"/>
+</arch:DesignModel>
