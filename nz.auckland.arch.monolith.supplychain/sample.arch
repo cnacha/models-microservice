@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="supplychain">
+  <component name="ManufacturerAPI" type="server" deploymentnode="//@host.2/@node.0">
+    <port name="mfrprocess" role="//@connector.1/@role.1 //@connector.8/@role.0" type="response,InboundPort">
+      <events name="processorder"/>
+    </port>
+  </component>
+  <component name="ManufacturerTrigger" type="client,readendpoint,datareader" deploymentnode="//@host.0/@node.2" securityCharacters="AttackSurface,DenialOfService">
+    <port name="mfretrieve" role="//@connector.1/@role.0 //@connector.5/@role.0" type="request,read,read,OutboundPort">
+      <events name="mfcomplete"/>
+    </port>
+  </component>
+  <component name="MiddlemanTrigger" type="client,readendpoint,datareader" deploymentnode="//@host.0/@node.3" securityCharacters="AttackSurface,Compartmentalization,DenialOfService">
+    <port name="mmretrieve" role="//@connector.2/@role.0 //@connector.7/@role.0" type="request,read,read,OutboundPort">
+      <events name="mmcomplete"/>
+    </port>
+  </component>
+  <component name="MiddlemanAPI" type="server" deploymentnode="//@host.3/@node.0">
+    <port name="mmprocess" role="//@connector.2/@role.1" type="response,InboundPort">
+      <events name="processorder"/>
+    </port>
+  </component>
+  <component name="BuyerTrigger" type="server,datawriter" deploymentnode="//@host.0/@node.1" securityCharacters="AttackSurface,DenialOfService,DataTampering">
+    <port name="createorder" role="//@connector.0/@role.1 //@connector.4/@role.0" type="response,write,OutboundPort,InboundPort">
+      <events name="transcreated"/>
+    </port>
+  </component>
+  <component name="BuyerUI" type="client" deploymentnode="//@host.1/@node.0">
+    <port name="order" role="//@connector.0/@role.0" type="request,OutboundPort">
+      <events name="issue"/>
+    </port>
+  </component>
+  <component name="CarrierTrigger" type="client,readendpoint,datareader" deploymentnode="//@host.0/@node.4" securityCharacters="AttackSurface,Compartmentalization,DenialOfService">
+    <port name="crretrieve" role="//@connector.3/@role.0 //@connector.6/@role.0" type="request,read,read,OutboundPort">
+      <events name="ordercomplete"/>
+    </port>
+  </component>
+  <component name="CarrierAPI" type="server" deploymentnode="//@host.4/@node.0">
+    <port name="crprocess" role="//@connector.3/@role.1" type="response,InboundPort">
+      <events name="processorder"/>
+    </port>
+  </component>
+  <component name="TransactionDB" type="repository,repository" deploymentnode="//@host.5/@node.0" securityCharacters="AttackSurface,DenialOfService">
+    <port name="query" role="//@connector.8/@role.1" type="access,InboundPort">
+      <events name="returnresult"/>
+    </port>
+    <port name="insert" role="//@connector.4/@role.1" type="store,InboundPort">
+      <events name="orderinsert"/>
+    </port>
+    <port name="check" role="//@connector.5/@role.1 //@connector.7/@role.1 //@connector.6/@role.1">
+      <events name="checked"/>
+    </port>
+  </component>
+  <connector name="orderwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.0"/>
+    <communicationlink href="data.json#//@link.13"/>
+  </connector>
+  <connector name="mfprocwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.1"/>
+    <communicationlink href="data.json#//@link.14"/>
+  </connector>
+  <connector name="mmprocwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.2"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.2"/>
+    <communicationlink href="data.json#//@link.15"/>
+  </connector>
+  <connector name="crprocwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
+    <communicationlink href="data.json#//@link.17"/>
+  </connector>
+  <connector name="transinswire" type="WRConnector" connectortype="//@archstyle.11/@connectortype.0">
+    <role name="writer" roletype="//@archstyle.11/@connectortype.0/@roletype.0" type="writer,out" connector="//@connector.4"/>
+    <role name="writestorage" roletype="//@archstyle.11/@connectortype.0/@roletype.1" type="writestorage,in" connector="//@connector.4"/>
+  </connector>
+  <connector name="mftranwire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader,out" nextRoleExpr="//@connector.1/@role.0" connector="//@connector.5"/>
+    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage,in" nextRoleExpr="//@connector.6/@role.1" operatorExpr="INTERLEAVE" connector="//@connector.5"/>
+  </connector>
+  <connector name="crtranswire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader" nextRoleExpr="//@connector.3/@role.0" connector="//@connector.6"/>
+    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage" connector="//@connector.6"/>
+  </connector>
+  <connector name="mmtranswire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader" nextRoleExpr="//@connector.2/@role.0" connector="//@connector.7"/>
+    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage" nextRoleExpr="//@connector.5/@role.1" operatorExpr="INTERLEAVE" connector="//@connector.7"/>
+  </connector>
+  <connector name="mfreadwire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader" connector="//@connector.8"/>
+    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage" connector="//@connector.8"/>
+  </connector>
+  <archstyle name="client-server">
+    <connectortype name="CSConnector">
+      <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="responder" porttype="//@archstyle.0/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="client">
+      <porttype name="request"/>
+    </componenttype>
+    <componenttype name="server">
+      <porttype name="response"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="publish-subscribe">
+    <connectortype name="PSConnector" eaConnector="//@archstyle.0/@connectortype.0">
+      <roletype name="publisher" porttype="//@archstyle.1/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.1/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="subscriber" porttype="//@archstyle.1/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="broadcaster">
+      <porttype name="broadcast"/>
+    </componenttype>
+    <componenttype name="listener">
+      <porttype name="listen"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="event-sourcing">
+    <connectortype name="ESConnector">
+      <roletype name="eventpublisher" porttype="//@archstyle.2/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.2/@event.0"/>
+        <event xsi:type="arch:Channel" name="sevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.4" type="input"/>
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.5" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="broadcast" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.3"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="eventsubscriber" porttype="//@archstyle.2/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+      <roletype name="eventstore" porttype="//@archstyle.2/@componenttype.2/@porttype.0">
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.3"/>
+        <event xsi:type="arch:Channel" name="sevt" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="eventsource">
+      <porttype name="publish"/>
+    </componenttype>
+    <componenttype name="eventconsumer">
+      <porttype name="listen"/>
+    </componenttype>
+    <componenttype name="eventlogger">
+      <porttype name="log"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="command-responsibility">
+    <connectortype name="CRConnector">
+      <roletype name="readstore" porttype="//@archstyle.3/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+      <roletype name="commander" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="commandendpoint">
+      <porttype name="issue"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="update"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="query-responsibility">
+    <connectortype name="QRConnector">
+      <roletype name="reader" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.0" type="input"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstore" porttype="//@archstyle.4/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="readendpoint">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="query"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="oracle">
+    <connectortype name="IOConnector">
+      <roletype name="blockstorage" porttype="//@archstyle.5/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="token" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="stored"/>
+      </roletype>
+      <roletype name="extsupplier" porttype="//@archstyle.5/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="token" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.0/@event.0"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="bcstore"/>
+    </componenttype>
+    <componenttype name="oracle">
+      <porttype name="orafeed"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="reverse-oracle">
+    <connectortype name="ROConnector">
+      <roletype name="extquerier" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="blocksupplier" porttype="//@archstyle.6/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="reverseoracle">
+      <porttype name="blockquery"/>
+    </componenttype>
+    <componenttype name="blockchain">
+      <porttype name="blocksupply"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="offchain-storage-put">
+    <connectortype name="OSPConnector">
+      <roletype name="hashlogger" porttype="//@archstyle.7/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+      <roletype name="hashsupplier" porttype="//@archstyle.7/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="hash" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.0/@event.0"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="storage">
+      <porttype name="hashsupply"/>
+    </componenttype>
+    <componenttype name="blockchain">
+      <porttype name="hashlog"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="offchain-storage-fetch">
+    <connectortype name="OSFConnector">
+      <roletype name="hashvalidator" porttype="//@archstyle.8/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="check" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.1/@event.1"/>
+      </roletype>
+      <roletype name="hashchecker" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.1" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.2" type="input"/>
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.3"/>
+        <event name="Skip"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="hashvalidate"/>
+    </componenttype>
+    <componenttype name="storage">
+      <porttype name="hashcheck"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="factory-contract">
+    <connectortype name="FCConnector">
+      <roletype name="contractcreator" porttype="//@archstyle.9/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.1"/>
+        <event name="create" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.2"/>
+        <event xsi:type="arch:Channel" name="smcon" type="output" bind="//@archstyle.9/@connectortype.0/@roletype.1/@event.2"/>
+      </roletype>
+      <roletype name="contractdeployer" porttype="//@archstyle.9/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.1"/>
+        <event name="deploy"/>
+        <event xsi:type="arch:Channel" name="smcon" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.0" type="input"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="contractdeploy"/>
+    </componenttype>
+    <componenttype name="contractfactory">
+      <porttype name="contractcreate"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="repository-read">
+    <connectortype name="REConnector">
+      <roletype name="reader" porttype="//@archstyle.10/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstorage" porttype="//@archstyle.10/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="datareader">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="repository">
+      <porttype name="access"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="repository-write">
+    <connectortype name="WRConnector">
+      <roletype name="writer" porttype="//@archstyle.11/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="writestorage" porttype="//@archstyle.11/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="datawriter">
+      <porttype name="write"/>
+    </componenttype>
+    <componenttype name="repository">
+      <porttype name="store"/>
+    </componenttype>
+  </archstyle>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" counterExample="" visitedStates="6333" verifyTime="0.1259495" testport="//@component.5/@port.0" traceExample="init -> BuyerUI_orderwire_requester_request -> orderwire_req!36 -> orderwire_req?36 -> BuyerTrigger_orderwire_responder_invoke -> BuyerTrigger_createorder_transcreated -> BuyerTrigger_orderwire_responder_process -> orderwire_res!36 -> orderwire_res?36 -> BuyerUI_order_issue -> BuyerUI_orderwire_requester_process -> MiddlemanTrigger_mmprocwire_requester_request -> mmprocwire_req!69 -> mmprocwire_req?69 -> MiddlemanAPI_mmprocwire_responder_invoke -> MiddlemanAPI_mmprocess_processorder -> MiddlemanAPI_mmprocwire_responder_process -> mmprocwire_res!69 -> mmprocwire_res?69 -> MiddlemanTrigger_mftranwire_reader_request -> mftranwire_req!69 -> mftranwire_req?69 -> TransactionDB_mftranwire_readstorage_invoke -> TransactionDB_query_returnresult -> TransactionDB_mftranwire_readstorage_process -> mftranwire_res!69 -> mftranwire_res?69 -> MiddlemanTrigger_mmretrieve_mmcomplete -> MiddlemanTrigger_mftranwire_reader_process -> MiddlemanTrigger_mftranwire_reader_Skip -> MiddlemanTrigger_mmprocwire_requester_process -> ManufacturerTrigger_mftranwire_reader_request -> mftranwire_req!63 -> mftranwire_req?63 -> TransactionDB_mftranwire_readstorage_invoke -> TransactionDB_query_returnresult -> TransactionDB_mftranwire_readstorage_process -> mftranwire_res!63 -> mftranwire_res?63 -> ManufacturerTrigger_mfretrieve_mfcomplete -> ManufacturerTrigger_mftranwire_reader_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.0">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.1/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.0"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop2" model="/" counterExample="" visitedStates="3" verifyTime="0.0024046" testport="//@component.1/@port.0" traceExample="init -> ManufacturerTrigger_mftranwire_reader_request -> mftranwire_req!32">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.1">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.0/@events.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" counterExample="" visitedStates="3" verifyTime="0.0060126" testport="//@component.2/@port.0" traceExample="init -> MiddlemanTrigger_mmtranswire_reader_request -> mmtranswire_req!99">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.2">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" visitedStates="3" verifyTime="0.0634329" testport="//@component.6/@port.0" traceExample="init -> CarrierTrigger_crtranswire_reader_request -> crtranswire_req!74">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.0"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" visitedStates="47" verifyTime="0.0031961999999999997" testport="//@component.1/@port.0" traceExample="init -> ManufacturerTrigger_mftranwire_reader_request -> mftranwire_req!84 -> mftranwire_req?84 -> TransactionDB_mftranwire_readstorage_invoke -> TransactionDB_check_checked -> TransactionDB_mftranwire_readstorage_process -> mftranwire_res!84 -> mftranwire_res?84 -> ManufacturerTrigger_mfprocwire_requester_request -> mfprocwire_req!84 -> mfprocwire_req?84 -> ManufacturerAPI_mfprocwire_responder_invoke -> ManufacturerAPI_mfreadwire_reader_request -> mfreadwire_req!84 -> mfreadwire_req?84 -> TransactionDB_mfreadwire_readstorage_invoke -> TransactionDB_query_returnresult -> TransactionDB_mfreadwire_readstorage_process -> mfreadwire_res!84 -> mfreadwire_res?84 -> ManufacturerAPI_mfrprocess_processorder -> ManufacturerAPI_mfreadwire_reader_process -> ManufacturerAPI_mfreadwire_reader_Skip -> ManufacturerAPI_mfprocwire_responder_process -> mfprocwire_res!84 -> mfprocwire_res?84 -> ManufacturerTrigger_mfretrieve_mfcomplete -> ManufacturerTrigger_mfprocwire_requester_process -> ManufacturerTrigger_mfprocwire_requester_Skip -> ManufacturerTrigger_mftranwire_reader_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.4">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.2/@events.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <host netAccessType="PUBLIC" name="Ethereum">
+    <node type="APPLICATION_CONTAINER" name="node1">
+      <port name="port" portNumber="4545" node="//@host.0/@node.0"/>
+      <port name="port" portNumber="4546" node="//@host.0/@node.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="node2" component="//@component.4">
+      <port name="port" portNumber="12087" node="//@host.0/@node.1" namedport="//@component.4/@port.0"/>
+      <port name="port" portNumber="8081" node="//@host.0/@node.1" namedport="//@component.4/@port.0"/>
+      <port name="port" portNumber="12088" node="//@host.0/@node.1" namedport="//@component.4/@port.0"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="node3" component="//@component.1">
+      <port name="port" portNumber="18091" node="//@host.0/@node.2"/>
+      <port name="port" portNumber="8082" node="//@host.0/@node.2"/>
+    </node>
+    <node type="APPLICATION_CONTAINER" name="node4" component="//@component.2">
+      <port name="port" portNumber="18089" node="//@host.0/@node.3"/>
+      <port name="port" portNumber="8083" node="//@host.0/@node.3" hasAuthentication="true" hasAuthorization="true"/>
+    </node>
+    <node name="node5" component="//@component.6">
+      <port name="port" portNumber="18093" node="//@host.0/@node.4" namedport="//@component.6/@port.0"/>
+      <port name="port" portNumber="8084" node="//@host.0/@node.4" namedport="//@component.6/@port.0" hasAuthentication="true" hasAuthorization="true"/>
+    </node>
+  </host>
+  <host name="BuyerServer">
+    <node type="APPLICATION_CONTAINER" name="AppServer1" component="//@component.5">
+      <port name="port" portNumber="12321" node="//@host.1/@node.0" namedport="//@component.5/@port.0"/>
+    </node>
+  </host>
+  <host name="MFServer">
+    <node name="AppServer2" component="//@component.0">
+      <port name="port" portNumber="12231" node="//@host.2/@node.0"/>
+      <port name="port" portNumber="12232" node="//@host.2/@node.0"/>
+    </node>
+  </host>
+  <host name="MMServer">
+    <node name="AppServer3" component="//@component.3">
+      <port name="port" portNumber="12232" node="//@host.3/@node.0" namedport="//@component.3/@port.0"/>
+    </node>
+  </host>
+  <host name="CRServer">
+    <node name="AppServer4" component="//@component.7">
+      <port name="port" portNumber="12234" node="//@host.4/@node.0" namedport="//@component.7/@port.0"/>
+    </node>
+  </host>
+  <host netAccessType="PUBLIC" name="AWSCloud" hostType="CLOUD_PLATFORM">
+    <node name="DynamoDB" component="//@component.8">
+      <port name="port" portNumber="8081" node="//@host.5/@node.0" namedport="//@component.8/@port.1"/>
+      <port name="port" portNumber="8082" node="//@host.5/@node.0" namedport="//@component.8/@port.0"/>
+    </node>
+  </host>
+  <link name="link1"/>
+  <link name="link3" networkType="INTERNET"/>
+  <link name="link2" networkType="INTERNET"/>
+  <link name="link4"/>
+  <link name="link5" networkType="INTERNET"/>
+  <link name="link6"/>
+  <link name="link7" networkType="INTERNET"/>
+  <link name="link8"/>
+  <link name="link9" networkType="INTERNET"/>
+  <link name="link10"/>
+  <link name="link11" source="//@host.0/@node.3/@port.0" target="//@host.0/@node.0/@port.0"/>
+  <link name="link12" source="//@host.0/@node.2/@port.0" target="//@host.0/@node.0/@port.0"/>
+  <link name="link13" source="//@host.0/@node.1/@port.0" target="//@host.0/@node.0/@port.1"/>
+  <link name="link14" networkType="INTERNET" source="//@host.1/@node.0/@port.0" target="//@host.0/@node.1/@port.1"/>
+  <link name="link15" linkType="HTTPS" networkType="INTERNET" source="//@host.2/@node.0/@port.0" target="//@host.0/@node.2/@port.1"/>
+  <link name="link16" networkType="INTERNET" source="//@host.3/@node.0/@port.0" target="//@host.0/@node.3/@port.1"/>
+  <link name="link17" source="//@host.0/@node.4/@port.0" target="//@host.0/@node.0/@port.0"/>
+  <link name="link18" networkType="INTERNET" source="//@host.4/@node.0/@port.0" target="//@host.0/@node.4/@port.1"/>
+  <link name="link19" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.1/@port.2" target="//@host.5/@node.0/@port.0"/>
+  <link name="link20" linkType="HTTPS" networkType="INTERNET" source="//@host.2/@node.0/@port.1" target="//@host.5/@node.0/@port.1"/>
+</arch:DesignModel>
