@@ -7,20 +7,20 @@
   </component>
   <component name="ManufacturerTrigger" type="client,storage,storage" deploymentnode="//@host.0/@node.2" securityCharacters="AttackSurface,DenialOfService">
     <port name="mfretrieve" role="//@connector.2/@role.1 //@connector.3/@role.0" type="request,hashcheck,OutboundPort">
-      <events name="orderchecked"/>
+      <events name="complete"/>
     </port>
   </component>
   <component name="Blockchain" type="blockchain,blockchain,blockchain,blockchain,blockchain" deploymentnode="//@host.0/@node.0">
     <port name="log" role="//@connector.1/@role.0" type="hashlog,InboundPort">
       <events name="logged"/>
     </port>
-    <port name="check" role="//@connector.2/@role.0 //@connector.7/@role.0 //@connector.8/@role.0" type="hashvalidate,InboundPort">
+    <port name="check" role="//@connector.2/@role.0 //@connector.6/@role.0 //@connector.7/@role.0" type="hashvalidate,InboundPort">
       <events name="checked"/>
     </port>
   </component>
   <component name="MiddlemanTrigger" type="client,storage,storage" deploymentnode="//@host.0/@node.3" securityCharacters="AttackSurface,Compartmentalization,DenialOfService">
-    <port name="mmretrieve" role="//@connector.4/@role.0 //@connector.7/@role.1" type="request,hashcheck,OutboundPort">
-      <events name="orderchecked"/>
+    <port name="mmretrieve" role="//@connector.4/@role.0 //@connector.6/@role.1" type="request,hashcheck,OutboundPort">
+      <events name="complete"/>
     </port>
   </component>
   <component name="MiddlemanAPI" type="server" deploymentnode="//@host.3/@node.0">
@@ -29,8 +29,8 @@
     </port>
   </component>
   <component name="BuyerTrigger" type="client,server,storage,storage" deploymentnode="//@host.0/@node.1" securityCharacters="AttackSurface,DenialOfService,DataTampering">
-    <port name="createorder" role="//@connector.0/@role.1 //@connector.1/@role.1 //@connector.6/@role.0" type="request,response,hashsupply,OutboundPort,InboundPort">
-      <events name="create"/>
+    <port name="createorder" role="//@connector.0/@role.1 //@connector.1/@role.1 //@connector.8/@role.0" type="request,response,hashsupply,OutboundPort,InboundPort">
+      <events name="transcreated"/>
     </port>
   </component>
   <component name="BuyerUI" type="client" deploymentnode="//@host.1/@node.0">
@@ -39,8 +39,8 @@
     </port>
   </component>
   <component name="CarrierTrigger" type="client,storage,storage" deploymentnode="//@host.0/@node.4" securityCharacters="AttackSurface,Compartmentalization,DenialOfService">
-    <port name="crretrieve" role="//@connector.5/@role.0 //@connector.8/@role.1" type="request,hashcheck,OutboundPort">
-      <events name="orderchecked"/>
+    <port name="crretrieve" role="//@connector.5/@role.0 //@connector.7/@role.1" type="request,hashcheck,OutboundPort">
+      <events name="complete"/>
     </port>
   </component>
   <component name="CarrierAPI" type="server" deploymentnode="//@host.4/@node.0">
@@ -52,48 +52,13 @@
     <port name="query" role="//@connector.9/@role.1" type="response,InboundPort">
       <events name="returnresult"/>
     </port>
-    <port name="insert" role="//@connector.6/@role.1" type="response,InboundPort">
+    <port name="insert" role="//@connector.8/@role.1" type="response,InboundPort">
       <events name="orderinsert"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM1" type="adversary">
-    <port name="attack1" role="//@connector.0/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM2" type="adversary">
-    <port name="attack2" role="//@connector.4/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryMIM3" type="adversary">
-    <port name="attack3" role="//@connector.5/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryDTP1" type="adversary">
-    <port name="attack1" role="//@connector.0/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryDOS1" type="adversary">
-    <port name="attack1" role="//@connector.0/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryDOS2" type="adversary">
-    <port name="attack2" role="//@connector.6/@role.0" type="OutboundPort">
-      <events name="attacked"/>
-    </port>
-  </component>
-  <component name="AdversaryDOS3" type="adversary">
-    <port name="attack3" role="//@connector.9/@role.0" type="OutboundPort">
-      <events name="attacked"/>
     </port>
   </component>
   <connector name="orderwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
     <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.0"/>
     <communicationlink href="data.json#//@link.13"/>
   </connector>
   <connector name="orderputwire" type="OSPConnector" connectortype="//@archstyle.7/@connectortype.0">
@@ -102,8 +67,8 @@
     <communicationlink href="data.json#//@link.12"/>
   </connector>
   <connector name="mfcheckwire" type="OSFConnector" connectortype="//@archstyle.8/@connectortype.0">
-    <role name="hashvalidator" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="hashvalidator,in" connector="//@connector.2"/>
-    <role name="hashchecker" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="hashchecker,out" nextRoleExpr="//@connector.3/@role.0"/>
+    <role name="hashvalidator" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="hashvalidator,in" nextRoleExpr="//@connector.7/@role.0" operatorExpr="INTERLEAVE" connector="//@connector.2"/>
+    <role name="hashchecker" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="hashchecker,out" nextRoleExpr="//@connector.3/@role.0" connector="//@connector.2"/>
     <communicationlink href="data.json#//@link.11"/>
   </connector>
   <connector name="mfprocwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
@@ -121,25 +86,23 @@
     <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.5"/>
     <communicationlink href="data.json#//@link.17"/>
   </connector>
-  <connector name="transinswire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.1/@role.1" connector="//@connector.6"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.6"/>
-    <communicationlink href="data.json#//@link.18"/>
-  </connector>
   <connector name="mmcheckwire" type="OSFConnector" connectortype="//@archstyle.8/@connectortype.0">
-    <role name="hashvalidator" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="hashvalidator,in" connector="//@connector.7"/>
-    <role name="hashchecker" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="hashchecker,out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.7"/>
+    <role name="hashvalidator" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="hashvalidator,in" operatorExpr="PARALLEL" connector="//@connector.6"/>
+    <role name="hashchecker" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="hashchecker,out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.6"/>
     <communicationlink href="data.json#//@link.10"/>
   </connector>
   <connector name="crcheckwire" type="OSFConnector" connectortype="//@archstyle.8/@connectortype.0">
-    <role name="hashvalidator" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="hashvalidator,in" connector="//@connector.8"/>
-    <role name="hashchecker" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="hashchecker,out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.8"/>
+    <role name="hashvalidator" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="hashvalidator,in" nextRoleExpr="//@connector.6/@role.0" operatorExpr="INTERLEAVE" connector="//@connector.7"/>
+    <role name="hashchecker" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="hashchecker,out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.7"/>
     <communicationlink href="data.json#//@link.16"/>
   </connector>
-  <connector name="mftranwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.9"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.9"/>
-    <communicationlink href="data.json#//@link.19"/>
+  <connector name="transinswire" type="WRConnector" connectortype="//@archstyle.11/@connectortype.0">
+    <role name="writer" roletype="//@archstyle.11/@connectortype.0/@roletype.0" type="writer" nextRoleExpr="//@connector.1/@role.1" connector="//@connector.8"/>
+    <role name="writestorage" roletype="//@archstyle.11/@connectortype.0/@roletype.1" type="writestorage" connector="//@connector.8"/>
+  </connector>
+  <connector name="mftranwire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader" connector="//@connector.9"/>
+    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage" connector="//@connector.9"/>
   </connector>
   <archstyle name="client-server">
     <connectortype name="CSConnector">
@@ -320,11 +283,11 @@
         <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.1" type="input"/>
         <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
         <event name="check" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.3"/>
-        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="res" type="output"/>
       </roletype>
       <roletype name="hashchecker" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
         <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.1" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.0"/>
-        <event xsi:type="arch:Channel" name="res" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.2" type="input"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.2" type="input" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.3"/>
         <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.3"/>
         <event name="Skip"/>
       </roletype>
@@ -356,46 +319,92 @@
       <porttype name="contractcreate"/>
     </componenttype>
   </archstyle>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM1VerifyProp" visitedStates="68" verifyTime="0.0074557" testport="//@component.10/@port.0" traceExample="init -> AdversaryMIM1_orderwire_requester_request -> orderwire_req!32 -> orderwire_req?32 -> BuyerTrigger_orderwire_responder_invoke -> BuyerTrigger_transinswire_requester_request -> transinswire_req!32 -> transinswire_req?32 -> TransactionDB_transinswire_responder_invoke -> TransactionDB_insert_orderinsert -> TransactionDB_transinswire_responder_process -> transinswire_res!32 -> transinswire_res?32 -> BuyerTrigger_createorder_create -> BuyerTrigger_transinswire_requester_process -> BuyerTrigger_transinswire_requester_Skip -> BuyerTrigger_orderputwire_hashsupplier_process -> orderputwire_hash!32 -> BuyerTrigger_orderwire_responder_process -> orderwire_res!32 -> orderwire_res?32 -> AdversaryMIM1_attack1_attacked -> AdversaryMIM1_orderwire_requester_process -> orderputwire_hash?32 -> Blockchain_log_logged -> Blockchain_orderputwire_hashlogger_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1" role="//@connector.0/@role.0" port="//@component.10/@port.0"/>
+  <archstyle name="repository-read">
+    <connectortype name="REConnector">
+      <roletype name="reader" porttype="//@archstyle.10/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstorage" porttype="//@archstyle.10/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="datareader">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="repository">
+      <porttype name="access"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="repository-write">
+    <connectortype name="WRConnector">
+      <roletype name="writer" porttype="//@archstyle.11/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="writestorage" porttype="//@archstyle.11/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="datawriter">
+      <porttype name="write"/>
+    </componenttype>
+    <componenttype name="repository">
+      <porttype name="store"/>
+    </componenttype>
+  </archstyle>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" visitedStates="60" verifyTime="0.006888999999999999" testport="//@component.6/@port.0" traceExample="init -> BuyerUI_orderwire_requester_request -> orderwire_req!13 -> orderwire_req?13 -> BuyerTrigger_orderwire_responder_invoke -> BuyerTrigger_transinswire_writer_request -> transinswire_req!13 -> transinswire_req?13 -> TransactionDB_transinswire_writestorage_invoke -> TransactionDB_insert_orderinsert -> TransactionDB_transinswire_writestorage_process -> transinswire_res!13 -> transinswire_res?13 -> BuyerTrigger_createorder_transcreated -> BuyerTrigger_transinswire_writer_process -> BuyerTrigger_transinswire_writer_Skip -> BuyerTrigger_orderputwire_hashsupplier_process -> orderputwire_hash!13 -> BuyerTrigger_orderwire_responder_process -> orderwire_res!13 -> orderwire_res?13 -> BuyerUI_order_issue -> BuyerUI_orderwire_requester_process -> orderputwire_hash?13 -> Blockchain_log_logged -> Blockchain_orderputwire_hashlogger_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.0">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.9/@port.1/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM2VerifyProp" visitedStates="15" verifyTime="0.0031998" testport="//@component.11/@port.0" traceExample="init -> AdversaryMIM2_mmprocwire_requester_request -> mmprocwire_req!49 -> mmprocwire_req?49 -> MiddlemanAPI_mmprocwire_responder_invoke -> MiddlemanAPI_mmprocess_processorder -> MiddlemanAPI_mmprocwire_responder_process -> mmprocwire_res!49 -> mmprocwire_res?49 -> AdversaryMIM2_attack2_attacked -> AdversaryMIM2_mmprocwire_requester_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1" role="//@connector.4/@role.0" port="//@component.11/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop2" model="/" visitedStates="2" verifyTime="0.0028653999999999997" testport="//@component.1/@port.0" traceExample="init -> mfcheckwire_hash!37">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.1">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.0/@events.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryMIM3VerifyProp" visitedStates="15" verifyTime="0.0029917999999999998" testport="//@component.12/@port.0" traceExample="init -> AdversaryMIM3_crprocwire_requester_request -> crprocwire_req!17 -> crprocwire_req?17 -> CarrierAPI_crprocwire_responder_invoke -> CarrierAPI_crprocess_processorder -> CarrierAPI_crprocwire_responder_process -> crprocwire_res!17 -> crprocwire_res?17 -> AdversaryMIM3_attack3_attacked -> AdversaryMIM3_crprocwire_requester_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1" role="//@connector.5/@role.0" port="//@component.12/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.0/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" visitedStates="24" verifyTime="0.0029007" testport="//@component.3/@port.0" traceExample="init -> mmcheckwire_hash!78 -> mmcheckwire_hash?78 -> Blockchain_check_checked -> Blockchain_mmcheckwire_hashvalidator_process -> Blockchain_mmcheckwire_hashvalidator_check -> mmcheckwire_res!78 -> mmcheckwire_res?78 -> MiddlemanTrigger_mmprocwire_requester_request -> mmprocwire_req!78 -> mmprocwire_req?78 -> MiddlemanAPI_mmprocwire_responder_invoke -> MiddlemanAPI_mmprocess_processorder -> MiddlemanAPI_mmprocwire_responder_process -> mmprocwire_res!78 -> mmprocwire_res?78 -> MiddlemanTrigger_mmretrieve_complete -> MiddlemanTrigger_mmprocwire_requester_process -> MiddlemanTrigger_mmprocwire_requester_Skip -> MiddlemanTrigger_mmcheckwire_hashchecker_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.2">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP1VerifyProp" visitedStates="68" verifyTime="0.004031" testport="//@component.13/@port.0" traceExample="init -> AdversaryDTP1_orderwire_requester_request -> orderwire_req!31 -> orderwire_req?31 -> BuyerTrigger_orderwire_responder_invoke -> BuyerTrigger_transinswire_requester_request -> transinswire_req!31 -> transinswire_req?31 -> TransactionDB_transinswire_responder_invoke -> TransactionDB_insert_orderinsert -> TransactionDB_transinswire_responder_process -> transinswire_res!31 -> transinswire_res?31 -> BuyerTrigger_createorder_create -> BuyerTrigger_transinswire_requester_process -> BuyerTrigger_transinswire_requester_Skip -> BuyerTrigger_orderputwire_hashsupplier_process -> orderputwire_hash!31 -> BuyerTrigger_orderwire_responder_process -> orderwire_res!31 -> orderwire_res?31 -> AdversaryDTP1_attack1_attacked -> AdversaryDTP1_orderwire_requester_process -> orderputwire_hash?31 -> Blockchain_log_logged -> Blockchain_orderputwire_hashlogger_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.1" role="//@connector.0/@role.0" port="//@component.13/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" visitedStates="1" verifyTime="0.0025659999999999997" testport="//@component.5/@port.0" traceExample="********Verification Result********&#xD;&#xA;The Assertion (supplychain() |= ![](CarrierAPI_crprocess_processorder->&lt;>CarrierTrigger_crretrieve_complete)) is NOT valid.&#xD;&#xA;A counterexample is presented as follows.&#xD;&#xA;&lt;init">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.0/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS1VerifyProp" visitedStates="68" verifyTime="0.0661761" testport="//@component.14/@port.0" traceExample="init -> AdversaryDOS1_orderwire_requester_request -> orderwire_req!74 -> orderwire_req?74 -> BuyerTrigger_orderwire_responder_invoke -> BuyerTrigger_transinswire_requester_request -> transinswire_req!74 -> transinswire_req?74 -> TransactionDB_transinswire_responder_invoke -> TransactionDB_insert_orderinsert -> TransactionDB_transinswire_responder_process -> transinswire_res!74 -> transinswire_res?74 -> BuyerTrigger_createorder_create -> BuyerTrigger_transinswire_requester_process -> BuyerTrigger_transinswire_requester_Skip -> BuyerTrigger_orderputwire_hashsupplier_process -> orderputwire_hash!74 -> BuyerTrigger_orderwire_responder_process -> orderwire_res!74 -> orderwire_res?74 -> AdversaryDOS1_attack1_attacked -> AdversaryDOS1_orderwire_requester_process -> orderputwire_hash?74 -> Blockchain_log_logged -> Blockchain_orderputwire_hashlogger_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1" role="//@connector.0/@role.0" port="//@component.14/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" counterExample="" visitedStates="47" verifyTime="0.0035794" testport="//@component.1/@port.0" traceExample="init -> mfcheckwire_hash!19 -> mfcheckwire_hash?19 -> Blockchain_check_checked -> Blockchain_mfcheckwire_hashvalidator_process -> Blockchain_mfcheckwire_hashvalidator_check -> mfcheckwire_res!19 -> mfcheckwire_res?19 -> ManufacturerTrigger_mfprocwire_requester_request -> mfprocwire_req!19 -> mfprocwire_req?19 -> ManufacturerAPI_mfprocwire_responder_invoke -> ManufacturerAPI_mftranwire_reader_request -> mftranwire_req!19 -> mftranwire_req?19 -> TransactionDB_mftranwire_readstorage_invoke -> TransactionDB_query_returnresult -> TransactionDB_mftranwire_readstorage_process -> mftranwire_res!19 -> mftranwire_res?19 -> ManufacturerAPI_mfprocess_processorder -> ManufacturerAPI_mftranwire_reader_process -> ManufacturerAPI_mftranwire_reader_Skip -> ManufacturerAPI_mfprocwire_responder_process -> mfprocwire_res!19 -> mfprocwire_res?19 -> ManufacturerTrigger_mfretrieve_complete -> ManufacturerTrigger_mfprocwire_requester_process -> ManufacturerTrigger_mfprocwire_requester_Skip -> ManufacturerTrigger_mfcheckwire_hashchecker_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.4">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.1/@events.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS2VerifyProp" visitedStates="26" verifyTime="0.0029184" testport="//@component.15/@port.0" traceExample="init -> AdversaryDOS2_transinswire_requester_request -> transinswire_req!63 -> transinswire_req?63 -> TransactionDB_transinswire_responder_invoke -> TransactionDB_insert_orderinsert -> TransactionDB_transinswire_responder_process -> transinswire_res!63 -> transinswire_res?63 -> AdversaryDOS2_attack2_attacked -> AdversaryDOS2_orderputwire_hashsupplier_process -> orderputwire_hash!63 -> AdversaryDOS2_transinswire_requester_process -> orderputwire_hash?63 -> Blockchain_log_logged -> Blockchain_orderputwire_hashlogger_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.1" role="//@connector.6/@role.0" port="//@component.15/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.9/@port.1/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="const1" model="/" counterExample="" visitedStates="52" verifyTime="0.0034957" testport="//@component.1/@port.0" traceExample="init -> mfcheckwire_hash!62 -> mfcheckwire_hash?62 -> Blockchain_check_checked -> Blockchain_mfcheckwire_hashvalidator_process -> Blockchain_mfcheckwire_hashvalidator_check -> mfcheckwire_res!62 -> mfcheckwire_res?62 -> ManufacturerTrigger_mfprocwire_requester_request -> mfprocwire_req!62 -> mfprocwire_req?62 -> ManufacturerAPI_mfprocwire_responder_invoke -> ManufacturerAPI_mftranwire_reader_request -> mftranwire_req!62 -> mftranwire_req?62 -> TransactionDB_mftranwire_readstorage_invoke -> TransactionDB_query_returnresult -> TransactionDB_mftranwire_readstorage_process -> mftranwire_res!62 -> mftranwire_res?62 -> ManufacturerAPI_mfprocess_processorder -> ManufacturerAPI_mftranwire_reader_process -> ManufacturerAPI_mftranwire_reader_Skip -> ManufacturerAPI_mfprocwire_responder_process -> mfprocwire_res!62 -> mfprocwire_res?62 -> ManufacturerTrigger_mfretrieve_complete -> ManufacturerTrigger_mfprocwire_requester_process -> ManufacturerTrigger_mfprocwire_requester_Skip -> ManufacturerTrigger_mfcheckwire_hashchecker_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.5">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.8/@connectortype.0/@roletype.0/@event.1" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.0" role="//@connector.2/@role.0"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDOS3VerifyProp" visitedStates="15" verifyTime="0.0030109" testport="//@component.16/@port.0" traceExample="init -> AdversaryDOS3_mftranwire_requester_request -> mftranwire_req!73 -> mftranwire_req?73 -> TransactionDB_mftranwire_responder_invoke -> TransactionDB_query_returnresult -> TransactionDB_mftranwire_responder_process -> mftranwire_res!73 -> mftranwire_res?73 -> AdversaryDOS3_attack3_attacked -> AdversaryDOS3_mftranwire_requester_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.6/@ltlexpr.0/@expr.1" role="//@connector.9/@role.0" port="//@component.16/@port.0"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.9/@port.0/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="const2" model="/" visitedStates="1" verifyTime="0.0023756" testport="//@component.5/@port.0" traceExample="********Verification Result********&#xD;&#xA;The Assertion (supplychain() |= ![](BuyerTrigger_createorder_transcreated->&lt;>Blockchain_orderputwire_hashlogger_process)) is NOT valid.&#xD;&#xA;A counterexample is presented as follows.&#xD;&#xA;&lt;init">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.6">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" nextExpr="//@verifyProperty.6/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.7/@connectortype.0/@roletype.0/@event.1" operator="EVENTUALLY" role="//@connector.1/@role.0"/>
     </ltlexpr>
   </verifyProperty>
   <host netAccessType="PUBLIC" name="Ethereum">
