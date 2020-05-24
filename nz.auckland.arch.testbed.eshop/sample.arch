@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="sockshop">
+  <component name="ShopFrontend" type="client,broadcaster" deploymentnode="//@host.0/@node.0" securityCharacters="AttackSurface,LeastPriviledge">
+    <port name="auth" role="//@connector.0/@role.0" type="request,OutboundPort">
+      <events name="checked"/>
+    </port>
+    <port name="browse" role="//@connector.1/@role.0" type="request,OutboundPort">
+      <events name="read"/>
+    </port>
+    <port name="order" role="//@connector.10/@role.0" type="broadcast,OutboundPort">
+      <events name="purchased"/>
+    </port>
+    <port name="shop" role="//@connector.3/@role.0" type="request,OutboundPort">
+      <events name="itemadded"/>
+    </port>
+  </component>
+  <component name="CateloqueService" type="server" deploymentnode="//@host.0/@node.1" securityCharacters="AttackSurface,Compartmentalization,DenialOfService">
+    <port name="list" role="//@connector.1/@role.1" type="response,InboundPort">
+      <events name="query"/>
+    </port>
+  </component>
+  <component name="UserService" type="server" deploymentnode="//@host.1/@node.0" criticalLevel="High" securityCharacters="AttackSurface,DefenseInDepth,DenialOfService">
+    <port name="login" role="//@connector.0/@role.1" type="response,InboundPort">
+      <events name="signedon"/>
+    </port>
+  </component>
+  <component name="OrdersService" type="client,server,listener,eventconsumer,readendpoint,datawriter,datareader,LinkOverload" valid="false" deploymentnode="//@host.2/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization,DenialOfService,DataTampering">
+    <port name="postorder" role="//@connector.4/@role.0 //@connector.5/@role.0 //@connector.8/@role.0 //@connector.10/@role.1" type="request,listen,listen,write,OutboundPort,InboundPort,EventProcessorPort">
+      <events name="check" next="//@component.3/@port.0/@events.1"/>
+      <events name="save"/>
+    </port>
+    <port name="get" role="//@connector.2/@role.1 //@connector.9/@role.0" type="response,read,read,OutboundPort,InboundPort,EventProcessorPort">
+      <events name="ack"/>
+    </port>
+  </component>
+  <component name="OrdersDB" type="repository" deploymentnode="//@host.2/@node.3">
+    <port name="writeorder" role="//@connector.8/@role.1" type="store,InboundPort,EventProcessorPort">
+      <events name="orderwritten"/>
+    </port>
+    <port name="queryorder" role="//@connector.9/@role.1" type="access,InboundPort,EventProcessorPort">
+      <events name="orderreaded"/>
+    </port>
+  </component>
+  <component name="CartsService" type="server" deploymentnode="//@host.2/@node.4" securityCharacters="AttackSurface,DenialOfService,DataTampering">
+    <port name="manage" role="//@connector.3/@role.1" type="response,InboundPort">
+      <events name="saveitem"/>
+    </port>
+  </component>
+  <component name="Payment" type="server" deploymentnode="//@host.1/@node.1" criticalLevel="High" securityCharacters="DefenseInDepth,Compartmentalization">
+    <port name="pay" role="//@connector.4/@role.1" type="response,InboundPort">
+      <events name="paid"/>
+    </port>
+  </component>
+  <component name="ShippingService" type="server,datawriter" deploymentnode="//@host.3/@node.0" securityCharacters="Compartmentalization">
+    <port name="postshipping" role="//@connector.5/@role.1 //@connector.7/@role.0" type="response,write,OutboundPort,InboundPort,EventProcessorPort">
+      <events name="posted"/>
+    </port>
+  </component>
+  <component name="ShippingWorker" type="readendpoint,datareader" deploymentnode="//@host.3/@node.4">
+    <port name="listqueue" role="//@connector.6/@role.0" type="read,read,OutboundPort,EventProcessorPort">
+      <events name="renderqueue"/>
+    </port>
+  </component>
+  <component name="QueueDB" type="repository" deploymentnode="//@host.3/@node.3">
+    <port name="writequeue" role="//@connector.7/@role.1" type="store,InboundPort,EventProcessorPort">
+      <events name="queuewritten"/>
+    </port>
+    <port name="readqueue" role="//@connector.6/@role.1" type="access,InboundPort,EventProcessorPort">
+      <events name="queuereaded"/>
+    </port>
+  </component>
+  <component name="ShopBackend" type="client" deploymentnode="//@host.0/@node.0" securityCharacters="AttackSurface">
+    <port name="listorder" role="//@connector.2/@role.0" type="request,OutboundPort">
+      <events name="renderlist"/>
+    </port>
+  </component>
+  <connector name="userwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.0"/>
+    <communicationlink href="data.json#//@link.0"/>
+  </connector>
+  <connector name="cateloquewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.1"/>
+    <communicationlink href="data.json#//@link.7"/>
+  </connector>
+  <connector name="orderquerywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.2"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.2"/>
+    <communicationlink href="data.json#//@link.13"/>
+    <communicationlink href="data.json#//@link.14"/>
+  </connector>
+  <connector name="cartwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
+    <communicationlink href="data.json#//@link.5"/>
+  </connector>
+  <connector name="paywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.4"/>
+    <communicationlink href="data.json#//@link.6"/>
+  </connector>
+  <connector name="shippingwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.5"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.7/@role.0" connector="//@connector.5"/>
+    <communicationlink href="data.json#//@link.8"/>
+  </connector>
+  <connector name="queuereadwire" type="REConnector,RuleEventQuery" connectortype="//@archstyle.6/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.6"/>
+    <role name="readstorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="readstorage,in" connector="//@connector.6"/>
+  </connector>
+  <connector name="shippinglogwire" type="WRConnector,RuleEventCommand" connectortype="//@archstyle.5/@connectortype.0">
+    <role name="writer" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="writer,out" connector="//@connector.7"/>
+    <role name="writestorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="writestorage,in" connector="//@connector.7"/>
+  </connector>
+  <connector name="orderlogwire" type="WRConnector,RuleEventCommand" connectortype="//@archstyle.5/@connectortype.0">
+    <role name="writer" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="writer,out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.8"/>
+    <role name="writestorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="writestorage,in" connector="//@connector.8"/>
+  </connector>
+  <connector name="orderreadwire" type="REConnector,RuleEventQuery" connectortype="//@archstyle.6/@connectortype.0">
+    <role name="reader" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.9"/>
+    <role name="readstorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="readstorage,in" connector="//@connector.9"/>
+  </connector>
+  <connector name="orderwire" type="PSConnector,RuleEventCentre" connectortype="//@archstyle.1/@connectortype.0">
+    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="publisher,out" connector="//@connector.10"/>
+    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.10"/>
+  </connector>
+  <archstyle name="client-server">
+    <connectortype name="CSConnector">
+      <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="responder" porttype="//@archstyle.0/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="client">
+      <porttype name="request"/>
+    </componenttype>
+    <componenttype name="server">
+      <porttype name="response"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="publish-subscribe">
+    <connectortype name="PSConnector" eaConnector="//@archstyle.0/@connectortype.0">
+      <roletype name="publisher" porttype="//@archstyle.1/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.1/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="subscriber" porttype="//@archstyle.1/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="broadcaster">
+      <porttype name="broadcast"/>
+    </componenttype>
+    <componenttype name="listener">
+      <porttype name="listen"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="event-sourcing">
+    <connectortype name="ESConnector">
+      <roletype name="eventpublisher" porttype="//@archstyle.2/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.2/@event.0"/>
+        <event xsi:type="arch:Channel" name="sevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.4" type="input"/>
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.5" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.1/@event.0"/>
+        <event name="broadcast" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.3"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="eventsubscriber" porttype="//@archstyle.2/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="bevt" next="//@archstyle.2/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process"/>
+      </roletype>
+      <roletype name="eventstore" porttype="//@archstyle.2/@componenttype.2/@porttype.0">
+        <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.3"/>
+        <event xsi:type="arch:Channel" name="sevt" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.4" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist" next="//@archstyle.2/@connectortype.0/@roletype.2/@event.2"/>
+        <event name="Skip"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="eventsource">
+      <porttype name="publish"/>
+    </componenttype>
+    <componenttype name="eventconsumer">
+      <porttype name="listen"/>
+    </componenttype>
+    <componenttype name="eventlogger">
+      <porttype name="log"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="query-responsibility">
+    <connectortype name="QRConnector">
+      <roletype name="querier" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.0" type="input"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstore" porttype="//@archstyle.3/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="readendpoint">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="query"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="command-responsibility">
+    <connectortype name="CRConnector">
+      <roletype name="readstore" porttype="//@archstyle.4/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+      <roletype name="commander" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="Skip"/>
+        <event xsi:type="arch:Channel" name="cmmd" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.1" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.2/@event.0"/>
+      </roletype>
+      <roletype name="commandstore" porttype="//@archstyle.4/@componenttype.2/@porttype.0">
+        <event xsi:type="arch:Channel" name="cmmd" next="//@archstyle.4/@connectortype.0/@roletype.2/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.2/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="commandendpoint">
+      <porttype name="issue"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="update"/>
+    </componenttype>
+    <componenttype name="commanddb">
+      <porttype name="logcommand"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="repository-write">
+    <connectortype name="WRConnector">
+      <roletype name="writer" porttype="//@archstyle.5/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="writestorage" porttype="//@archstyle.5/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="datawriter">
+      <porttype name="write"/>
+    </componenttype>
+    <componenttype name="repository">
+      <porttype name="store"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="repository-read">
+    <connectortype name="REConnector">
+      <roletype name="reader" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstorage" porttype="//@archstyle.6/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="datareader">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="repository">
+      <porttype name="access"/>
+    </componenttype>
+  </archstyle>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" counterExample="" visitedStates="15" verifyTime="0.0054662999999999995" testport="//@component.0/@port.3" traceExample="init -> ShopFrontend_cartwire_requester_request -> cartwire_req!33 -> cartwire_req?33 -> CartsService_cartwire_responder_invoke -> CartsService_manage_saveitem -> CartsService_cartwire_responder_process -> cartwire_res!33 -> cartwire_res?33 -> ShopFrontend_shop_itemadded -> ShopFrontend_cartwire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.0">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.3/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop2" model="/" counterExample="" visitedStates="70" verifyTime="0.006246" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_orderwire_requester_request -> orderwire_req!63 -> orderwire_req?63 -> OrdersService_orderwire_responder_invoke -> OrdersService_orderlogwire_writer_request -> orderlogwire_req!63 -> orderlogwire_req?63 -> OrdersDB_orderlogwire_writestorage_invoke -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_writestorage_process -> orderlogwire_res!63 -> orderlogwire_res?63 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_writer_process -> OrdersService_orderlogwire_writer_Skip -> OrdersService_paywire_requester_request -> paywire_req!63 -> paywire_req?63 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_paywire_responder_process -> paywire_res!63 -> paywire_res?63 -> OrdersService_paywire_requester_process -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_request -> shippingwire_req!63 -> shippingwire_req?63 -> ShippingService_shippingwire_responder_invoke -> ShippingService_shippinglogwire_writer_request -> shippinglogwire_req!63 -> shippinglogwire_req?63 -> QueueDB_shippinglogwire_writestorage_invoke -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_writestorage_process -> shippinglogwire_res!63 -> shippinglogwire_res?63 -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_writer_process -> ShippingService_shippinglogwire_writer_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!63 -> shippingwire_res?63 -> OrdersService_shippingwire_requester_process -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_responder_process -> orderwire_res!63 -> orderwire_res?63 -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.1">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" visitedStates="11" verifyTime="0.00524" testport="//@component.0/@port.3" traceExample="init -> ShopFrontend_cartwire_requester_request -> cartwire_req!90 -> cartwire_req?90 -> CartsService_cartwire_responder_invoke -> CartsService_manage_saveitem -> CartsService_cartwire_responder_process -> cartwire_res!90 -> cartwire_res?90 -> ShopFrontend_shop_itemadded -> ShopFrontend_cartwire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.2">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.1" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" visitedStates="1" verifyTime="0.0044161999999999995" testport="//@component.2/@port.0" traceExample="********Verification Result********&#xD;&#xA;The Assertion (sockshop() |= ![](ShopFrontend_auth_checked->&lt;>UserService_login_signedon)) is NOT valid.&#xD;&#xA;A counterexample is presented as follows.&#xD;&#xA;&lt;init">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.0/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.0"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" visitedStates="15" verifyTime="0.0052293999999999995" testport="//@component.0/@port.1" traceExample="init -> ShopFrontend_cateloquewire_requester_request -> cateloquewire_req!35 -> cateloquewire_req?35 -> CateloqueService_cateloquewire_responder_invoke -> CateloqueService_list_query -> CateloqueService_cateloquewire_responder_process -> cateloquewire_res!35 -> cateloquewire_res?35 -> ShopFrontend_browse_read -> ShopFrontend_cateloquewire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.4">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.1/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop6" model="/" visitedStates="11" verifyTime="0.0054851" testport="//@component.10/@port.0" traceExample="init -> ShopBackend_orderquerywire_requester_request -> orderquerywire_req!80 -> orderquerywire_req?80 -> OrdersService_orderquerywire_responder_invoke -> OrdersService_get_ack -> OrdersService_orderquerywire_responder_process -> orderquerywire_res!80 -> orderquerywire_res?80 -> ShopBackend_listorder_renderlist -> ShopBackend_orderquerywire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.5">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.10/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.1/@events.0" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.0"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop" model="/" visitedStates="88" verifyTime="0.0067262" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_orderwire_requester_request -> orderwire_req!45 -> orderwire_req?45 -> OrdersService_orderwire_responder_invoke -> OrdersService_orderlogwire_writer_request -> orderlogwire_req!45 -> orderlogwire_req?45 -> OrdersDB_orderlogwire_writestorage_invoke -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_writestorage_process -> orderlogwire_res!45 -> orderlogwire_res?45 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_writer_process -> OrdersService_orderlogwire_writer_Skip -> OrdersService_paywire_requester_request -> paywire_req!45 -> paywire_req?45 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_paywire_responder_process -> paywire_res!45 -> paywire_res?45 -> OrdersService_paywire_requester_process -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_request -> shippingwire_req!45 -> shippingwire_req?45 -> ShippingService_shippingwire_responder_invoke -> ShippingService_shippinglogwire_writer_request -> shippinglogwire_req!45 -> shippinglogwire_req?45 -> QueueDB_shippinglogwire_writestorage_invoke -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_writestorage_process -> shippinglogwire_res!45 -> shippinglogwire_res?45 -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_writer_process -> ShippingService_shippinglogwire_writer_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!45 -> shippingwire_res?45 -> OrdersService_shippingwire_requester_process -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_responder_process -> orderwire_res!45 -> orderwire_res?45 -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_requester_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.6">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.1" nextExpr="//@verifyProperty.6/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.2/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <host netAccessType="PUBLIC" name="PublicServer" hostType="CLOUD_PLATFORM">
+    <node name="NodeJSContainer1" component="//@component.0 //@component.10">
+      <port name="port" portNumber="15551" node="//@host.0/@node.0" namedport="//@component.0/@port.0"/>
+      <port name="port" portNumber="15552" node="//@host.0/@node.0" namedport="//@component.0/@port.2"/>
+      <port name="port" portNumber="15553" node="//@host.0/@node.0" namedport="//@component.10/@port.0"/>
+      <port name="port" portNumber="15554" node="//@host.0/@node.0" namedport="//@component.0/@port.3"/>
+      <port name="port" portNumber="15555" node="//@host.0/@node.0" namedport="//@component.0/@port.1"/>
+    </node>
+    <node name="GoContainer3" component="//@component.1">
+      <port name="port" portNumber="80" node="//@host.0/@node.1" namedport="//@component.1/@port.0" hasAuthentication="true" hasAuthorization="true"/>
+    </node>
+  </host>
+  <host name="SecureServer">
+    <node name="GoContainer1" component="//@component.2">
+      <port name="port" portNumber="80" node="//@host.1/@node.0" namedport="//@component.2/@port.0" hasFirewall="true"/>
+    </node>
+    <node name="GoContainer2" component="//@component.6">
+      <port name="port" portNumber="80" node="//@host.1/@node.1" namedport="//@component.6/@port.0" hasFirewall="true" hasAuthentication="true" hasAuthorization="true"/>
+    </node>
+  </host>
+  <host name="LocalServer">
+    <node name="JEEContainer1" component="//@component.3">
+      <port name="port" portNumber="80" namedport="//@component.3/@port.0" hasFirewall="true" hasAuthentication="true" hasAuthorization="true"/>
+      <port name="port" portNumber="15561" node="//@host.2/@node.0" namedport="//@component.3/@port.0"/>
+      <port name="port" portNumber="15562" node="//@host.2/@node.0" namedport="//@component.3/@port.0"/>
+      <port name="port" portNumber="15563" node="//@host.2/@node.0" namedport="//@component.3/@port.0"/>
+      <port name="port" portNumber="15564" node="//@host.2/@node.0" namedport="//@component.3/@port.0"/>
+      <port name="port" portNumber="15566" node="//@host.2/@node.0" namedport="//@component.3/@port.1"/>
+      <port name="port" portNumber="81" node="//@host.2/@node.0" namedport="//@component.3/@port.1"/>
+    </node>
+    <node name="JEEContainer2">
+      <port name="port" portNumber="80" node="//@host.2/@node.1"/>
+      <port name="port" portNumber="15565" node="//@host.2/@node.1"/>
+    </node>
+    <node name="MongoDB1">
+      <port name="port" portNumber="9411" node="//@host.2/@node.2"/>
+    </node>
+    <node name="MySQL1" component="//@component.4">
+      <port name="port" portNumber="3306" node="//@host.2/@node.3" namedport="//@component.4/@port.0 //@component.4/@port.1"/>
+    </node>
+    <node name="JEEContainer3" component="//@component.5">
+      <port name="port" portNumber="80" node="//@host.2/@node.4" namedport="//@component.5/@port.0"/>
+    </node>
+  </host>
+  <host name="BackOfficeServer">
+    <node name="JEEContainer4" component="//@component.7">
+      <port name="port" portNumber="80" node="//@host.3/@node.0" namedport="//@component.7/@port.0" hasAuthentication="true" hasAuthorization="true"/>
+      <port name="port" portNumber="15571" node="//@host.3/@node.0" namedport="//@component.7/@port.0"/>
+      <port name="port" portNumber="15572" node="//@host.3/@node.0" namedport="//@component.7/@port.0"/>
+    </node>
+    <node name="MongoDB2">
+      <port name="port" portNumber="27017" node="//@host.3/@node.1"/>
+    </node>
+    <node name="JEEContainer5">
+      <port name="port" portNumber="80" node="//@host.3/@node.2"/>
+      <port name="port" portNumber="15573" node="//@host.3/@node.2"/>
+    </node>
+    <node name="MySQL2" component="//@component.9">
+      <port name="port" portNumber="3306" node="//@host.3/@node.3" namedport="//@component.9/@port.0 //@component.9/@port.1"/>
+    </node>
+    <node name="JEEContainer6" component="//@component.8">
+      <port name="port" portNumber="15574" node="//@host.3/@node.4" namedport="//@component.8/@port.0"/>
+    </node>
+  </host>
+  <link name="link1" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.0" target="//@host.1/@node.0/@port.0"/>
+  <link name="link2" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.1" target="//@host.2/@node.0/@port.0"/>
+  <link name="link3" source="//@host.2/@node.0/@port.1" target="//@host.2/@node.2/@port.0"/>
+  <link name="link4" source="//@host.2/@node.0/@port.2" target="//@host.2/@node.1/@port.0"/>
+  <link name="link5" source="//@host.2/@node.1/@port.1" target="//@host.2/@node.3/@port.0"/>
+  <link name="link7" networkType="INTERNET" source="//@host.0/@node.0/@port.3" target="//@host.2/@node.4/@port.0"/>
+  <link name="link8" linkType="HTTPS" source="//@host.2/@node.0/@port.3" target="//@host.1/@node.1/@port.0"/>
+  <link name="link9" source="//@host.0/@node.0/@port.4" target="//@host.0/@node.1/@port.0"/>
+  <link name="link10" source="//@host.2/@node.0/@port.4" target="//@host.3/@node.0/@port.0"/>
+  <link name="link11" source="//@host.3/@node.0/@port.1" target="//@host.3/@node.1/@port.0"/>
+  <link name="link12" source="//@host.3/@node.0/@port.2" target="//@host.3/@node.2/@port.0"/>
+  <link name="link13" source="//@host.3/@node.2/@port.1" target="//@host.3/@node.3/@port.0"/>
+  <link name="link14" source="//@host.3/@node.4/@port.0" target="//@host.3/@node.3/@port.0"/>
+  <link name="link16" source="//@host.2/@node.0/@port.5" target="//@host.2/@node.3/@port.0"/>
+  <link name="link15" networkType="INTERNET" source="//@host.0/@node.0/@port.2" target="//@host.2/@node.0/@port.6"/>
+  <ontologylabel name="EventProcessorPort" subClassOf="Port"/>
+  <ontologylabel name="RuleSecureWriting" expression="repository and (hasPort some  (TamperingProofPort and (hasAttachment some writestorage)))" subClassOf="RefactorRule"/>
+  <ontologylabel name="RuleEventQuery" expression="REConnector and (hasRole some (reader and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
+  <ontologylabel name="RuleSecureReading" expression="repository and (hasPort some (TamperingProofPort and (hasAttachment some readstorage)))" subClassOf="RefactorRule"/>
+  <ontologylabel name="RuleEventCentre" expression="PSConnector and (hasRole some  (Role and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
+  <ontologylabel name="TamperingProofPort" subClassOf="Port"/>
+  <ontologylabel name="RuleEventCommand" expression="WRConnector and (hasRole some (writer and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
+</arch:DesignModel>
