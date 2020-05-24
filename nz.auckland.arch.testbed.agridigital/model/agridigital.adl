@@ -1,0 +1,130 @@
+connector CSConnector { 
+	 role requester(j) = request -> req!j -> res?j -> process -> Skip;
+	 role responder() = req?j -> invoke -> process -> res!j -> responder();
+ }
+connector PSConnector { 
+	 role publisher(j) = process -> pub!j -> Skip;
+	 role subscriber() = pub?j -> process -> subscriber();
+ }
+connector ESConnector { 
+	 role eventpublisher(j) = process -> pevt!j -> sevt?j -> bevt!j -> broadcast -> Skip;
+	 role eventsubscriber() = bevt?j -> process -> eventsubscriber();
+	 role eventstore() = pevt?j -> process -> sevt!j -> persist -> eventstore();
+ }
+connector CRConnector { 
+	 role readstore() = stmt?j -> process -> persist -> readstore();
+	 role commander(j) = process -> stmt!j -> Skip;
+ }
+connector QRConnector { 
+	 role reader(j) = process -> stmt!j -> res?j -> Skip;
+	 role readstore() = stmt?j -> process -> res!j -> readstore();
+ }
+connector IOConnector { 
+	 role blockstorage() = token?j -> process -> stored -> blockstorage();
+	 role extsupplier(j) = process -> token!j -> extsupplier(j);
+ }
+connector ROConnector { 
+	 role extquerier(j) = request -> uid!j -> res?j -> process -> extquerier(j);
+	 role blocksupplier() = uid?j -> process -> res!j -> blocksupplier();
+ }
+connector OSPConnector { 
+	 role hashlogger() = hash?j -> process -> hashlogger();
+	 role hashsupplier(j) = process -> calculate -> hash!j -> hashsupplier(j);
+ }
+connector OSFConnector { 
+	 role hashvalidator() = hash?j -> process -> check -> res!j -> hashvalidator();
+	 role hashchecker(j) = hash!j -> calculate -> res?j -> process -> hashchecker(j);
+ }
+connector FCConnector { 
+	 role contractcreator(j) = process -> create -> smcon!j -> contractcreator(j);
+	 role contractdeployer() = process -> deploy -> smcon?j -> contractdeployer();
+ }
+component ADWebApp { 
+	 port adconsume() = adapirequest->adconsume();
+	 port adnotify() = notified->adnotify();
+}
+component ADWebAPI { 
+	 port adprovide() = invoke->adprovide();
+}
+component ADMessageBus { 
+	 port adlog() = logged->adlog();
+}
+component ProvenanceInt { 
+	 port prvpub() = prvevntpublish->prvpub();
+}
+component ProvenanceWebApp { 
+	 port prvconsume() = provenancerequest->prvconsume();
+}
+component IOTWebAPI { 
+	 port iotpub() = published->iotpub();
+}
+component BCMessageBus { 
+	 port bclog() = evntlogged->bclog();
+}
+component BCIntegrator { 
+	 port bcint() = sendtobc->bcint();
+}
+component PublicBlockChain { 
+	 port logfinance() = finlogged->logfinance();
+	 port checkfinance() = check->checkfinance();
+}
+component PrivateBlockChain { 
+	 port logstate() = statelogged->logstate();
+}
+component DigitalWallet { 
+	 port pay() = commit->pay();
+}
+component IOTSensor { 
+	 port sense() = send->sense();
+}
+component AdversaryDTP1 { 
+	 port attack1() = attacked->attack1();
+}
+component AdversaryDTP2 { 
+	 port attack2() = attacked->attack2();
+}
+component AdversaryDTP3 { 
+	 port attack3() = attacked->attack3();
+}
+component AdversaryMIM4 { 
+	 port attack4() = attacked->attack4();
+}
+component AdversaryMIM5 { 
+	 port attack5() = attacked->attack5();
+}
+component AdversaryDOS1 { 
+	 port attack1() = attacked->attack1();
+}
+component AdversaryDOS2 { 
+	 port attack2() = attacked->attack2();
+}
+component AdversaryDOS3 { 
+	 port attack3() = attacked->attack3();
+}
+component AdversaryDOS4 { 
+	 port attack4() = attacked->attack4();
+}
+system agridigital { 
+	 declare adapiwire = CSConnector; 
+	 declare admsgwire = ESConnector; 
+	 declare prvapiwire = CSConnector; 
+	 declare prvmsgwire = ESConnector; 
+	 declare pubwire = IOConnector; 
+	 declare walletwire = ROConnector; 
+	 declare prvwire = IOConnector; 
+	 declare iotreqwire = CSConnector; 
+	 attach ADWebApp.adnotify() = admsgwire.eventsubscriber();
+	 attach ADWebAPI.adprovide() = adapiwire.responder();
+	 attach ADMessageBus.adlog() = admsgwire.eventstore();
+	 attach ProvenanceInt.prvpub() = prvapiwire.responder() <*> admsgwire.eventpublisher(99) <*> prvmsgwire.eventpublisher(81);
+	 attach IOTWebAPI.iotpub() = iotreqwire.responder() <*> prvmsgwire.eventpublisher(22);
+	 attach BCMessageBus.bclog() = prvmsgwire.eventstore();
+	 attach BCIntegrator.bcint() = prvmsgwire.eventsubscriber() <*> pubwire.extsupplier(24) <*> prvwire.extsupplier(24);
+	 attach PublicBlockChain.logfinance() = pubwire.blockstorage();
+	 attach PublicBlockChain.checkfinance() = walletwire.blocksupplier();
+	 attach PrivateBlockChain.logstate() = prvwire.blockstorage();
+	 attach AdversaryDTP3.attack3() = prvmsgwire.eventpublisher(72);
+	 execute ADWebApp.adnotify() || ADWebAPI.adprovide() || ADMessageBus.adlog() || ProvenanceInt.prvpub() || IOTWebAPI.iotpub() || BCMessageBus.bclog() || BCIntegrator.bcint() || PublicBlockChain.logfinance() || PublicBlockChain.checkfinance() || PrivateBlockChain.logstate() || AdversaryDTP3.attack3()
+}
+assert agridigital |= []  (AdversaryDTP3.prvmsgwire.eventpublisher.process -> <> BCMessageBus.bclog.evntlogged);
+assert agridigital |= ! []  (AdversaryDTP3.prvmsgwire.eventpublisher.process -> <> BCMessageBus.bclog.evntlogged);

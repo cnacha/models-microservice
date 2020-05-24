@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="lifenet">
+<?xml version="1.0" encoding="ASCII"?>
+<arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="target">
   <component name="LifeBand" type="client" deploymentnode="//@host.4/@node.0">
     <port name="alert" role="//@connector.7/@role.0" type="request,OutboundPort">
       <events name="onalert"/>
     </port>
   </component>
   <component name="SOSGateway" type="client,server" deploymentnode="//@host.0/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,DenialOfService,DataTampering">
-    <port name="sos" role="//@connector.0/@role.0 //@connector.7/@role.1" type="request,response,OutboundPort,InboundPort">
+    <port name="sos" role="//@connector.0/@role.0 //@connector.7/@role.1" type="request,response,OutboundPort,InboundPort" attributes="eventprocessor">
       <events name="acknowledge" next="//@component.1/@port.0/@events.1"/>
       <events name="alert"/>
     </port>
   </component>
   <component name="RequestDispatcher" type="server,broadcaster,readendpoint,datareader" deploymentnode="//@host.1/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization">
-    <port name="accept" role="//@connector.0/@role.1 //@connector.1/@role.0 //@connector.2/@role.0" type="response,broadcast,read,read,OutboundPort,InboundPort">
+    <port name="accept" role="//@connector.0/@role.1 //@connector.1/@role.0 //@connector.2/@role.0" type="response,broadcast,read,read,OutboundPort,InboundPort" attributes="eventprocessor">
       <events name="dispatched"/>
     </port>
   </component>
@@ -60,16 +60,20 @@
       <events name="updated"/>
     </port>
   </component>
+  <component name="GuardnotiLog">
+    <port name="logguardnoti" role="//@connector.1/@role.2"/>
+  </component>
   <connector name="dispatchwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
     <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
     <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.2/@role.0" connector="//@connector.0"/>
-    <communicationlink href="data.json#//@link.0"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.0"/>
   </connector>
-  <connector name="guardnoti" type="PSConnector" connectortype="//@archstyle.1/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="publisher,out" connector="//@connector.1"/>
-    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.1"/>
-    <communicationlink href="data.json#//@link.3"/>
-    <communicationlink href="data.json#//@link.4"/>
+  <connector name="guardnoti" type="PSConnector,RuleEventCentre" connectortype="//@archstyle.2/@connectortype.0" securityCharacters="DenialOfServiceConnector">
+    <role name="eventpublisher" roletype="//@archstyle.2/@connectortype.0/@roletype.0" type="publisher,out" connector="//@connector.1"/>
+    <role name="eventsubscriber" roletype="//@archstyle.2/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.1"/>
+    <role name="eventstore" roletype="//@archstyle.2/@connectortype.0/@roletype.2"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.3"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.4"/>
   </connector>
   <connector name="emwire" type="REConnector" connectortype="//@archstyle.5/@connectortype.0">
     <role name="reader" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="reader,out" nextRoleExpr="//@connector.1/@role.0" connector="//@connector.2"/>
@@ -82,23 +86,23 @@
   <connector name="ptwire" type="REConnector" connectortype="//@archstyle.5/@connectortype.0" securityCharacters="DenialOfServiceConnector">
     <role name="reader" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.4"/>
     <role name="readstorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="readstorage,in" connector="//@connector.4"/>
-    <communicationlink href="data.json#//@link.6"/>
-    <communicationlink href="data.json#//@link.7"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.6"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.7"/>
   </connector>
   <connector name="emupwire" type="WRConnector" connectortype="//@archstyle.6/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
     <role name="writer" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="writer,out" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.5"/>
     <role name="writestorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="writestorage,in" connector="//@connector.5"/>
-    <communicationlink href="data.json#//@link.8"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.8"/>
   </connector>
   <connector name="pgupwire" type="WRConnector" connectortype="//@archstyle.6/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
     <role name="writer" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="writer,out" connector="//@connector.6"/>
     <role name="writestorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="writestorage,in" connector="//@connector.6"/>
-    <communicationlink href="data.json#//@link.8"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.8"/>
   </connector>
   <connector name="soswire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
     <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.7"/>
     <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.0/@role.0" connector="//@connector.7"/>
-    <communicationlink href="data.json#//@link.5"/>
+    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.lifenet/data.json#//@link.5"/>
   </connector>
   <connector name="ptupwire" type="WRConnector" connectortype="//@archstyle.6/@connectortype.0">
     <role name="writer" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="writer,out" connector="//@connector.8"/>
@@ -351,9 +355,4 @@
   <link name="link7" linkType="HTTPS" networkType="INTERNET" source="//@host.2/@node.0/@port.1" target="//@host.5/@node.0/@port.0"/>
   <link name="link8" linkType="HTTPS" networkType="INTERNET" source="//@host.3/@node.0/@port.1" target="//@host.5/@node.0/@port.0"/>
   <link name="link9" networkType="INTERNET" source="//@host.6/@node.0/@port.0" target="//@host.1/@node.0/@port.2"/>
-  <ontologylabel name="RuleEventCentre" expression="PSConnector and (hasRole some  (Role and (isAttachmentOf some EventProcessorPort)))"/>
-  <ontologylabel name="RuleEventCommand" expression="WRConnector and (hasRole some (writer and (isAttachmentOf some EventProcessorPort)))"/>
-  <ontologylabel name="RuleEventQuery" expression="REConnector and (hasRole some (reader and (isAttachmentOf some EventProcessorPort)))"/>
-  <ontologylabel name="RuleSecureWriting" expression="repository and (hasPort some  (TamperingProofPort and (hasAttachment some writestorage)))"/>
-  <ontologylabel name="RuleSecureReading" expression="repository and (hasPort some (TamperingProofPort and (hasAttachment some readstorage)))"/>
 </arch:DesignModel>
