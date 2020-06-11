@@ -61,11 +61,17 @@
     </port>
   </component>
   <component name="GuardnotiLog" type="eventlogger">
-    <port name="logguardnoti" type="log,InboundPort"/>
+    <port name="logguardnoti" type="log,InboundPort">
+      <events name="logged"/>
+    </port>
   </component>
   <component name="PatientBlockchain" type="blockchain">
-    <port name="append" type="bcstore,InboundPort"/>
-    <port name="access" type="blocksupply,InboundPort"/>
+    <port name="append" type="bcstore,InboundPort">
+      <events name="appended"/>
+    </port>
+    <port name="access" type="blocksupply,InboundPort">
+      <events name="accessed"/>
+    </port>
   </component>
   <connector name="dispatchwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
     <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>

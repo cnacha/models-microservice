@@ -18,7 +18,7 @@
       <events name="logged"/>
     </port>
   </component>
-  <component name="ProvenanceInt" type="server,eventsource,LinkOverload" valid="false" deploymentnode="//@host.2/@node.1" securityCharacters="AttackSurface,DataTampering">
+  <component name="ProvenanceInt" type="server,eventsource,LinkOverload" deploymentnode="//@host.2/@node.1" securityCharacters="AttackSurface,DataTampering">
     <port name="prvpub" role="//@connector.1/@role.0 //@connector.2/@role.1 //@connector.3/@role.0" type="response,publish,OutboundPort,InboundPort">
       <events name="prvevntpublish"/>
     </port>
@@ -38,7 +38,7 @@
       <events name="evntlogged"/>
     </port>
   </component>
-  <component name="BCIntegrator" type="listener,eventconsumer,datawriter,LinkOverload" valid="false" deploymentnode="//@host.2/@node.3" securityCharacters="AttackSurface,LeastPriviledge,DenialOfService">
+  <component name="BCIntegrator" type="listener,eventconsumer,datawriter,LinkOverload" deploymentnode="//@host.2/@node.3" securityCharacters="AttackSurface,LeastPriviledge,DenialOfService">
     <port name="bcint" role="//@connector.3/@role.1 //@connector.7/@role.0 //@connector.8/@role.0" type="listen,listen,write,OutboundPort,InboundPort">
       <events name="ackstate"/>
     </port>
@@ -85,6 +85,21 @@
     </port>
     <port name="finfetch" role="//@connector.11/@role.1" type="blocksupply,InboundPort">
       <events name="fetched"/>
+    </port>
+  </component>
+  <component name="AdversaryDTP1" type="adversary">
+    <port name="attack1" role="//@connector.1/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryDTP2" type="adversary">
+    <port name="attack2" role="//@connector.2/@role.0" type="OutboundPort">
+      <events name="attacked"/>
+    </port>
+  </component>
+  <component name="AdversaryDTP3" type="adversary">
+    <port name="attack3" role="//@connector.3/@role.0" type="OutboundPort">
+      <events name="attacked"/>
     </port>
   </component>
   <connector name="adapiwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
@@ -453,6 +468,36 @@
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.7">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.1/@events.0" nextExpr="//@verifyProperty.7/@ltlexpr.0/@expr.1"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.6/@connectortype.0/@roletype.1/@event.1" operator="EVENTUALLY" role="//@connector.11/@role.1"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP1VerifyProp" testport="//@component.15/@port.0">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.8/@ltlexpr.0/@expr.1" role="//@connector.1/@role.0" port="//@component.15/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.1/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP1VerifyProp" testport="//@component.15/@port.0">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.9/@ltlexpr.0/@expr.1" role="//@connector.1/@role.0" port="//@component.15/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP2VerifyProp" visitedStates="175766" verifyTime="5.2070587999999995" testport="//@component.16/@port.0" traceExample="init -> AdversaryDTP2_prvapiwire_requester_request -> prvapiwire_req!39 -> prvapiwire_req?39 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_prvmsgwire_eventpublisher_process -> prvmsgwire_pevt!39 -> prvmsgwire_pevt?39 -> BCMessageBus_bclog_evntlogged -> BCMessageBus_prvmsgwire_eventstore_process -> prvmsgwire_sevt!39 -> BCMessageBus_prvmsgwire_eventstore_persist -> prvmsgwire_sevt?39 -> prvmsgwire_bevt!39 -> prvmsgwire_bevt?39 -> BCIntegrator_comwire_writer_request -> comwire_req!39 -> comwire_req?39 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comchainwire_extsupplier_process -> comchainwire_token!39 -> comchainwire_token?39 -> CommoChain_coappend_appended -> CommoChain_comchainwire_blockstorage_process -> CommoChain_comchainwire_blockstorage_stored -> Commodity_comchainwire_extsupplier_Skip -> Commodity_comwire_writestorage_process -> comwire_res!39 -> comwire_res?39 -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!39 -> finwritewire_req?39 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_logfinance_finlogged -> FinanceTrans_finchainappwire_extsupplier_process -> finchainappwire_token!39 -> finchainappwire_token?39 -> FinanceChain_finappend_appended -> FinanceChain_finchainappwire_blockstorage_process -> FinanceChain_finchainappwire_blockstorage_stored -> FinanceTrans_finchainappwire_extsupplier_Skip -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!39 -> finwritewire_res?39 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_eventsubscriber_process -> ProvenanceInt_prvmsgwire_eventpublisher_Skip -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!39 -> admsgwire_pevt?39 -> ADMessageBus_adlog_logged -> ADMessageBus_admsgwire_eventstore_process -> admsgwire_sevt!39 -> admsgwire_sevt?39 -> admsgwire_bevt!39 -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!39 -> prvapiwire_res?39 -> AdversaryDTP2_attack2_attacked -> AdversaryDTP2_prvapiwire_requester_process -> ADMessageBus_admsgwire_eventstore_persist -> admsgwire_bevt?39 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.0/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.10/@ltlexpr.0/@expr.1" role="//@connector.2/@role.0" port="//@component.16/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP3VerifyProp" testport="//@component.17/@port.0">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.11/@ltlexpr.0/@expr.1" role="//@connector.3/@role.0" port="//@component.17/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
+    </ltlexpr>
+  </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="AdversaryDTP3VerifyProp" testport="//@component.17/@port.0">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@archstyle.2/@connectortype.0/@roletype.0/@event.0" nextExpr="//@verifyProperty.12/@ltlexpr.0/@expr.1" role="//@connector.3/@role.0" port="//@component.17/@port.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
   <host name="ADWebServer">
