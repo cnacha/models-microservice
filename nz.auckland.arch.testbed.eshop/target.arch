@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ASCII"?>
 <arch:DesignModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://www.example.org/arch" name="target">
-  <component name="ShopFrontend" type="client,broadcaster" deploymentnode="//@host.0/@node.0" securityCharacters="AttackSurface,LeastPriviledge">
+  <component name="ShopFrontend" type="client,eventsource" deploymentnode="//@host.0/@node.0" securityCharacters="AttackSurface,LeastPriviledge">
     <port name="auth" role="//@connector.0/@role.0" type="request,OutboundPort">
       <events name="checked"/>
     </port>
     <port name="browse" role="//@connector.1/@role.0" type="request,OutboundPort">
       <events name="read"/>
     </port>
-    <port name="order" role="//@connector.10/@role.0" type="broadcast,OutboundPort">
+    <port name="order" role="//@connector.9/@role.0" type="publish,OutboundPort">
       <events name="purchased"/>
     </port>
     <port name="shop" role="//@connector.3/@role.0" type="request,OutboundPort">
@@ -24,48 +24,48 @@
       <events name="signedon"/>
     </port>
   </component>
-  <component name="OrdersService" type="client,server,listener,eventconsumer,readendpoint,datawriter,datareader,LinkOverload" valid="false" deploymentnode="//@host.2/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization,DenialOfService,DataTampering">
-    <port name="postorder" role="//@connector.4/@role.0 //@connector.5/@role.0 //@connector.8/@role.0 //@connector.10/@role.1" type="request,listen,listen,write,OutboundPort,InboundPort,EventProcessorPort">
+  <component name="OrdersService" type="client,server,listener,eventconsumer,readendpoint,commandendpoint,datareader" deploymentnode="//@host.2/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization,DenialOfService,DataTampering">
+    <port name="postorder" role="//@connector.4/@role.0 //@connector.7/@role.0 //@connector.9/@role.1 //@connector.10/@role.0" type="request,listen,issue,OutboundPort,InboundPort,EventProcessorPort">
       <events name="check" next="//@component.3/@port.0/@events.1"/>
       <events name="save"/>
     </port>
-    <port name="get" role="//@connector.2/@role.1 //@connector.9/@role.0" type="response,read,read,OutboundPort,InboundPort,EventProcessorPort">
+    <port name="get" role="//@connector.2/@role.1 //@connector.8/@role.0" type="response,read,OutboundPort,InboundPort,EventProcessorPort">
       <events name="ack"/>
     </port>
   </component>
-  <component name="OrdersDB" type="repository" deploymentnode="//@host.2/@node.3">
-    <port name="writeorder" role="//@connector.8/@role.1" type="store,InboundPort,EventProcessorPort">
+  <component name="OrdersDB" type="viewdb,datastore" deploymentnode="//@host.2/@node.1">
+    <port name="writeorder" role="//@connector.7/@role.1" type="query,update,InboundPort,EventProcessorPort">
       <events name="orderwritten"/>
     </port>
-    <port name="queryorder" role="//@connector.9/@role.1" type="access,InboundPort,EventProcessorPort">
+    <port name="queryorder" role="//@connector.8/@role.1" type="query,update,InboundPort,EventProcessorPort">
       <events name="orderreaded"/>
     </port>
   </component>
-  <component name="CartsService" type="server" deploymentnode="//@host.2/@node.4" securityCharacters="AttackSurface,DenialOfService,DataTampering">
+  <component name="CartsService" type="server" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface,DenialOfService,DataTampering">
     <port name="manage" role="//@connector.3/@role.1" type="response,InboundPort">
       <events name="saveitem"/>
     </port>
   </component>
-  <component name="Payment" type="server" deploymentnode="//@host.1/@node.1" criticalLevel="High" securityCharacters="DefenseInDepth,Compartmentalization">
-    <port name="pay" role="//@connector.4/@role.1" type="response,InboundPort">
+  <component name="Payment" type="server,oracle" deploymentnode="//@host.1/@node.1" criticalLevel="High" securityCharacters="DefenseInDepth,Compartmentalization">
+    <port name="pay" role="//@connector.10/@role.1 //@connector.11/@role.1" type="response,orafeed,OutboundPort,InboundPort,TamperingProofPort">
       <events name="paid"/>
     </port>
   </component>
-  <component name="ShippingService" type="server,datawriter" deploymentnode="//@host.3/@node.0" securityCharacters="Compartmentalization">
-    <port name="postshipping" role="//@connector.5/@role.1 //@connector.7/@role.0" type="response,write,OutboundPort,InboundPort,EventProcessorPort">
+  <component name="ShippingService" type="server,commandendpoint" deploymentnode="//@host.3/@node.3" securityCharacters="Compartmentalization">
+    <port name="postshipping" role="//@connector.4/@role.1 //@connector.6/@role.0" type="response,issue,OutboundPort,InboundPort,EventProcessorPort">
       <events name="posted"/>
     </port>
   </component>
-  <component name="ShippingWorker" type="readendpoint,datareader" deploymentnode="//@host.3/@node.4">
-    <port name="listqueue" role="//@connector.6/@role.0" type="read,read,OutboundPort,EventProcessorPort">
+  <component name="ShippingWorker" type="readendpoint,datareader" deploymentnode="//@host.3/@node.0">
+    <port name="listqueue" role="//@connector.5/@role.0" type="read,OutboundPort,EventProcessorPort">
       <events name="renderqueue"/>
     </port>
   </component>
-  <component name="QueueDB" type="repository" deploymentnode="//@host.3/@node.3">
-    <port name="writequeue" role="//@connector.7/@role.1" type="store,InboundPort,EventProcessorPort">
+  <component name="QueueDB" type="viewdb,datastore" deploymentnode="//@host.3/@node.1">
+    <port name="writequeue" role="//@connector.6/@role.1" type="query,update,InboundPort,EventProcessorPort">
       <events name="queuewritten"/>
     </port>
-    <port name="readqueue" role="//@connector.6/@role.1" type="access,InboundPort,EventProcessorPort">
+    <port name="readqueue" role="//@connector.5/@role.1" type="query,update,InboundPort,EventProcessorPort">
       <events name="queuereaded"/>
     </port>
   </component>
@@ -74,76 +74,83 @@
       <events name="renderlist"/>
     </port>
   </component>
-  <component name="OrderwireLog">
-    <port name="logorderwire" role="//@connector.10/@role.2"/>
+  <component name="OrderwireLog" type="eventlogger,datastore" deploymentnode="//@host.2/@node.2">
+    <port name="logorderwire" role="//@connector.9/@role.2" type="log,InboundPort">
+      <events name="logged"/>
+    </port>
   </component>
-  <component name="ShippinglogwireCommandLog">
-    <port name="logshippinglogwire" role="//@connector.7/@role.2"/>
+  <component name="ShippinglogwireCommandLog" type="commanddb,datastore" deploymentnode="//@host.3/@node.2">
+    <port name="logshippinglogwire" role="//@connector.6/@role.2" type="logcommand,InboundPort">
+      <events name="logged"/>
+    </port>
   </component>
-  <component name="OrderlogwireCommandLog">
-    <port name="logorderlogwire" role="//@connector.8/@role.2"/>
+  <component name="OrderlogwireCommandLog" type="commanddb,datastore" deploymentnode="//@host.2/@node.2">
+    <port name="logorderlogwire" role="//@connector.7/@role.2" type="logcommand,InboundPort">
+      <events name="logged"/>
+    </port>
+  </component>
+  <component name="PaymentBlockchain" type="blockchain,datastore" deploymentnode="//@host.4/@node.0">
+    <port name="append" role="//@connector.11/@role.0" type="bcstore,InboundPort">
+      <events name="appended"/>
+    </port>
   </component>
   <connector name="userwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.0"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.0"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.0"/>
   </connector>
   <connector name="cateloquewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.1"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.7"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.1"/>
   </connector>
   <connector name="orderquerywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.2"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.2"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.13"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.14"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.2"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.2"/>
   </connector>
   <connector name="cartwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.3"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.5"/>
-  </connector>
-  <connector name="paywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.4"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.4"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.6"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.3"/>
   </connector>
   <connector name="shippingwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.5"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.7/@role.0" connector="//@connector.5"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.eshop/data.json#//@link.8"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.4"/>
   </connector>
-  <connector name="queuereadwire" type="REConnector,RuleEventQuery" connectortype="//@archstyle.3/@connectortype.0">
-    <role name="querier" roletype="//@archstyle.3/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.6"/>
-    <role name="readstore" roletype="//@archstyle.3/@connectortype.0/@roletype.1" type="readstorage,in" connector="//@connector.6"/>
+  <connector name="queuereadwire" type="QRConnector" connectortype="//@archstyle.3/@connectortype.0">
+    <role name="querier" roletype="//@archstyle.3/@connectortype.0/@roletype.0" type="out" connector="//@connector.5"/>
+    <role name="readstore" roletype="//@archstyle.3/@connectortype.0/@roletype.1" type="in" connector="//@connector.5"/>
   </connector>
-  <connector name="shippinglogwire" type="WRConnector,RuleEventCommand" connectortype="//@archstyle.4/@connectortype.0">
-    <role name="commander" roletype="//@archstyle.4/@connectortype.0/@roletype.1" type="writer,out" connector="//@connector.7"/>
-    <role name="readstore" roletype="//@archstyle.4/@connectortype.0/@roletype.0" type="writestorage,in" connector="//@connector.7"/>
-    <role name="commandstore" roletype="//@archstyle.4/@connectortype.0/@roletype.2"/>
+  <connector name="shippinglogwire" type="CRConnector" connectortype="//@archstyle.4/@connectortype.0">
+    <role name="commander" roletype="//@archstyle.4/@connectortype.0/@roletype.1" type="out" connector="//@connector.6"/>
+    <role name="readstore" roletype="//@archstyle.4/@connectortype.0/@roletype.0" type="in" connector="//@connector.6"/>
+    <role name="commandstore" roletype="//@archstyle.4/@connectortype.0/@roletype.2" type="in" connector="//@connector.6"/>
   </connector>
-  <connector name="orderlogwire" type="WRConnector,RuleEventCommand" connectortype="//@archstyle.4/@connectortype.0">
-    <role name="commander" roletype="//@archstyle.4/@connectortype.0/@roletype.1" type="writer,out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.8"/>
-    <role name="readstore" roletype="//@archstyle.4/@connectortype.0/@roletype.0" type="writestorage,in" connector="//@connector.8"/>
-    <role name="commandstore" roletype="//@archstyle.4/@connectortype.0/@roletype.2"/>
+  <connector name="orderlogwire" type="CRConnector" connectortype="//@archstyle.4/@connectortype.0">
+    <role name="commander" roletype="//@archstyle.4/@connectortype.0/@roletype.1" type="out" nextRoleExpr="//@connector.10/@role.0" connector="//@connector.7"/>
+    <role name="readstore" roletype="//@archstyle.4/@connectortype.0/@roletype.0" type="in" connector="//@connector.7"/>
+    <role name="commandstore" roletype="//@archstyle.4/@connectortype.0/@roletype.2" type="in" connector="//@connector.7"/>
   </connector>
-  <connector name="orderreadwire" type="REConnector,RuleEventQuery" connectortype="//@archstyle.3/@connectortype.0">
-    <role name="querier" roletype="//@archstyle.3/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.9"/>
-    <role name="readstore" roletype="//@archstyle.3/@connectortype.0/@roletype.1" type="readstorage,in" connector="//@connector.9"/>
+  <connector name="orderreadwire" type="QRConnector" connectortype="//@archstyle.3/@connectortype.0">
+    <role name="querier" roletype="//@archstyle.3/@connectortype.0/@roletype.0" type="out" connector="//@connector.8"/>
+    <role name="readstore" roletype="//@archstyle.3/@connectortype.0/@roletype.1" type="in" connector="//@connector.8"/>
   </connector>
-  <connector name="orderwire" type="PSConnector,RuleEventCentre" connectortype="//@archstyle.2/@connectortype.0">
-    <role name="eventpublisher" roletype="//@archstyle.2/@connectortype.0/@roletype.0" type="publisher,out" connector="//@connector.10"/>
-    <role name="eventsubscriber" roletype="//@archstyle.2/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.10"/>
-    <role name="eventstore" roletype="//@archstyle.2/@connectortype.0/@roletype.2"/>
+  <connector name="orderwire" type="ESConnector" connectortype="//@archstyle.2/@connectortype.0">
+    <role name="eventpublisher" roletype="//@archstyle.2/@connectortype.0/@roletype.0" type="out" connector="//@connector.9"/>
+    <role name="eventsubscriber" roletype="//@archstyle.2/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.7/@role.0" connector="//@connector.9"/>
+    <role name="eventstore" roletype="//@archstyle.2/@connectortype.0/@roletype.2" type="in" connector="//@connector.9"/>
+  </connector>
+  <connector name="paywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.10"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.11/@role.1" connector="//@connector.10"/>
+  </connector>
+  <connector name="oraclepaywire" type="IOConnector" connectortype="//@archstyle.8/@connectortype.0">
+    <role name="blockstorage" roletype="//@archstyle.8/@connectortype.0/@roletype.0" type="in" connector="//@connector.11"/>
+    <role name="extsupplier" roletype="//@archstyle.8/@connectortype.0/@roletype.1" type="out" connector="//@connector.11"/>
   </connector>
   <archstyle name="client-server">
     <connectortype name="CSConnector">
       <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
-        <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
-        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.4"/>
         <event name="Skip"/>
       </roletype>
       <roletype name="responder" porttype="//@archstyle.0/@componenttype.1/@porttype.0">
@@ -287,10 +294,9 @@
   <archstyle name="repository-read">
     <connectortype name="REConnector">
       <roletype name="reader" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
-        <event name="request" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="req" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.3" type="input"/>
-        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.4"/>
         <event name="Skip"/>
       </roletype>
       <roletype name="readstorage" porttype="//@archstyle.6/@componenttype.1/@porttype.0">
@@ -307,48 +313,95 @@
       <porttype name="access"/>
     </componenttype>
   </archstyle>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" counterExample="" visitedStates="15" verifyTime="0.0054662999999999995" testport="//@component.0/@port.3" traceExample="init -> ShopFrontend_cartwire_requester_request -> cartwire_req!33 -> cartwire_req?33 -> CartsService_cartwire_responder_invoke -> CartsService_manage_saveitem -> CartsService_cartwire_responder_process -> cartwire_res!33 -> cartwire_res?33 -> ShopFrontend_shop_itemadded -> ShopFrontend_cartwire_requester_process">
+  <archstyle name="reverse-oracle">
+    <connectortype name="ROConnector">
+      <roletype name="extquerier" porttype="//@archstyle.7/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.4"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="blocksupplier" porttype="//@archstyle.7/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="reverseoracle">
+      <porttype name="blockquery"/>
+    </componenttype>
+    <componenttype name="blockchain">
+      <porttype name="blocksupply"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="oracle">
+    <connectortype name="IOConnector">
+      <roletype name="blockstorage" porttype="//@archstyle.8/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="token" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="stored"/>
+      </roletype>
+      <roletype name="extsupplier" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="token" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.0"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="blockchain">
+      <porttype name="bcstore"/>
+    </componenttype>
+    <componenttype name="oracle">
+      <porttype name="orafeed"/>
+    </componenttype>
+  </archstyle>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" counterExample="" visitedStates="15" verifyTime="0.0496198" testport="//@component.0/@port.3" traceExample="init -> ShopFrontend_shop_itemadded -> ShopFrontend_cartwire_requester_process -> cartwire_req!71 -> cartwire_req?71 -> CartsService_cartwire_responder_invoke -> CartsService_manage_saveitem -> CartsService_cartwire_responder_process -> cartwire_res!71 -> cartwire_res?71" exprText="[]  (ShopFrontend.shop.itemadded -> &lt;> CartsService.manage.saveitem)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.0">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.3/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.3/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.0"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop2" model="/" counterExample="" visitedStates="70" verifyTime="0.006246" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_orderwire_requester_request -> orderwire_req!63 -> orderwire_req?63 -> OrdersService_orderwire_responder_invoke -> OrdersService_orderlogwire_writer_request -> orderlogwire_req!63 -> orderlogwire_req?63 -> OrdersDB_orderlogwire_writestorage_invoke -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_writestorage_process -> orderlogwire_res!63 -> orderlogwire_res?63 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_writer_process -> OrdersService_orderlogwire_writer_Skip -> OrdersService_paywire_requester_request -> paywire_req!63 -> paywire_req?63 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_paywire_responder_process -> paywire_res!63 -> paywire_res?63 -> OrdersService_paywire_requester_process -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_request -> shippingwire_req!63 -> shippingwire_req?63 -> ShippingService_shippingwire_responder_invoke -> ShippingService_shippinglogwire_writer_request -> shippinglogwire_req!63 -> shippinglogwire_req?63 -> QueueDB_shippinglogwire_writestorage_invoke -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_writestorage_process -> shippinglogwire_res!63 -> shippinglogwire_res?63 -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_writer_process -> ShippingService_shippinglogwire_writer_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!63 -> shippingwire_res?63 -> OrdersService_shippingwire_requester_process -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_responder_process -> orderwire_res!63 -> orderwire_res?63 -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_requester_process">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop2" model="/" counterExample="" visitedStates="572810" verifyTime="21.4482613" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_eventpublisher_process -> orderwire_pevt!43 -> orderwire_pevt?43 -> OrderwireLog_logorderwire_logged -> OrderwireLog_orderwire_eventstore_process -> orderwire_sevt!43 -> OrderwireLog_orderwire_eventstore_persist -> orderwire_sevt?43 -> orderwire_bevt!43 -> orderwire_bevt?43 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_commander_process -> orderlogwire_stmt!43 -> orderlogwire_stmt?43 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_readstore_process -> OrdersDB_orderlogwire_readstore_persist -> orderlogwire_cmmd!43 -> orderlogwire_cmmd?43 -> OrderlogwireCommandLog_logorderlogwire_logged -> OrderlogwireCommandLog_orderlogwire_commandstore_process -> OrderlogwireCommandLog_orderlogwire_commandstore_persist -> OrdersService_orderlogwire_commander_Skip -> OrdersService_paywire_requester_process -> paywire_req!43 -> paywire_req?43 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_oraclepaywire_extsupplier_process -> oraclepaywire_token!43 -> oraclepaywire_token?43 -> PaymentBlockchain_append_appended -> PaymentBlockchain_oraclepaywire_blockstorage_process -> PaymentBlockchain_oraclepaywire_blockstorage_stored -> Payment_paywire_responder_process -> paywire_res!43 -> paywire_res?43 -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_process -> shippingwire_req!43 -> shippingwire_req?43 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_commander_process -> shippinglogwire_stmt!43 -> shippinglogwire_stmt?43 -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_readstore_process -> QueueDB_shippinglogwire_readstore_persist -> shippinglogwire_cmmd!43 -> shippinglogwire_cmmd?43 -> ShippinglogwireCommandLog_logshippinglogwire_logged -> ShippinglogwireCommandLog_shippinglogwire_commandstore_process -> ShippinglogwireCommandLog_shippinglogwire_commandstore_persist -> ShippingService_shippinglogwire_commander_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!43 -> shippingwire_res?43 -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_eventsubscriber_process -> ShopFrontend_orderwire_eventpublisher_broadcast" exprText="[]  (Payment.pay.paid -> &lt;> ShippingService.postshipping.posted)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.1">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" visitedStates="11" verifyTime="0.00524" testport="//@component.0/@port.3" traceExample="init -> ShopFrontend_cartwire_requester_request -> cartwire_req!90 -> cartwire_req?90 -> CartsService_cartwire_responder_invoke -> CartsService_manage_saveitem -> CartsService_cartwire_responder_process -> cartwire_res!90 -> cartwire_res?90 -> ShopFrontend_shop_itemadded -> ShopFrontend_cartwire_requester_process">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" visitedStates="10" verifyTime="0.0463525" testport="//@component.0/@port.3" traceExample="init -> ShopFrontend_shop_itemadded -> ShopFrontend_cartwire_requester_process -> cartwire_req!37 -> cartwire_req?37 -> CartsService_cartwire_responder_invoke -> CartsService_manage_saveitem -> CartsService_cartwire_responder_process -> cartwire_res!37 -> cartwire_res?37" exprText="[]  (OrdersService.postorder.save -> &lt;> Payment.pay.paid)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.2">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.1" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" visitedStates="1" verifyTime="0.0044161999999999995" testport="//@component.2/@port.0" traceExample="********Verification Result********&#xD;&#xA;The Assertion (sockshop() |= ![](ShopFrontend_auth_checked->&lt;>UserService_login_signedon)) is NOT valid.&#xD;&#xA;A counterexample is presented as follows.&#xD;&#xA;&lt;init">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" counterExample="" visitedStates="15" verifyTime="0.0458564" testport="//@component.0/@port.0" traceExample="init -> ShopFrontend_auth_checked -> ShopFrontend_userwire_requester_process -> userwire_req!16 -> userwire_req?16 -> UserService_userwire_responder_invoke -> UserService_login_signedon -> UserService_userwire_responder_process -> userwire_res!16 -> userwire_res?16" exprText="[]  (ShopFrontend.auth.checked -> &lt;> UserService.login.signedon)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" operator="EVENTUALLY"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.0/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.0"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" visitedStates="15" verifyTime="0.0052293999999999995" testport="//@component.0/@port.1" traceExample="init -> ShopFrontend_cateloquewire_requester_request -> cateloquewire_req!35 -> cateloquewire_req?35 -> CateloqueService_cateloquewire_responder_invoke -> CateloqueService_list_query -> CateloqueService_cateloquewire_responder_process -> cateloquewire_res!35 -> cateloquewire_res?35 -> ShopFrontend_browse_read -> ShopFrontend_cateloquewire_requester_process">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" counterExample="init -> ShopFrontend_browse_read -> ShopFrontend_cateloquewire_requester_process -> cateloquewire_req!62 -> cateloquewire_req?62 -> CateloqueService_cateloquewire_responder_invoke -> CateloqueService_list_query -> CateloqueService_cateloquewire_responder_process -> cateloquewire_res!62 -> cateloquewire_res?62" visitedStates="24" verifyTime="0.0456093" testport="//@component.0/@port.1" traceExample="init -> ShopFrontend_browse_read -> ShopFrontend_cateloquewire_requester_process -> cateloquewire_req!55 -> cateloquewire_req?55 -> CateloqueService_cateloquewire_responder_invoke -> CateloqueService_list_query -> CateloqueService_cateloquewire_responder_process -> cateloquewire_res!55 -> cateloquewire_res?55" exprText="[]  (&lt;> ShopFrontend.browse.read -> &lt;> CateloqueService.list.query)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.4">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.1"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.1/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.1/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.1/@events.0" operator="EVENTUALLY" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.0"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop6" model="/" visitedStates="11" verifyTime="0.0054851" testport="//@component.10/@port.0" traceExample="init -> ShopBackend_orderquerywire_requester_request -> orderquerywire_req!80 -> orderquerywire_req?80 -> OrdersService_orderquerywire_responder_invoke -> OrdersService_get_ack -> OrdersService_orderquerywire_responder_process -> orderquerywire_res!80 -> orderquerywire_res?80 -> ShopBackend_listorder_renderlist -> ShopBackend_orderquerywire_requester_process">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop6" model="/" counterExample="" visitedStates="27" verifyTime="0.044252599999999996" testport="//@component.10/@port.0" traceExample="init -> ShopBackend_listorder_renderlist -> ShopBackend_orderquerywire_requester_process -> orderquerywire_req!37 -> orderquerywire_req?37 -> OrdersService_orderquerywire_responder_invoke -> OrdersService_get_ack -> OrdersService_orderreadwire_querier_process -> orderreadwire_stmt!37 -> orderreadwire_stmt?37 -> OrdersDB_queryorder_orderreaded -> OrdersDB_orderreadwire_readstore_process -> orderreadwire_res!37 -> orderreadwire_res?37 -> OrdersService_orderreadwire_querier_Skip -> OrdersService_orderquerywire_responder_process -> orderquerywire_res!37 -> orderquerywire_res?37" exprText="[]  (ShopBackend.listorder.renderlist -> &lt;> OrdersDB.queryorder.orderreaded)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.5">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.10/@port.0/@events.0" operator="EVENTUALLY"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.1/@events.0" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.10/@port.0/@events.0" nextExpr="//@verifyProperty.5/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.1/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop" model="/" visitedStates="88" verifyTime="0.0067262" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_orderwire_requester_request -> orderwire_req!45 -> orderwire_req?45 -> OrdersService_orderwire_responder_invoke -> OrdersService_orderlogwire_writer_request -> orderlogwire_req!45 -> orderlogwire_req?45 -> OrdersDB_orderlogwire_writestorage_invoke -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_writestorage_process -> orderlogwire_res!45 -> orderlogwire_res?45 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_writer_process -> OrdersService_orderlogwire_writer_Skip -> OrdersService_paywire_requester_request -> paywire_req!45 -> paywire_req?45 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_paywire_responder_process -> paywire_res!45 -> paywire_res?45 -> OrdersService_paywire_requester_process -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_request -> shippingwire_req!45 -> shippingwire_req?45 -> ShippingService_shippingwire_responder_invoke -> ShippingService_shippinglogwire_writer_request -> shippinglogwire_req!45 -> shippinglogwire_req?45 -> QueueDB_shippinglogwire_writestorage_invoke -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_writestorage_process -> shippinglogwire_res!45 -> shippinglogwire_res?45 -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_writer_process -> ShippingService_shippinglogwire_writer_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!45 -> shippingwire_res?45 -> OrdersService_shippingwire_requester_process -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_responder_process -> orderwire_res!45 -> orderwire_res?45 -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_requester_process">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop7" model="/" counterExample="" visitedStates="552723" verifyTime="20.665755" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_eventpublisher_process -> orderwire_pevt!66 -> orderwire_pevt?66 -> OrderwireLog_logorderwire_logged -> OrderwireLog_orderwire_eventstore_process -> orderwire_sevt!66 -> OrderwireLog_orderwire_eventstore_persist -> orderwire_sevt?66 -> orderwire_bevt!66 -> orderwire_bevt?66 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_commander_process -> orderlogwire_stmt!66 -> orderlogwire_stmt?66 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_readstore_process -> OrdersDB_orderlogwire_readstore_persist -> orderlogwire_cmmd!66 -> orderlogwire_cmmd?66 -> OrderlogwireCommandLog_logorderlogwire_logged -> OrderlogwireCommandLog_orderlogwire_commandstore_process -> OrderlogwireCommandLog_orderlogwire_commandstore_persist -> OrdersService_orderlogwire_commander_Skip -> OrdersService_paywire_requester_process -> paywire_req!66 -> paywire_req?66 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_oraclepaywire_extsupplier_process -> oraclepaywire_token!66 -> oraclepaywire_token?66 -> PaymentBlockchain_append_appended -> PaymentBlockchain_oraclepaywire_blockstorage_process -> PaymentBlockchain_oraclepaywire_blockstorage_stored -> Payment_paywire_responder_process -> paywire_res!66 -> paywire_res?66 -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_process -> shippingwire_req!66 -> shippingwire_req?66 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_commander_process -> shippinglogwire_stmt!66 -> shippinglogwire_stmt?66 -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_readstore_process -> QueueDB_shippinglogwire_readstore_persist -> shippinglogwire_cmmd!66 -> shippinglogwire_cmmd?66 -> ShippinglogwireCommandLog_logshippinglogwire_logged -> ShippinglogwireCommandLog_shippinglogwire_commandstore_process -> ShippinglogwireCommandLog_shippinglogwire_commandstore_persist -> ShippingService_shippinglogwire_commander_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!66 -> shippingwire_res?66 -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_eventsubscriber_process -> ShopFrontend_orderwire_eventpublisher_broadcast" exprText="[]  (ShopFrontend.order.purchased -> &lt;> OrdersService.postorder.save)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.6">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.1" nextExpr="//@verifyProperty.6/@ltlexpr.0/@expr.1"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.2/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.3/@port.0/@events.1" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.2/@events.0" nextExpr="//@verifyProperty.6/@ltlexpr.0/@expr.0"/>
     </ltlexpr>
   </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="event-centre-orderwire" visitedStates="804952" verifyTime="29.621111799999998" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_eventpublisher_process -> orderwire_pevt!65 -> orderwire_pevt?65 -> OrderwireLog_logorderwire_logged -> OrderwireLog_orderwire_eventstore_process -> orderwire_sevt!65 -> OrderwireLog_orderwire_eventstore_persist -> orderwire_sevt?65 -> orderwire_bevt!65 -> orderwire_bevt?65 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_commander_process -> orderlogwire_stmt!65 -> orderlogwire_stmt?65 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_readstore_process -> OrdersDB_orderlogwire_readstore_persist -> orderlogwire_cmmd!65 -> orderlogwire_cmmd?65 -> OrderlogwireCommandLog_logorderlogwire_logged -> OrderlogwireCommandLog_orderlogwire_commandstore_process -> OrderlogwireCommandLog_orderlogwire_commandstore_persist -> OrdersService_orderlogwire_commander_Skip -> OrdersService_paywire_requester_process -> paywire_req!65 -> paywire_req?65 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_oraclepaywire_extsupplier_process -> oraclepaywire_token!65 -> oraclepaywire_token?65 -> PaymentBlockchain_append_appended -> PaymentBlockchain_oraclepaywire_blockstorage_process -> PaymentBlockchain_oraclepaywire_blockstorage_stored -> Payment_paywire_responder_process -> paywire_res!65 -> paywire_res?65 -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_process -> shippingwire_req!65 -> shippingwire_req?65 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_commander_process -> shippinglogwire_stmt!65 -> shippinglogwire_stmt?65 -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_readstore_process -> QueueDB_shippinglogwire_readstore_persist -> shippinglogwire_cmmd!65 -> shippinglogwire_cmmd?65 -> ShippinglogwireCommandLog_logshippinglogwire_logged -> ShippinglogwireCommandLog_shippinglogwire_commandstore_process -> ShippinglogwireCommandLog_shippinglogwire_commandstore_persist -> ShippingService_shippinglogwire_commander_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!65 -> shippingwire_res?65 -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_eventsubscriber_process -> ShopFrontend_orderwire_eventpublisher_broadcast" exprText="[] (ShopFrontend.order.purchased-> &lt;> OrderwireLog.orderwire.eventstore.persist)" connector="//@connector.9"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="event-command-shippinglogwire" visitedStates="977090" verifyTime="36.676999599999995" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_eventpublisher_process -> orderwire_pevt!88 -> orderwire_pevt?88 -> OrderwireLog_logorderwire_logged -> OrderwireLog_orderwire_eventstore_process -> orderwire_sevt!88 -> OrderwireLog_orderwire_eventstore_persist -> orderwire_sevt?88 -> orderwire_bevt!88 -> orderwire_bevt?88 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_commander_process -> orderlogwire_stmt!88 -> orderlogwire_stmt?88 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_readstore_process -> OrdersDB_orderlogwire_readstore_persist -> orderlogwire_cmmd!88 -> orderlogwire_cmmd?88 -> OrderlogwireCommandLog_logorderlogwire_logged -> OrderlogwireCommandLog_orderlogwire_commandstore_process -> OrderlogwireCommandLog_orderlogwire_commandstore_persist -> OrdersService_orderlogwire_commander_Skip -> OrdersService_paywire_requester_process -> paywire_req!88 -> paywire_req?88 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_oraclepaywire_extsupplier_process -> oraclepaywire_token!88 -> oraclepaywire_token?88 -> PaymentBlockchain_append_appended -> PaymentBlockchain_oraclepaywire_blockstorage_process -> PaymentBlockchain_oraclepaywire_blockstorage_stored -> Payment_paywire_responder_process -> paywire_res!88 -> paywire_res?88 -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_process -> shippingwire_req!88 -> shippingwire_req?88 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_commander_process -> shippinglogwire_stmt!88 -> shippinglogwire_stmt?88 -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_readstore_process -> QueueDB_shippinglogwire_readstore_persist -> shippinglogwire_cmmd!88 -> shippinglogwire_cmmd?88 -> ShippinglogwireCommandLog_logshippinglogwire_logged -> ShippinglogwireCommandLog_shippinglogwire_commandstore_process -> ShippinglogwireCommandLog_shippinglogwire_commandstore_persist -> ShippingService_shippinglogwire_commander_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!88 -> shippingwire_res?88 -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_eventsubscriber_process -> ShopFrontend_orderwire_eventpublisher_broadcast" exprText="[] (ShippingService.postshipping.posted-> &lt;> ShippinglogwireCommandLog.shippinglogwire.commandstore.persist)" connector="//@connector.6"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="event-command-orderlogwire" visitedStates="990986" verifyTime="37.299346199999995" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_eventpublisher_process -> orderwire_pevt!73 -> orderwire_pevt?73 -> OrderwireLog_logorderwire_logged -> OrderwireLog_orderwire_eventstore_process -> orderwire_sevt!73 -> OrderwireLog_orderwire_eventstore_persist -> orderwire_sevt?73 -> orderwire_bevt!73 -> orderwire_bevt?73 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_commander_process -> orderlogwire_stmt!73 -> orderlogwire_stmt?73 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_readstore_process -> OrdersDB_orderlogwire_readstore_persist -> orderlogwire_cmmd!73 -> orderlogwire_cmmd?73 -> OrderlogwireCommandLog_logorderlogwire_logged -> OrderlogwireCommandLog_orderlogwire_commandstore_process -> OrderlogwireCommandLog_orderlogwire_commandstore_persist -> OrdersService_orderlogwire_commander_Skip -> OrdersService_paywire_requester_process -> paywire_req!73 -> paywire_req?73 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_oraclepaywire_extsupplier_process -> oraclepaywire_token!73 -> oraclepaywire_token?73 -> PaymentBlockchain_append_appended -> PaymentBlockchain_oraclepaywire_blockstorage_process -> PaymentBlockchain_oraclepaywire_blockstorage_stored -> Payment_paywire_responder_process -> paywire_res!73 -> paywire_res?73 -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_process -> shippingwire_req!73 -> shippingwire_req?73 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_commander_process -> shippinglogwire_stmt!73 -> shippinglogwire_stmt?73 -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_readstore_process -> QueueDB_shippinglogwire_readstore_persist -> shippinglogwire_cmmd!73 -> shippinglogwire_cmmd?73 -> ShippinglogwireCommandLog_logshippinglogwire_logged -> ShippinglogwireCommandLog_shippinglogwire_commandstore_process -> ShippinglogwireCommandLog_shippinglogwire_commandstore_persist -> ShippingService_shippinglogwire_commander_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!73 -> shippingwire_res?73 -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_eventsubscriber_process -> ShopFrontend_orderwire_eventpublisher_broadcast" exprText="[] (OrdersService.postorder.check-> &lt;> OrderlogwireCommandLog.orderlogwire.commandstore.persist)" connector="//@connector.7"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="event-query-queuereadwire" visitedStates="14" verifyTime="0.0457374" testport="//@component.8/@port.0" traceExample="init -> ShippingWorker_listqueue_renderqueue -> ShippingWorker_queuereadwire_querier_process -> queuereadwire_stmt!91 -> queuereadwire_stmt?91 -> QueueDB_readqueue_queuereaded -> QueueDB_queuereadwire_readstore_process -> queuereadwire_res!91 -> queuereadwire_res?91" exprText="[] (ShippingWorker.listqueue.renderqueue-> &lt;> QueueDB.queuereadwire.readstore.process)" connector="//@connector.5"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="event-query-orderreadwire" visitedStates="23" verifyTime="0.0477985" testport="//@component.10/@port.0" traceExample="init -> ShopBackend_listorder_renderlist -> ShopBackend_orderquerywire_requester_process -> orderquerywire_req!54 -> orderquerywire_req?54 -> OrdersService_orderquerywire_responder_invoke -> OrdersService_get_ack -> OrdersService_orderreadwire_querier_process -> orderreadwire_stmt!54 -> orderreadwire_stmt?54 -> OrdersDB_queryorder_orderreaded -> OrdersDB_orderreadwire_readstore_process -> orderreadwire_res!54 -> orderreadwire_res?54 -> OrdersService_orderreadwire_querier_Skip -> OrdersService_orderquerywire_responder_process -> orderquerywire_res!54 -> orderquerywire_res?54" exprText="[] (OrdersService.get.ack-> &lt;> OrdersDB.orderreadwire.readstore.process)" connector="//@connector.8"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="secure-writeoraclepaywire" visitedStates="989450" verifyTime="37.023238" testport="//@component.0/@port.2" traceExample="init -> ShopFrontend_order_purchased -> ShopFrontend_orderwire_eventpublisher_process -> orderwire_pevt!19 -> orderwire_pevt?19 -> OrderwireLog_logorderwire_logged -> OrderwireLog_orderwire_eventstore_process -> orderwire_sevt!19 -> OrderwireLog_orderwire_eventstore_persist -> orderwire_sevt?19 -> orderwire_bevt!19 -> orderwire_bevt?19 -> OrdersService_postorder_check -> OrdersService_postorder_save -> OrdersService_orderlogwire_commander_process -> orderlogwire_stmt!19 -> orderlogwire_stmt?19 -> OrdersDB_writeorder_orderwritten -> OrdersDB_orderlogwire_readstore_process -> OrdersDB_orderlogwire_readstore_persist -> orderlogwire_cmmd!19 -> orderlogwire_cmmd?19 -> OrderlogwireCommandLog_logorderlogwire_logged -> OrderlogwireCommandLog_orderlogwire_commandstore_process -> OrderlogwireCommandLog_orderlogwire_commandstore_persist -> OrdersService_orderlogwire_commander_Skip -> OrdersService_paywire_requester_process -> paywire_req!19 -> paywire_req?19 -> Payment_paywire_responder_invoke -> Payment_pay_paid -> Payment_oraclepaywire_extsupplier_process -> oraclepaywire_token!19 -> oraclepaywire_token?19 -> PaymentBlockchain_append_appended -> PaymentBlockchain_oraclepaywire_blockstorage_process -> PaymentBlockchain_oraclepaywire_blockstorage_stored -> Payment_paywire_responder_process -> paywire_res!19 -> paywire_res?19 -> OrdersService_paywire_requester_Skip -> OrdersService_shippingwire_requester_process -> shippingwire_req!19 -> shippingwire_req?19 -> ShippingService_shippingwire_responder_invoke -> ShippingService_postshipping_posted -> ShippingService_shippinglogwire_commander_process -> shippinglogwire_stmt!19 -> shippinglogwire_stmt?19 -> QueueDB_writequeue_queuewritten -> QueueDB_shippinglogwire_readstore_process -> QueueDB_shippinglogwire_readstore_persist -> shippinglogwire_cmmd!19 -> shippinglogwire_cmmd?19 -> ShippinglogwireCommandLog_logshippinglogwire_logged -> ShippinglogwireCommandLog_shippinglogwire_commandstore_process -> ShippinglogwireCommandLog_shippinglogwire_commandstore_persist -> ShippingService_shippinglogwire_commander_Skip -> ShippingService_shippingwire_responder_process -> shippingwire_res!19 -> shippingwire_res?19 -> OrdersService_shippingwire_requester_Skip -> OrdersService_orderwire_eventsubscriber_process -> ShopFrontend_orderwire_eventpublisher_broadcast" exprText="[] (Payment.pay.paid-> &lt;> PaymentBlockchain.oraclepaywire.blockstorage.stored)" connector="//@connector.11"/>
   <host netAccessType="PUBLIC" name="PublicServer" hostType="CLOUD_PLATFORM">
     <node name="NodeJSContainer1" component="//@component.0 //@component.10">
       <port name="port" portNumber="15551" node="//@host.0/@node.0" namedport="//@component.0/@port.0"/>
@@ -370,7 +423,7 @@
     </node>
   </host>
   <host name="LocalServer">
-    <node name="JEEContainer1" component="//@component.3">
+    <node name="JEEContainer1" component="//@component.3 //@component.5">
       <port name="port" portNumber="80" namedport="//@component.3/@port.0" hasFirewall="true" hasAuthentication="true" hasAuthorization="true"/>
       <port name="port" portNumber="15561" node="//@host.2/@node.0" namedport="//@component.3/@port.0"/>
       <port name="port" portNumber="15562" node="//@host.2/@node.0" namedport="//@component.3/@port.0"/>
@@ -379,54 +432,33 @@
       <port name="port" portNumber="15566" node="//@host.2/@node.0" namedport="//@component.3/@port.1"/>
       <port name="port" portNumber="81" node="//@host.2/@node.0" namedport="//@component.3/@port.1"/>
     </node>
-    <node name="JEEContainer2">
-      <port name="port" portNumber="80" node="//@host.2/@node.1"/>
-      <port name="port" portNumber="15565" node="//@host.2/@node.1"/>
-    </node>
-    <node name="MongoDB1">
-      <port name="port" portNumber="9411" node="//@host.2/@node.2"/>
-    </node>
     <node name="MySQL1" component="//@component.4">
-      <port name="port" portNumber="3306" node="//@host.2/@node.3" namedport="//@component.4/@port.0 //@component.4/@port.1"/>
+      <port name="port" portNumber="3306" node="//@host.2/@node.1" namedport="//@component.4/@port.0 //@component.4/@port.1"/>
     </node>
-    <node name="JEEContainer3" component="//@component.5">
-      <port name="port" portNumber="80" node="//@host.2/@node.4" namedport="//@component.5/@port.0"/>
-    </node>
+    <node type="APPLICATION_CONTAINER" name="MongoDB2" component="//@component.13 //@component.11"/>
   </host>
   <host name="BackOfficeServer">
-    <node name="JEEContainer4" component="//@component.7">
-      <port name="port" portNumber="80" node="//@host.3/@node.0" namedport="//@component.7/@port.0" hasAuthentication="true" hasAuthorization="true"/>
-      <port name="port" portNumber="15571" node="//@host.3/@node.0" namedport="//@component.7/@port.0"/>
-      <port name="port" portNumber="15572" node="//@host.3/@node.0" namedport="//@component.7/@port.0"/>
-    </node>
-    <node name="MongoDB2">
-      <port name="port" portNumber="27017" node="//@host.3/@node.1"/>
-    </node>
-    <node name="JEEContainer5">
-      <port name="port" portNumber="80" node="//@host.3/@node.2"/>
-      <port name="port" portNumber="15573" node="//@host.3/@node.2"/>
-    </node>
+    <node name="JEEContainer4" component="//@component.8"/>
     <node name="MySQL2" component="//@component.9">
-      <port name="port" portNumber="3306" node="//@host.3/@node.3" namedport="//@component.9/@port.0 //@component.9/@port.1"/>
+      <port name="port" portNumber="3306" node="//@host.3/@node.1" namedport="//@component.9/@port.0 //@component.9/@port.1"/>
     </node>
-    <node name="JEEContainer6" component="//@component.8">
-      <port name="port" portNumber="15574" node="//@host.3/@node.4" namedport="//@component.8/@port.0"/>
-    </node>
+    <node type="APPLICATION_CONTAINER" name="MongoDB1" component="//@component.12"/>
+    <node name="JEEContainer5" component="//@component.7"/>
   </host>
-  <link name="link1" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.0" target="//@host.1/@node.0/@port.0"/>
+  <host netAccessType="PUBLIC" name="BCServerNode">
+    <node type="APPLICATION_CONTAINER" name="Ethereum" component="//@component.14"/>
+  </host>
   <link name="link2" linkType="HTTPS" networkType="INTERNET" source="//@host.0/@node.0/@port.1" target="//@host.2/@node.0/@port.0"/>
-  <link name="link3" source="//@host.2/@node.0/@port.1" target="//@host.2/@node.2/@port.0"/>
-  <link name="link4" source="//@host.2/@node.0/@port.2" target="//@host.2/@node.1/@port.0"/>
-  <link name="link5" source="//@host.2/@node.1/@port.1" target="//@host.2/@node.3/@port.0"/>
-  <link name="link7" networkType="INTERNET" source="//@host.0/@node.0/@port.3" target="//@host.2/@node.4/@port.0"/>
-  <link name="link8" linkType="HTTPS" source="//@host.2/@node.0/@port.3" target="//@host.1/@node.1/@port.0"/>
+  <link name="link3" source="//@host.2/@node.0/@port.1"/>
+  <link name="link4" source="//@host.2/@node.0/@port.2"/>
+  <link name="link5" target="//@host.2/@node.1/@port.0"/>
+  <link name="link7" networkType="INTERNET" source="//@host.0/@node.0/@port.3"/>
   <link name="link9" source="//@host.0/@node.0/@port.4" target="//@host.0/@node.1/@port.0"/>
-  <link name="link10" source="//@host.2/@node.0/@port.4" target="//@host.3/@node.0/@port.0"/>
-  <link name="link11" source="//@host.3/@node.0/@port.1" target="//@host.3/@node.1/@port.0"/>
-  <link name="link12" source="//@host.3/@node.0/@port.2" target="//@host.3/@node.2/@port.0"/>
-  <link name="link13" source="//@host.3/@node.2/@port.1" target="//@host.3/@node.3/@port.0"/>
-  <link name="link14" source="//@host.3/@node.4/@port.0" target="//@host.3/@node.3/@port.0"/>
-  <link name="link16" source="//@host.2/@node.0/@port.5" target="//@host.2/@node.3/@port.0"/>
+  <link name="link11"/>
+  <link name="link12"/>
+  <link name="link13" target="//@host.3/@node.1/@port.0"/>
+  <link name="link14" target="//@host.3/@node.1/@port.0"/>
+  <link name="link16" source="//@host.2/@node.0/@port.5" target="//@host.2/@node.1/@port.0"/>
   <link name="link15" networkType="INTERNET" source="//@host.0/@node.0/@port.2" target="//@host.2/@node.0/@port.6"/>
   <ontologylabel name="EventProcessorPort" subClassOf="Port"/>
   <ontologylabel name="RuleSecureWriting" expression="repository and (hasPort some  (TamperingProofPort and (hasAttachment some writestorage)))" subClassOf="RefactorRule"/>
@@ -435,4 +467,5 @@
   <ontologylabel name="RuleEventCentre" expression="PSConnector and (hasRole some  (Role and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
   <ontologylabel name="TamperingProofPort" subClassOf="Port"/>
   <ontologylabel name="RuleEventCommand" expression="WRConnector and (hasRole some (writer and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
+  <ontologylabel name="datastore" expression="blockchain or repository or eventlogger or commanddb or viewdb"/>
 </arch:DesignModel>

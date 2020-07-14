@@ -6,7 +6,7 @@
     </port>
   </component>
   <component name="SOSGateway" type="client,listener,eventconsumer" deploymentnode="//@host.0/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,DenialOfService,DataTampering">
-    <port name="sos" role="//@connector.0/@role.1 //@connector.1/@role.0" type="request,listen,listen,OutboundPort,InboundPort">
+    <port name="sos" role="//@connector.0/@role.1 //@connector.1/@role.0" type="request,listen,OutboundPort,InboundPort">
       <events name="acknowledge" next="//@component.1/@port.0/@events.1"/>
       <events name="alert"/>
     </port>
@@ -17,12 +17,12 @@
     </port>
   </component>
   <component name="LifeGuard" type="client,listener,eventconsumer" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface,DenialOfService">
-    <port name="gnotify" role="//@connector.2/@role.1 //@connector.6/@role.0" type="request,listen,listen,OutboundPort,InboundPort">
+    <port name="gnotify" role="//@connector.2/@role.1 //@connector.6/@role.0" type="request,listen,OutboundPort,InboundPort">
       <events name="acknowlege"/>
     </port>
   </component>
   <component name="LifeCare" type="client,listener,eventconsumer" deploymentnode="//@host.3/@node.0" securityCharacters="AttackSurface,DenialOfService">
-    <port name="cnotify" role="//@connector.3/@role.1 //@connector.6/@role.0" type="request,listen,listen,OutboundPort,InboundPort">
+    <port name="cnotify" role="//@connector.3/@role.1 //@connector.6/@role.0" type="request,listen,OutboundPort,InboundPort">
       <events name="acknowlege"/>
     </port>
   </component>
@@ -41,39 +41,42 @@
       <events name="ptaccessed"/>
     </port>
   </component>
+  <component name="SysLogger" type="LavaFlow" valid="false">
+    <port name="syslog" type="UnusedInterface" valid="false"/>
+  </component>
   <connector name="soswire" type="PSConnector" connectortype="//@archstyle.1/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
-    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="publisher,out" nextRoleExpr="//@connector.1/@role.0" connector="//@connector.0"/>
-    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.1/@role.0" connector="//@connector.0"/>
+    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.1/@role.0" connector="//@connector.0"/>
+    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.1/@role.0" connector="//@connector.0"/>
     <communicationlink href="data.json#//@link.5"/>
   </connector>
   <connector name="dispatchwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.1"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.1"/>
     <communicationlink href="data.json#//@link.0"/>
   </connector>
   <connector name="guardnoti" type="PSConnector" connectortype="//@archstyle.1/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="publisher,out" nextRoleExpr="//@connector.3/@role.0" connector="//@connector.2"/>
-    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.2"/>
+    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.3/@role.0" connector="//@connector.2"/>
+    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.2"/>
     <communicationlink href="data.json#//@link.3"/>
   </connector>
   <connector name="carenoti" type="PSConnector" connectortype="//@archstyle.1/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="publisher,out" connector="//@connector.3"/>
-    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="subscriber,in" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.3"/>
+    <role name="publisher" roletype="//@archstyle.1/@connectortype.0/@roletype.0" type="out" connector="//@connector.3"/>
+    <role name="subscriber" roletype="//@archstyle.1/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.3"/>
     <communicationlink href="data.json#//@link.4"/>
   </connector>
   <connector name="emcenterwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.2/@role.0" connector="//@connector.4"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.4"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.2/@role.0" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.4"/>
     <communicationlink href="data.json#//@link.1"/>
   </connector>
   <connector name="pgwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.5"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.5"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.5"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.5"/>
     <communicationlink href="data.json#//@link.2"/>
   </connector>
   <connector name="ptwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.6"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.6"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.6"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.6"/>
     <communicationlink href="data.json#//@link.6"/>
     <communicationlink href="data.json#//@link.7"/>
   </connector>

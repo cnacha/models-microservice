@@ -135,7 +135,7 @@
   </connector>
   <archstyle name="client-server">
     <connectortype name="CSConnector">
-      <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
         <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
@@ -158,7 +158,7 @@
   </archstyle>
   <archstyle name="publish-subscribe">
     <connectortype name="PSConnector" eaConnector="//@archstyle.0/@connectortype.0">
-      <roletype name="publisher" porttype="//@archstyle.1/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="publisher" porttype="//@archstyle.1/@componenttype.0/@porttype.0">
         <event name="process" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="pub" next="//@archstyle.1/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.1/@connectortype.0/@roletype.1/@event.0"/>
         <event name="Skip"/>
@@ -177,7 +177,7 @@
   </archstyle>
   <archstyle name="event-sourcing">
     <connectortype name="ESConnector">
-      <roletype name="eventpublisher" porttype="//@archstyle.2/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="eventpublisher" porttype="//@archstyle.2/@componenttype.0/@porttype.0">
         <event name="process" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="pevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.2/@connectortype.0/@roletype.2/@event.0"/>
         <event xsi:type="arch:Channel" name="sevt" next="//@archstyle.2/@connectortype.0/@roletype.0/@event.4" type="input"/>
@@ -208,7 +208,7 @@
   </archstyle>
   <archstyle name="query-responsibility">
     <connectortype name="QRConnector">
-      <roletype name="reader" porttype="//@archstyle.3/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="reader" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
         <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.1" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2" type="input"/>
         <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.3"/>
@@ -229,7 +229,7 @@
   </archstyle>
   <archstyle name="repository-read">
     <connectortype name="REConnector">
-      <roletype name="reader" porttype="//@archstyle.4/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="reader" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
         <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="req" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.3" type="input"/>
@@ -251,7 +251,7 @@
   </archstyle>
   <archstyle name="repository-write">
     <connectortype name="WRConnector">
-      <roletype name="writer" porttype="//@archstyle.5/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="writer" porttype="//@archstyle.5/@componenttype.0/@porttype.0">
         <event name="request" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="req" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.3" type="input"/>
@@ -279,7 +279,7 @@
         <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2"/>
         <event name="persist"/>
       </roletype>
-      <roletype name="commander" porttype="//@archstyle.6/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="commander" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
         <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.3"/>
         <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.0/@event.0"/>
         <event name="Skip"/>
@@ -303,7 +303,7 @@
   </archstyle>
   <archstyle name="reverse-oracle">
     <connectortype name="ROConnector">
-      <roletype name="extquerier" porttype="//@archstyle.7/@componenttype.0/@porttype.0" direction="OUT">
+      <roletype name="extquerier" porttype="//@archstyle.7/@componenttype.0/@porttype.0">
         <event name="request" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="uid" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.3" type="input"/>
@@ -330,7 +330,7 @@
         <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
         <event name="stored"/>
       </roletype>
-      <roletype name="extsupplier" porttype="//@archstyle.8/@componenttype.1/@porttype.0" direction="OUT">
+      <roletype name="extsupplier" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
         <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.1"/>
         <event xsi:type="arch:Channel" name="token" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.0"/>
       </roletype>
@@ -360,7 +360,7 @@
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.6/@port.0/@events.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.0"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" counterExample="" visitedStates="3980" verifyTime="0.1403123" testport="//@component.0/@port.0" traceExample="init -> LifeBand_soswire_requester_request -> soswire_req!50 -> soswire_req?50 -> SOSGateway_soswire_responder_invoke -> SOSGateway_dispatchwire_requester_request -> dispatchwire_req!50 -> dispatchwire_req?50 -> RequestDispatcher_dispatchwire_responder_invoke -> emwire_stmt!50 -> emwire_stmt?50 -> pgwire_stmt!50 -> pgwire_stmt?50 -> Practitioner_pgaccess_accessed -> Practitioner_pgwire_readstore_process -> pgwire_res!50 -> pgwire_res?50 -> EmCenter_emaccess_emaccessed -> EmCenter_pgwire_reader_process -> EmCenter_pgwire_reader_Skip -> EmCenter_emwire_readstore_process -> emwire_res!50 -> emwire_res?50 -> RequestDispatcher_accept_dispatched -> RequestDispatcher_emwire_reader_process -> RequestDispatcher_emwire_reader_Skip -> RequestDispatcher_reqwire_eventpublisher_process -> reqwire_pevt!50 -> reqwire_pevt?50 -> RequestLog_log_written -> RequestLog_reqwire_eventstore_process -> reqwire_sevt!50 -> RequestLog_reqwire_eventstore_persist -> reqwire_sevt?50 -> reqwire_bevt!50 -> reqwire_bevt?50 -> LifeCare_cnotify_acknowlege -> LifeCare_ptwire_reader_process -> ptwire_req!50 -> ptwire_req?50 -> Patient_ptwire_readstorage_invoke -> Patient_medwire_extquerier_request -> medwire_uid!50 -> medwire_uid?50 -> MedChain_medshare_fetch -> MedChain_medwire_blocksupplier_process -> medwire_res!50 -> medwire_res?50 -> Patient_ptaccess_ptaccessed -> Patient_medwire_extquerier_process -> Patient_medwire_extquerier_Skip -> Patient_ptwire_readstorage_process -> ptwire_res!50 -> ptwire_res?50 -> LifeCare_ptwire_reader_Skip -> LifeCare_reqwire_eventsubscriber_process -> RequestDispatcher_reqwire_eventpublisher_broadcast -> RequestDispatcher_reqwire_eventpublisher_Skip -> RequestDispatcher_dispatchwire_responder_process -> dispatchwire_res!50 -> dispatchwire_res?50 -> SOSGateway_sos_acknowledge -> SOSGateway_sos_alert -> SOSGateway_dispatchwire_requester_process -> SOSGateway_dispatchwire_requester_Skip -> SOSGateway_soswire_responder_process -> soswire_res!50 -> soswire_res?50 -> LifeBand_alert_onalert -> LifeBand_soswire_requester_process">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" counterExample="" visitedStates="3980" verifyTime="0.1609106" testport="//@component.0/@port.0" traceExample="init -> LifeBand_soswire_requester_request -> soswire_req!51 -> soswire_req?51 -> SOSGateway_soswire_responder_invoke -> SOSGateway_dispatchwire_requester_request -> dispatchwire_req!51 -> dispatchwire_req?51 -> RequestDispatcher_dispatchwire_responder_invoke -> emwire_stmt!51 -> emwire_stmt?51 -> pgwire_stmt!51 -> pgwire_stmt?51 -> Practitioner_pgaccess_accessed -> Practitioner_pgwire_readstore_process -> pgwire_res!51 -> pgwire_res?51 -> EmCenter_emaccess_emaccessed -> EmCenter_pgwire_reader_process -> EmCenter_pgwire_reader_Skip -> EmCenter_emwire_readstore_process -> emwire_res!51 -> emwire_res?51 -> RequestDispatcher_accept_dispatched -> RequestDispatcher_emwire_reader_process -> RequestDispatcher_emwire_reader_Skip -> RequestDispatcher_reqwire_eventpublisher_process -> reqwire_pevt!51 -> reqwire_pevt?51 -> RequestLog_log_written -> RequestLog_reqwire_eventstore_process -> reqwire_sevt!51 -> RequestLog_reqwire_eventstore_persist -> reqwire_sevt?51 -> reqwire_bevt!51 -> reqwire_bevt?51 -> LifeCare_cnotify_acknowlege -> LifeCare_ptwire_reader_process -> ptwire_req!51 -> ptwire_req?51 -> Patient_ptwire_readstorage_invoke -> Patient_medwire_extquerier_request -> medwire_uid!51 -> medwire_uid?51 -> MedChain_medshare_fetch -> MedChain_medwire_blocksupplier_process -> medwire_res!51 -> medwire_res?51 -> Patient_ptaccess_ptaccessed -> Patient_medwire_extquerier_process -> Patient_medwire_extquerier_Skip -> Patient_ptwire_readstorage_process -> ptwire_res!51 -> ptwire_res?51 -> LifeCare_ptwire_reader_Skip -> LifeCare_reqwire_eventsubscriber_process -> RequestDispatcher_reqwire_eventpublisher_broadcast -> RequestDispatcher_reqwire_eventpublisher_Skip -> RequestDispatcher_dispatchwire_responder_process -> dispatchwire_res!51 -> dispatchwire_res?51 -> SOSGateway_sos_acknowledge -> SOSGateway_sos_alert -> SOSGateway_dispatchwire_requester_process -> SOSGateway_dispatchwire_requester_Skip -> SOSGateway_soswire_responder_process -> soswire_res!51 -> soswire_res?51 -> LifeBand_alert_onalert -> LifeBand_soswire_requester_process" exprText="[]  (LifeCare.cnotify.acknowlege -> &lt;> Patient.ptaccess.ptaccessed);&#xA;">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.7/@port.0/@events.0" operator="EVENTUALLY"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.0"/>

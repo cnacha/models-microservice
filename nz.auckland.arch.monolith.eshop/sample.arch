@@ -24,8 +24,8 @@
       <events name="signedon"/>
     </port>
   </component>
-  <component name="OrdersService" type="client,server,eventsource,readendpoint,LinkOverload" deploymentnode="//@host.2/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization,DenialOfService,DataTampering">
-    <port name="postorder" role="//@connector.2/@role.1 //@connector.5/@role.0 //@connector.6/@role.0 //@connector.9/@role.0" type="request,response,publish,OutboundPort,InboundPort">
+  <component name="OrdersService" type="client,server,readendpoint,datawriter,datareader" deploymentnode="//@host.2/@node.0" criticalLevel="Low" securityCharacters="AttackSurface,LeastPriviledge,Compartmentalization,DenialOfService,DataTampering">
+    <port name="postorder" role="//@connector.2/@role.1 //@connector.5/@role.0 //@connector.6/@role.0 //@connector.9/@role.0" type="request,response,write,OutboundPort,InboundPort">
       <events name="check" next="//@component.3/@port.0/@events.1"/>
       <events name="save"/>
     </port>
@@ -33,11 +33,11 @@
       <events name="ack"/>
     </port>
   </component>
-  <component name="OrdersDB" type="viewdb,viewdb" deploymentnode="//@host.2/@node.3">
-    <port name="writeorder" role="//@connector.9/@role.1" type="update,query,InboundPort">
+  <component name="OrdersDB" type="repository" deploymentnode="//@host.2/@node.3">
+    <port name="writeorder" role="//@connector.9/@role.1" type="store,InboundPort">
       <events name="orderwritten"/>
     </port>
-    <port name="queryorder" role="//@connector.10/@role.1" type="update,query,InboundPort">
+    <port name="queryorder" role="//@connector.10/@role.1" type="access,InboundPort">
       <events name="orderreaded"/>
     </port>
   </component>
@@ -51,21 +51,21 @@
       <events name="paid"/>
     </port>
   </component>
-  <component name="ShippingService" type="server,eventsource" deploymentnode="//@host.3/@node.0" securityCharacters="Compartmentalization">
-    <port name="postshipping" role="//@connector.6/@role.1 //@connector.8/@role.0" type="response,publish,OutboundPort,InboundPort">
+  <component name="ShippingService" type="server,datawriter" deploymentnode="//@host.3/@node.0" securityCharacters="Compartmentalization">
+    <port name="postshipping" role="//@connector.6/@role.1 //@connector.8/@role.0" type="response,write,OutboundPort,InboundPort">
       <events name="posted"/>
     </port>
   </component>
-  <component name="ShippingWorker" type="readendpoint" deploymentnode="//@host.3/@node.4">
+  <component name="ShippingWorker" type="readendpoint,datareader" deploymentnode="//@host.3/@node.4">
     <port name="listqueue" role="//@connector.7/@role.0" type="read,OutboundPort">
       <events name="renderqueue"/>
     </port>
   </component>
-  <component name="QueueDB" type="viewdb,viewdb" deploymentnode="//@host.3/@node.3">
-    <port name="writequeue" role="//@connector.8/@role.1" type="update,query,InboundPort">
+  <component name="QueueDB" type="repository" deploymentnode="//@host.3/@node.3">
+    <port name="writequeue" role="//@connector.8/@role.1" type="store,InboundPort">
       <events name="queuewritten"/>
     </port>
-    <port name="readqueue" role="//@connector.7/@role.1" type="update,query,InboundPort">
+    <port name="readqueue" role="//@connector.7/@role.1" type="access,InboundPort">
       <events name="queuereaded"/>
     </port>
   </component>
@@ -75,56 +75,56 @@
     </port>
   </component>
   <connector name="userwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.0"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.0"/>
     <communicationlink href="data.json#//@link.0"/>
   </connector>
   <connector name="cateloquewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.1"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.1"/>
     <communicationlink href="data.json#//@link.7"/>
   </connector>
   <connector name="orderwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.2"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.9/@role.0" connector="//@connector.2"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.2"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.9/@role.0" connector="//@connector.2"/>
     <communicationlink href="data.json#//@link.1"/>
   </connector>
   <connector name="orderquerywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.3"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.3"/>
     <communicationlink href="data.json#//@link.13"/>
     <communicationlink href="data.json#//@link.14"/>
   </connector>
   <connector name="cartwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector,DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.4"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.4"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.4"/>
     <communicationlink href="data.json#//@link.5"/>
   </connector>
   <connector name="paywire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.5"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.5"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.5"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.5"/>
     <communicationlink href="data.json#//@link.6"/>
   </connector>
   <connector name="shippingwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.6"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.6"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.6"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.6"/>
     <communicationlink href="data.json#//@link.8"/>
   </connector>
   <connector name="queuereadwire" type="REConnector" connectortype="//@archstyle.6/@connectortype.0">
-    <role name="reader" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="reader" connector="//@connector.7"/>
-    <role name="readstorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="readstorage" connector="//@connector.7"/>
+    <role name="reader" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="out" connector="//@connector.7"/>
+    <role name="readstorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="in" connector="//@connector.7"/>
   </connector>
   <connector name="shippinglogwire" type="WRConnector" connectortype="//@archstyle.5/@connectortype.0">
-    <role name="writer" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="writer" connector="//@connector.8"/>
-    <role name="writestorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="writestorage" connector="//@connector.8"/>
+    <role name="writer" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="out" connector="//@connector.8"/>
+    <role name="writestorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="in" connector="//@connector.8"/>
   </connector>
   <connector name="orderlogwire" type="WRConnector" connectortype="//@archstyle.5/@connectortype.0">
-    <role name="writer" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="writer" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.9"/>
-    <role name="writestorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="writestorage" connector="//@connector.9"/>
+    <role name="writer" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.9"/>
+    <role name="writestorage" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="in" connector="//@connector.9"/>
   </connector>
   <connector name="orderreadwire" type="REConnector" connectortype="//@archstyle.6/@connectortype.0">
-    <role name="reader" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="reader" connector="//@connector.10"/>
-    <role name="readstorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="readstorage" connector="//@connector.10"/>
+    <role name="reader" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="out" connector="//@connector.10"/>
+    <role name="readstorage" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="in" connector="//@connector.10"/>
   </connector>
   <archstyle name="client-server">
     <connectortype name="CSConnector">

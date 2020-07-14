@@ -181,6 +181,14 @@
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_i9aaYf9OEemkY8DVeH4eRA" name="PortDiagram" repPath="#_i9U60P9OEemkY8DVeH4eRA">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='PortDiagram']"/>
       </ownedRepresentationDescriptors>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7GbtcK6VEeqMhbyjE8EW6g" name="new BehaviouralPropertyList" repPath="#_7FjjsK6VEeqMhbyjE8EW6g">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']"/>
+        <target xmi:type="arch:DesignModel" href="sample.arch#/"/>
+      </ownedRepresentationDescriptors>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_oON00K6WEeqMhbyjE8EW6g" name="new SystemDiagram" repPath="#_oOKxgK6WEeqMhbyjE8EW6g">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']"/>
+        <target xmi:type="arch:DesignModel" href="lifenet.arch#/"/>
+      </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
   <diagram:DSemanticDiagram uid="_P7ZVsLzZEem3iLL0fG0ncg" name="new StructuralDiagram">
@@ -1435,6 +1443,26 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_yp75sfxFEembTqC_uPE1Dw" fontName="Segoe UI" fontHeight="12"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yp75svxFEembTqC_uPE1Dw" x="565" y="664"/>
         </children>
+        <children xmi:type="notation:Node" xmi:id="_MYQBQK6bEeqoXvL3Pm15TA" type="2002" element="_MX-7gK6bEeqoXvL3Pm15TA">
+          <children xmi:type="notation:Node" xmi:id="_MYQoUK6bEeqoXvL3Pm15TA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_MYQoUa6bEeqoXvL3Pm15TA" type="7001">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_MYQoUq6bEeqoXvL3Pm15TA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_MYQoU66bEeqoXvL3Pm15TA"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_NxivcK6bEeqoXvL3Pm15TA" type="3012" element="_NxRCoK6bEeqoXvL3Pm15TA">
+            <children xmi:type="notation:Node" xmi:id="_Nxivc66bEeqoXvL3Pm15TA" type="5010">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_NxivdK6bEeqoXvL3Pm15TA" x="33" y="6"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Nxj9kK6bEeqoXvL3Pm15TA" type="3005" element="_NxRCoa6bEeqoXvL3Pm15TA">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Nxj9ka6bEeqoXvL3Pm15TA" fontName="Segoe UI"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Nxj9kq6bEeqoXvL3Pm15TA"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Nxivca6bEeqoXvL3Pm15TA" fontName="Segoe UI" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Nxivcq6bEeqoXvL3Pm15TA" x="88" y="60" width="32" height="32"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_MYQBQa6bEeqoXvL3Pm15TA" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MYQBQq6bEeqoXvL3Pm15TA" x="147" y="235"/>
+        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_vIzBMs0REemc05z05kmL0w"/>
         <edges xmi:type="notation:Edge" xmi:id="_gkxw4tgDEem8nOQEZoDiuA" type="4001" element="_gkp1JNgDEem8nOQEZoDiuA" source="_JnnRkdgDEem8nOQEZoDiuA" target="_bXd-gtgDEem8nOQEZoDiuA">
           <children xmi:type="notation:Node" xmi:id="_gkxw5tgDEem8nOQEZoDiuA" type="6001">
@@ -1521,15 +1549,14 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QO_b9dgIEem8nOQEZoDiuA" x="14" y="12"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_QO_b9tgIEem8nOQEZoDiuA" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QO_b99gIEem8nOQEZoDiuA" x="12" y="-7"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QO_b99gIEem8nOQEZoDiuA" x="10" y="-7"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_QO_b-NgIEem8nOQEZoDiuA" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QO_b-dgIEem8nOQEZoDiuA" x="38" y="-7"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QO_b-dgIEem8nOQEZoDiuA" x="38" y="-6"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_QO_b8dgIEem8nOQEZoDiuA"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_QO_b8tgIEem8nOQEZoDiuA" fontName="Segoe UI" fontHeight="12"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QO_b89gIEem8nOQEZoDiuA" points="[0, 0, 336, -185]$[-336, 180, 0, -5]$[-336, 180, 0, -5]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QO_b-tgIEem8nOQEZoDiuA" id="(0.0,0.3125)"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QO_b89gIEem8nOQEZoDiuA" points="[-13, 8, 339, -171]$[-352, 174, 0, -5]$[-352, 174, 0, -5]"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QO_b-9gIEem8nOQEZoDiuA" id="(1.0,0.6)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_bIf8JtgIEem8nOQEZoDiuA" type="4001" element="_bIZ1tNgIEem8nOQEZoDiuA" source="_WkBrYNgIEem8nOQEZoDiuA" target="_Yi0TUtgIEem8nOQEZoDiuA">
@@ -2177,6 +2204,22 @@
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_6AyygfxFEembTqC_uPE1Dw" labelSize="12"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']/@defaultLayer/@edgeMappings[name='AttachEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_MX-7gK6bEeqoXvL3Pm15TA" name="SysLogger">
+      <target xmi:type="arch:Component" href="sample.arch#//@component.8"/>
+      <semanticElements xmi:type="arch:Component" href="sample.arch#//@component.8"/>
+      <ownedBorderedNodes xmi:type="diagram:DNode" uid="_NxRCoK6bEeqoXvL3Pm15TA" name="syslog" width="-1" height="-1" resizeKind="NSEW">
+        <target xmi:type="arch:Port" href="sample.arch#//@component.8/@port.0"/>
+        <semanticElements xmi:type="arch:Port" href="sample.arch#//@component.8/@port.0"/>
+        <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_NxRCoa6bEeqoXvL3Pm15TA" showIcon="false" labelAlignment="RIGHT" workspacePath="nz.auckland.arch.viewpoint/icon/incoming-inf-small.png">
+          <description xmi:type="style:WorkspaceImageDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']/@defaultLayer/@containerMappings[name='ComponentContainer']/@borderedNodeMappings[name='InterfaceNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']/@defaultLayer/@containerMappings[name='ComponentContainer']/@borderedNodeMappings[name='InterfaceNode']"/>
+      </ownedBorderedNodes>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_jmtr866bEeqoXvL3Pm15TA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="246,139,139">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']/@defaultLayer/@containerMappings[name='ComponentContainer']/@conditionnalStyles.0/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']/@defaultLayer/@containerMappings[name='ComponentContainer']"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_vIOZcc0REemc05z05kmL0w"/>
@@ -10858,5 +10901,128 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='PortDiagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_i9U60f9OEemkY8DVeH4eRA"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='PortDiagram']/@defaultLayer"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="_7FjjsK6VEeqMhbyjE8EW6g" name="new BehaviouralPropertyList">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_7GLOwq6VEeqMhbyjE8EW6g" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_7GLOw66VEeqMhbyjE8EW6g"/>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_7G5ngK6VEeqMhbyjE8EW6g" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_7G5nga6VEeqMhbyjE8EW6g" type="Sirius" element="_7FjjsK6VEeqMhbyjE8EW6g" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_7IRggK6VEeqMhbyjE8EW6g" type="2001" element="_7F3FsK6VEeqMhbyjE8EW6g">
+          <children xmi:type="notation:Node" xmi:id="_7IWZAK6VEeqMhbyjE8EW6g" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_7IWZAa6VEeqMhbyjE8EW6g" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_7IxP0a6VEeqMhbyjE8EW6g" type="3003" element="_7GFIIK6VEeqMhbyjE8EW6g">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_7IxP0q6VEeqMhbyjE8EW6g" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7IxP066VEeqMhbyjE8EW6g"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_7IRgga6VEeqMhbyjE8EW6g" fontName="Segoe UI" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7IRggq6VEeqMhbyjE8EW6g" width="150" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_7IwosK6VEeqMhbyjE8EW6g" type="2001" element="_7GFIIq6VEeqMhbyjE8EW6g">
+          <children xmi:type="notation:Node" xmi:id="_7IxPwK6VEeqMhbyjE8EW6g" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_7IxPwa6VEeqMhbyjE8EW6g" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_7I0TEK6VEeqMhbyjE8EW6g" type="3003" element="_7GILcK6VEeqMhbyjE8EW6g">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_7I0TEa6VEeqMhbyjE8EW6g" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7I0TEq6VEeqMhbyjE8EW6g"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_7Iwosa6VEeqMhbyjE8EW6g" fontName="Segoe UI" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7Iwosq6VEeqMhbyjE8EW6g" x="210" width="150" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_7IxPwq6VEeqMhbyjE8EW6g" type="2001" element="_7GILcq6VEeqMhbyjE8EW6g">
+          <children xmi:type="notation:Node" xmi:id="_7IxPxa6VEeqMhbyjE8EW6g" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_7IxPxq6VEeqMhbyjE8EW6g" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_7I0TE66VEeqMhbyjE8EW6g" type="3003" element="_7GJZkK6VEeqMhbyjE8EW6g">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_7I0TFK6VEeqMhbyjE8EW6g" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7I0TFa6VEeqMhbyjE8EW6g"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_7IxPw66VEeqMhbyjE8EW6g" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7IxPxK6VEeqMhbyjE8EW6g" x="420" width="150" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_7IxPx66VEeqMhbyjE8EW6g" type="2001" element="_7GJZkq6VEeqMhbyjE8EW6g">
+          <children xmi:type="notation:Node" xmi:id="_7IxPyq6VEeqMhbyjE8EW6g" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_7IxPy66VEeqMhbyjE8EW6g" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_7I0TFq6VEeqMhbyjE8EW6g" type="3003" element="_7GJZk66VEeqMhbyjE8EW6g">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_7I0TF66VEeqMhbyjE8EW6g" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7I0TGK6VEeqMhbyjE8EW6g"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_7IxPyK6VEeqMhbyjE8EW6g" fontName="Segoe UI" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7IxPya6VEeqMhbyjE8EW6g" x="630" width="150" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_7IxPzK6VEeqMhbyjE8EW6g" type="2001" element="_7GJZla6VEeqMhbyjE8EW6g">
+          <children xmi:type="notation:Node" xmi:id="_7IxPz66VEeqMhbyjE8EW6g" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_7IxP0K6VEeqMhbyjE8EW6g" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_7I0TGa6VEeqMhbyjE8EW6g" type="3003" element="_7GLOwK6VEeqMhbyjE8EW6g">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_7I0TGq6VEeqMhbyjE8EW6g" fontName="Segoe UI"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7I0TG66VEeqMhbyjE8EW6g"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_7IxPza6VEeqMhbyjE8EW6g" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7IxPzq6VEeqMhbyjE8EW6g" x="840" width="150" height="100"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_7G5ngq6VEeqMhbyjE8EW6g"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_7F3FsK6VEeqMhbyjE8EW6g" name="ltlprop 1" width="15" height="10" resizeKind="NSEW">
+      <target xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.0"/>
+      <semanticElements xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.0"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_7GFIIK6VEeqMhbyjE8EW6g" labelSize="10" labelPosition="node" width="15" height="10" color="204,242,166">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_7GFIIq6VEeqMhbyjE8EW6g" name="Circular Dependency  Free" width="15" height="10" resizeKind="NSEW">
+      <target xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.1"/>
+      <semanticElements xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.1"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_7GILcK6VEeqMhbyjE8EW6g" labelSize="10" labelPosition="node" width="15" height="10" color="204,242,166">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_7GILcq6VEeqMhbyjE8EW6g" name="Functional Decomposition  Free" width="15" height="10" resizeKind="NSEW">
+      <target xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.2"/>
+      <semanticElements xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.2"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_7GJZkK6VEeqMhbyjE8EW6g" labelSize="12" labelPosition="node" width="15" height="10" color="246,139,139">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']/@conditionnalStyles.0/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_7GJZkq6VEeqMhbyjE8EW6g" name="Poltergeist  Free" width="15" height="10" resizeKind="NSEW">
+      <target xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.3"/>
+      <semanticElements xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.3"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_7GJZk66VEeqMhbyjE8EW6g" labelSize="10" labelPosition="node" width="15" height="10" color="204,242,166">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_7GJZla6VEeqMhbyjE8EW6g" name="Ambiguous Interface Free" width="15" height="10" resizeKind="NSEW">
+      <target xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.4"/>
+      <semanticElements xmi:type="arch:BehaviourProperty" href="sample.arch#//@verifyProperty.4"/>
+      <ownedStyle xmi:type="diagram:Square" uid="_7GLOwK6VEeqMhbyjE8EW6g" labelSize="12" labelPosition="node" width="15" height="10" color="246,139,139">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']/@conditionnalStyles.0/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer/@nodeMappings[name='behaveiourproperty']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_7Fvw8K6VEeqMhbyjE8EW6g"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='BehaviouralPropertyList']/@defaultLayer"/>
+    <target xmi:type="arch:DesignModel" href="sample.arch#/"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="_oOKxgK6WEeqMhbyjE8EW6g" name="new SystemDiagram">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_oOKxgq6WEeqMhbyjE8EW6g" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_oOKxg66WEeqMhbyjE8EW6g"/>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_oON00a6WEeqMhbyjE8EW6g" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_oON00q6WEeqMhbyjE8EW6g" type="Sirius" element="_oOKxgK6WEeqMhbyjE8EW6g" measurementUnit="Pixel">
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_oON0066WEeqMhbyjE8EW6g"/>
+      </data>
+    </ownedAnnotationEntries>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_oOKxga6WEeqMhbyjE8EW6g"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/nz.auckland.arch.viewpoint/description/viewpoint.odesign#//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='SystemDiagram']/@defaultLayer"/>
+    <target xmi:type="arch:DesignModel" href="lifenet.arch#/"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>

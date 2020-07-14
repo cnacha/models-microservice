@@ -4,7 +4,7 @@
     <port name="adconsume" role="//@connector.0/@role.0" type="request,OutboundPort">
       <events name="adapirequest"/>
     </port>
-    <port name="adnotify" role="//@connector.5/@role.1" type="listen,listen,InboundPort,EventProcessorPort">
+    <port name="adnotify" role="//@connector.5/@role.1" type="listen,InboundPort,EventProcessorPort">
       <events name="notified"/>
     </port>
   </component>
@@ -13,12 +13,12 @@
       <events name="invoke"/>
     </port>
   </component>
-  <component name="ProvenanceInt" type="client,server,broadcaster" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface,DataTampering">
-    <port name="prvpub" role="//@connector.1/@role.1 //@connector.4/@role.0 //@connector.5/@role.0" type="request,response,broadcast,OutboundPort,InboundPort,EventProcessorPort">
+  <component name="ProvenanceInt" type="client,server,eventsource" deploymentnode="//@host.2/@node.1" securityCharacters="AttackSurface,DataTampering">
+    <port name="prvpub" role="//@connector.1/@role.1 //@connector.4/@role.0 //@connector.5/@role.0" type="request,response,publish,OutboundPort,InboundPort,EventProcessorPort">
       <events name="prvevntpublish"/>
     </port>
   </component>
-  <component name="ProvenanceWebApp" type="client" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface">
+  <component name="ProvenanceWebApp" type="client" deploymentnode="//@host.2/@node.3" securityCharacters="AttackSurface">
     <port name="prvconsume" role="//@connector.1/@role.0" type="request,OutboundPort">
       <events name="provenancerequest"/>
     </port>
@@ -28,13 +28,13 @@
       <events name="updatestatus"/>
     </port>
   </component>
-  <component name="BCIntegrator" type="server,datawriter" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface,LeastPriviledge,DenialOfService">
-    <port name="bcint" role="//@connector.4/@role.1 //@connector.6/@role.0 //@connector.8/@role.0" type="response,write,OutboundPort,InboundPort">
+  <component name="BCIntegrator" type="client,server" deploymentnode="//@host.2/@node.0" securityCharacters="AttackSurface,LeastPriviledge,DenialOfService">
+    <port name="bcint" role="//@connector.4/@role.1 //@connector.6/@role.0 //@connector.8/@role.0" type="request,response,OutboundPort,InboundPort">
       <events name="ackstate"/>
     </port>
   </component>
-  <component name="DigitalWallet" type="server,readendpoint,datareader" deploymentnode="//@host.4/@node.0" securityCharacters="LeastPriviledge,Compartmentalization">
-    <port name="pay" role="//@connector.7/@role.0" type="read,read,OutboundPort">
+  <component name="DigitalWallet" type="client,server" deploymentnode="//@host.4/@node.0" securityCharacters="LeastPriviledge,Compartmentalization">
+    <port name="pay" role="//@connector.7/@role.0" type="request,OutboundPort">
       <events name="commit"/>
     </port>
     <port name="access" role="//@connector.3/@role.1" type="response,InboundPort">
@@ -51,108 +51,121 @@
       <events name="renderlist"/>
     </port>
   </component>
-  <component name="Commodity" type="repository,RuleSecureReading,RuleSecureWriting" deploymentnode="//@host.2/@node.1">
-    <port name="logstate" type="store,InboundPort,TamperingProofPort">
+  <component name="Commodity" type="server,reverseoracle" deploymentnode="//@host.2/@node.4">
+    <port name="logstate" type="TamperingProofPort">
       <events name="statelogged"/>
     </port>
-    <port name="liststate" role="//@connector.9/@role.1 //@connector.12/@role.0" type="access,InboundPort,TamperingProofPort" attributes=""/>
+    <port name="liststate" role="//@connector.9/@role.1 //@connector.12/@role.0" type="response,blockquery,OutboundPort,InboundPort,TamperingProofPort" attributes="">
+      <events name="listed"/>
+    </port>
   </component>
-  <component name="FinanceTrans" type="repository,RuleSecureReading,RuleSecureWriting" deploymentnode="//@host.2/@node.1">
-    <port name="translog" type="store,InboundPort,TamperingProofPort">
+  <component name="FinanceTrans" type="server,reverseoracle" deploymentnode="//@host.2/@node.4">
+    <port name="translog" type="TamperingProofPort">
       <events name="translogged"/>
     </port>
-    <port name="transquery" role="//@connector.7/@role.1 //@connector.13/@role.0" type="access,InboundPort,TamperingProofPort">
+    <port name="transquery" role="//@connector.7/@role.1 //@connector.13/@role.0" type="response,blockquery,OutboundPort,InboundPort,TamperingProofPort">
       <events name="queried"/>
     </port>
   </component>
-  <component name="Controller" type="readendpoint,datareader">
-    <port name="monitor" role="//@connector.9/@role.0" type="read,read,OutboundPort"/>
+  <component name="Controller" type="client" deploymentnode="//@host.2/@node.2">
+    <port name="monitor" role="//@connector.9/@role.0" type="request,OutboundPort">
+      <events name="listcommodity"/>
+    </port>
   </component>
-  <component name="AdmsgwireLog">
-    <port name="logadmsgwire" role="//@connector.5/@role.2"/>
+  <component name="AdmsgwireLog" type="eventlogger,datastore" deploymentnode="//@host.2/@node.5">
+    <port name="logadmsgwire" role="//@connector.5/@role.2" type="log,InboundPort">
+      <events name="logged"/>
+    </port>
   </component>
-  <component name="CommodityOracle">
-    <port name="supply" role="//@connector.8/@role.1 //@connector.10/@role.1"/>
+  <component name="CommodityBlockchain" type="blockchain,datastore" deploymentnode="//@host.7/@node.0">
+    <port name="comappend" role="//@connector.10/@role.0" type="bcstore,InboundPort">
+      <events name="appended"/>
+    </port>
+    <port name="comaccess" role="//@connector.12/@role.1" type="blocksupply,InboundPort">
+      <events name="accessed"/>
+    </port>
   </component>
-  <component name="CommodityBlockchain">
-    <port name="append" role="//@connector.10/@role.0"/>
-    <port name="access" role="//@connector.12/@role.1"/>
+  <component name="FinanceTransBlockchain" type="blockchain,datastore" deploymentnode="//@host.6/@node.0">
+    <port name="finappend" role="//@connector.11/@role.0" type="bcstore,InboundPort">
+      <events name="appended"/>
+    </port>
+    <port name="finaccess" role="//@connector.13/@role.1" type="blocksupply,InboundPort">
+      <events name="accessed"/>
+    </port>
   </component>
-  <component name="FinanceTransOracle">
-    <port name="supply" role="//@connector.6/@role.1 //@connector.11/@role.1"/>
+  <component name="FinanceTransOracle" type="server,oracle" deploymentnode="//@host.2/@node.6">
+    <port name="financetranssupply" role="//@connector.11/@role.1 //@connector.6/@role.1" type="response,orafeed,OutboundPort,InboundPort">
+      <events name="supplied"/>
+    </port>
   </component>
-  <component name="FinanceTransBlockchain">
-    <port name="append" role="//@connector.11/@role.0"/>
-    <port name="access" role="//@connector.13/@role.1"/>
+  <component name="CommodityOracle" type="server,oracle" deploymentnode="//@host.2/@node.7">
+    <port name="commoditysupply" role="//@connector.8/@role.1 //@connector.10/@role.1" type="response,orafeed,OutboundPort,InboundPort">
+      <events name="supplied"/>
+    </port>
   </component>
   <connector name="adapiwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.0"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.0"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.agridigital/data.json#//@link.0"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.0"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.0"/>
   </connector>
   <connector name="prvapiwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DataTamperingConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.1"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.1"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.agridigital/data.json#//@link.1"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.1"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.5/@role.0" connector="//@connector.1"/>
   </connector>
   <connector name="iotreqwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0" securityCharacters="ManInMiddleConnector,DenialOfServiceConnector">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.2"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.2"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.agridigital/data.json#//@link.8"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.2"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.2"/>
   </connector>
   <connector name="ibankwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.3"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" connector="//@connector.3"/>
-    <communicationlink href="platform:/resource/nz.auckland.arch.testbed.agridigital/data.json#//@link.10"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.3"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" connector="//@connector.3"/>
   </connector>
   <connector name="prvmsgwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
-    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="requester,out" connector="//@connector.4"/>
-    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="responder,in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.4"/>
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.4"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.8/@role.0" connector="//@connector.4"/>
   </connector>
-  <connector name="admsgwire" type="PSConnector,RuleEventCentre" connectortype="//@archstyle.2/@connectortype.0">
-    <role name="eventpublisher" roletype="//@archstyle.2/@connectortype.0/@roletype.0" type="publisher,out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.5"/>
-    <role name="eventsubscriber" roletype="//@archstyle.2/@connectortype.0/@roletype.1" type="subscriber,in" connector="//@connector.5"/>
-    <role name="eventstore" roletype="//@archstyle.2/@connectortype.0/@roletype.2"/>
+  <connector name="admsgwire" type="ESConnector" connectortype="//@archstyle.2/@connectortype.0">
+    <role name="eventpublisher" roletype="//@archstyle.2/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.4/@role.0" connector="//@connector.5"/>
+    <role name="eventsubscriber" roletype="//@archstyle.2/@connectortype.0/@roletype.1" type="in" connector="//@connector.5"/>
+    <role name="eventstore" roletype="//@archstyle.2/@connectortype.0/@roletype.2" type="in" connector="//@connector.5"/>
   </connector>
-  <connector name="finwritewire" type="WRConnector" connectortype="//@archstyle.11/@connectortype.0">
-    <role name="writer" roletype="//@archstyle.11/@connectortype.0/@roletype.0" type="writer,out" connector="//@connector.6"/>
-    <role name="writestorage" roletype="//@archstyle.11/@connectortype.0/@roletype.1" type="writestorage,in" nextRoleExpr="//@connector.11/@role.1" connector="//@connector.6"/>
+  <connector name="finwritewire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.6"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.11/@role.1" connector="//@connector.6"/>
   </connector>
-  <connector name="finreadwire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
-    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.7"/>
-    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage,in" nextRoleExpr="//@connector.13/@role.0" connector="//@connector.7"/>
+  <connector name="finreadwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.7"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.13/@role.0" connector="//@connector.7"/>
   </connector>
-  <connector name="comwire" type="WRConnector" connectortype="//@archstyle.11/@connectortype.0">
-    <role name="writer" roletype="//@archstyle.11/@connectortype.0/@roletype.0" type="writer,out" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.8"/>
-    <role name="writestorage" roletype="//@archstyle.11/@connectortype.0/@roletype.1" type="writestorage,in" nextRoleExpr="//@connector.10/@role.1" connector="//@connector.8"/>
+  <connector name="comwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" nextRoleExpr="//@connector.6/@role.0" connector="//@connector.8"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.10/@role.1" connector="//@connector.8"/>
   </connector>
-  <connector name="ctrlwire" type="REConnector" connectortype="//@archstyle.10/@connectortype.0">
-    <role name="reader" roletype="//@archstyle.10/@connectortype.0/@roletype.0" type="reader,out" connector="//@connector.9"/>
-    <role name="readstorage" roletype="//@archstyle.10/@connectortype.0/@roletype.1" type="readstorage,in" nextRoleExpr="//@connector.12/@role.0" connector="//@connector.9"/>
+  <connector name="ctrlwire" type="CSConnector" connectortype="//@archstyle.0/@connectortype.0">
+    <role name="requester" roletype="//@archstyle.0/@connectortype.0/@roletype.0" type="out" connector="//@connector.9"/>
+    <role name="responder" roletype="//@archstyle.0/@connectortype.0/@roletype.1" type="in" nextRoleExpr="//@connector.12/@role.0" connector="//@connector.9"/>
   </connector>
-  <connector name="oraclecomwire" type="IOConnector" connectortype="//@archstyle.5/@connectortype.0">
-    <role name="blockstorage" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="blockstorage" connector="//@connector.10"/>
-    <role name="extsupplier" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="extsupplier" connector="//@connector.10"/>
+  <connector name="oraclecomwire" type="IOConnector" connectortype="//@archstyle.3/@connectortype.0">
+    <role name="blockstorage" roletype="//@archstyle.3/@connectortype.0/@roletype.0" type="in" connector="//@connector.10"/>
+    <role name="extsupplier" roletype="//@archstyle.3/@connectortype.0/@roletype.1" type="out" connector="//@connector.10"/>
   </connector>
-  <connector name="oraclefinwritewire" type="IOConnector" connectortype="//@archstyle.5/@connectortype.0">
-    <role name="blockstorage" roletype="//@archstyle.5/@connectortype.0/@roletype.0" type="blockstorage" connector="//@connector.11"/>
-    <role name="extsupplier" roletype="//@archstyle.5/@connectortype.0/@roletype.1" type="extsupplier" connector="//@connector.11"/>
+  <connector name="oraclefinwritewire" type="IOConnector" connectortype="//@archstyle.3/@connectortype.0">
+    <role name="blockstorage" roletype="//@archstyle.3/@connectortype.0/@roletype.0" type="in" connector="//@connector.11"/>
+    <role name="extsupplier" roletype="//@archstyle.3/@connectortype.0/@roletype.1" type="out" connector="//@connector.11"/>
   </connector>
-  <connector name="roctrlwire" type="ROConnector" connectortype="//@archstyle.6/@connectortype.0">
-    <role name="extquerier" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="extquerier" connector="//@connector.12"/>
-    <role name="blocksupplier" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="blocksupplier" connector="//@connector.12"/>
+  <connector name="roctrlwire" type="ROConnector" connectortype="//@archstyle.4/@connectortype.0">
+    <role name="extquerier" roletype="//@archstyle.4/@connectortype.0/@roletype.0" type="out" connector="//@connector.12"/>
+    <role name="blocksupplier" roletype="//@archstyle.4/@connectortype.0/@roletype.1" type="in" connector="//@connector.12"/>
   </connector>
-  <connector name="rofinreadwire" type="ROConnector" connectortype="//@archstyle.6/@connectortype.0">
-    <role name="extquerier" roletype="//@archstyle.6/@connectortype.0/@roletype.0" type="extquerier" connector="//@connector.13"/>
-    <role name="blocksupplier" roletype="//@archstyle.6/@connectortype.0/@roletype.1" type="blocksupplier" connector="//@connector.13"/>
+  <connector name="rofinreadwire" type="ROConnector" connectortype="//@archstyle.4/@connectortype.0">
+    <role name="extquerier" roletype="//@archstyle.4/@connectortype.0/@roletype.0" type="out" connector="//@connector.13"/>
+    <role name="blocksupplier" roletype="//@archstyle.4/@connectortype.0/@roletype.1" type="in" connector="//@connector.13"/>
   </connector>
   <archstyle name="client-server">
     <connectortype name="CSConnector">
       <roletype name="requester" porttype="//@archstyle.0/@componenttype.0/@porttype.0">
-        <event name="request" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
+        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.1"/>
         <event xsi:type="arch:Channel" name="req" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.0/@connectortype.0/@roletype.1/@event.0"/>
         <event xsi:type="arch:Channel" name="res" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.3" type="input"/>
-        <event name="process" next="//@archstyle.0/@connectortype.0/@roletype.0/@event.4"/>
         <event name="Skip"/>
       </roletype>
       <roletype name="responder" porttype="//@archstyle.0/@componenttype.1/@porttype.0">
@@ -220,57 +233,16 @@
       <porttype name="log"/>
     </componenttype>
   </archstyle>
-  <archstyle name="command-responsibility">
-    <connectortype name="CRConnector">
-      <roletype name="readstore" porttype="//@archstyle.3/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.1" type="input"/>
-        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2"/>
-        <event name="persist"/>
-      </roletype>
-      <roletype name="commander" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
-        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.1"/>
-        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.0/@event.0"/>
-        <event name="Skip"/>
-      </roletype>
-    </connectortype>
-    <componenttype name="commandendpoint">
-      <porttype name="issue"/>
-    </componenttype>
-    <componenttype name="viewdb">
-      <porttype name="update"/>
-    </componenttype>
-  </archstyle>
-  <archstyle name="query-responsibility">
-    <connectortype name="QRConnector">
-      <roletype name="reader" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
-        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.3"/>
-        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.1/@event.0"/>
-        <event xsi:type="arch:Channel" name="res" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.0" type="input"/>
-        <event name="Skip"/>
-      </roletype>
-      <roletype name="readstore" porttype="//@archstyle.4/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.1" type="input"/>
-        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.2"/>
-        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.0/@event.2"/>
-      </roletype>
-    </connectortype>
-    <componenttype name="readendpoint">
-      <porttype name="read"/>
-    </componenttype>
-    <componenttype name="viewdb">
-      <porttype name="query"/>
-    </componenttype>
-  </archstyle>
   <archstyle name="oracle">
     <connectortype name="IOConnector">
-      <roletype name="blockstorage" porttype="//@archstyle.5/@componenttype.0/@porttype.0">
-        <event xsi:type="arch:Channel" name="token" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.1" type="input"/>
-        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.2"/>
+      <roletype name="blockstorage" porttype="//@archstyle.3/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="token" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.0/@event.2"/>
         <event name="stored"/>
       </roletype>
-      <roletype name="extsupplier" porttype="//@archstyle.5/@componenttype.1/@porttype.0">
-        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.1"/>
-        <event xsi:type="arch:Channel" name="token" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.0/@event.0"/>
+      <roletype name="extsupplier" porttype="//@archstyle.3/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.3/@connectortype.0/@roletype.1/@event.1"/>
+        <event xsi:type="arch:Channel" name="token" type="output" bind="//@archstyle.3/@connectortype.0/@roletype.0/@event.0"/>
       </roletype>
     </connectortype>
     <componenttype name="blockchain">
@@ -282,17 +254,17 @@
   </archstyle>
   <archstyle name="reverse-oracle">
     <connectortype name="ROConnector">
-      <roletype name="extquerier" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
-        <event name="request" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1"/>
-        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.1/@event.0"/>
-        <event xsi:type="arch:Channel" name="res" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.3" type="input"/>
-        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.4"/>
+      <roletype name="extquerier" porttype="//@archstyle.4/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.0/@event.4"/>
         <event name="Skip"/>
       </roletype>
-      <roletype name="blocksupplier" porttype="//@archstyle.6/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.1" type="input"/>
-        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.2"/>
-        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.0/@event.2"/>
+      <roletype name="blocksupplier" porttype="//@archstyle.4/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="uid" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.4/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.4/@connectortype.0/@roletype.0/@event.2"/>
       </roletype>
     </connectortype>
     <componenttype name="reverseoracle">
@@ -304,14 +276,14 @@
   </archstyle>
   <archstyle name="offchain-storage-put">
     <connectortype name="OSPConnector">
-      <roletype name="hashlogger" porttype="//@archstyle.7/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.1" type="input"/>
+      <roletype name="hashlogger" porttype="//@archstyle.5/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.5/@connectortype.0/@roletype.0/@event.1" type="input"/>
         <event name="process"/>
       </roletype>
-      <roletype name="hashsupplier" porttype="//@archstyle.7/@componenttype.0/@porttype.0">
-        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.1"/>
-        <event name="calculate" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.2"/>
-        <event xsi:type="arch:Channel" name="hash" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.0/@event.0"/>
+      <roletype name="hashsupplier" porttype="//@archstyle.5/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.1"/>
+        <event name="calculate" next="//@archstyle.5/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="hash" type="output" bind="//@archstyle.5/@connectortype.0/@roletype.0/@event.0"/>
       </roletype>
     </connectortype>
     <componenttype name="storage">
@@ -323,16 +295,16 @@
   </archstyle>
   <archstyle name="offchain-storage-fetch">
     <connectortype name="OSFConnector">
-      <roletype name="hashvalidator" porttype="//@archstyle.8/@componenttype.0/@porttype.0">
-        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.1" type="input"/>
-        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
-        <event name="check" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.3"/>
-        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.1/@event.2"/>
+      <roletype name="hashvalidator" porttype="//@archstyle.6/@componenttype.0/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="check" next="//@archstyle.6/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.1/@event.2"/>
       </roletype>
-      <roletype name="hashchecker" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.0"/>
-        <event name="calculate" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.0"/>
-        <event xsi:type="arch:Channel" name="res" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.3" type="input"/>
+      <roletype name="hashchecker" porttype="//@archstyle.6/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="hash" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.6/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="calculate" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.6/@connectortype.0/@roletype.1/@event.3" type="input"/>
         <event name="process"/>
       </roletype>
     </connectortype>
@@ -345,15 +317,15 @@
   </archstyle>
   <archstyle name="factory-contract">
     <connectortype name="FCConnector">
-      <roletype name="contractcreator" porttype="//@archstyle.9/@componenttype.1/@porttype.0">
-        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.1"/>
-        <event name="create" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.2"/>
-        <event xsi:type="arch:Channel" name="smcon" type="output" bind="//@archstyle.9/@connectortype.0/@roletype.1/@event.2"/>
+      <roletype name="contractcreator" porttype="//@archstyle.7/@componenttype.1/@porttype.0">
+        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.1"/>
+        <event name="create" next="//@archstyle.7/@connectortype.0/@roletype.0/@event.2"/>
+        <event xsi:type="arch:Channel" name="smcon" type="output" bind="//@archstyle.7/@connectortype.0/@roletype.1/@event.2"/>
       </roletype>
-      <roletype name="contractdeployer" porttype="//@archstyle.9/@componenttype.0/@porttype.0">
-        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.1"/>
+      <roletype name="contractdeployer" porttype="//@archstyle.7/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.1"/>
         <event name="deploy"/>
-        <event xsi:type="arch:Channel" name="smcon" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.0" type="input"/>
+        <event xsi:type="arch:Channel" name="smcon" next="//@archstyle.7/@connectortype.0/@roletype.1/@event.0" type="input"/>
       </roletype>
     </connectortype>
     <componenttype name="blockchain">
@@ -365,18 +337,17 @@
   </archstyle>
   <archstyle name="repository-read">
     <connectortype name="REConnector">
-      <roletype name="reader" porttype="//@archstyle.10/@componenttype.0/@porttype.0">
-        <event name="request" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.1"/>
-        <event xsi:type="arch:Channel" name="req" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.1/@event.0"/>
-        <event xsi:type="arch:Channel" name="res" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.3" type="input"/>
-        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.4"/>
+      <roletype name="reader" porttype="//@archstyle.8/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.8/@connectortype.0/@roletype.0/@event.3" type="input"/>
         <event name="Skip"/>
       </roletype>
-      <roletype name="readstorage" porttype="//@archstyle.10/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="req" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.1" type="input"/>
-        <event name="invoke" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.2"/>
-        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.3"/>
-        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.0/@event.2"/>
+      <roletype name="readstorage" porttype="//@archstyle.8/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.8/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.8/@connectortype.0/@roletype.0/@event.2"/>
       </roletype>
     </connectortype>
     <componenttype name="datareader">
@@ -388,18 +359,18 @@
   </archstyle>
   <archstyle name="repository-write">
     <connectortype name="WRConnector">
-      <roletype name="writer" porttype="//@archstyle.11/@componenttype.0/@porttype.0">
-        <event name="request" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.1"/>
-        <event xsi:type="arch:Channel" name="req" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.1/@event.0"/>
-        <event xsi:type="arch:Channel" name="res" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.3" type="input"/>
-        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.4"/>
+      <roletype name="writer" porttype="//@archstyle.9/@componenttype.0/@porttype.0">
+        <event name="request" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.1"/>
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.9/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.3" type="input"/>
+        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.0/@event.4"/>
         <event name="Skip"/>
       </roletype>
-      <roletype name="writestorage" porttype="//@archstyle.11/@componenttype.1/@porttype.0">
-        <event xsi:type="arch:Channel" name="req" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.1" type="input"/>
-        <event name="invoke" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.2"/>
-        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.3"/>
-        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.0/@event.2"/>
+      <roletype name="writestorage" porttype="//@archstyle.9/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="req" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="invoke" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.2"/>
+        <event name="process" next="//@archstyle.9/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.9/@connectortype.0/@roletype.0/@event.2"/>
       </roletype>
     </connectortype>
     <componenttype name="datawriter">
@@ -409,36 +380,85 @@
       <porttype name="store"/>
     </componenttype>
   </archstyle>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" counterExample="init -> IOTWebAPI_prvmsgwire_requester_request -> prvmsgwire_req!73 -> prvmsgwire_req?73 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!73 -> comwire_req?73 -> Commodity_comwire_writestorage_invoke -> Commodity_comwire_writestorage_process -> comwire_res!73 -> comwire_res?73 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!73 -> finwritewire_req?73 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!73 -> finwritewire_res?73 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!73 -> prvmsgwire_res?73 -> IOTWebAPI_iotpub_published -> IOTWebAPI_prvmsgwire_requester_process -> ProvenanceWebApp_prvapiwire_requester_request -> prvapiwire_req!46 -> prvapiwire_req?46 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_publisher_process -> admsgwire_pub!46 -> ProvenanceInt_admsgwire_publisher_Skip -> ProvenanceInt_prvmsgwire_requester_request -> prvmsgwire_req!46 -> prvmsgwire_req?46 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!46 -> comwire_req?46 -> Commodity_comwire_writestorage_invoke -> Commodity_comwire_writestorage_process -> comwire_res!46 -> comwire_res?46 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!46 -> finwritewire_req?46 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!46 -> finwritewire_res?46 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!46 -> prvmsgwire_res?46 -> ProvenanceInt_prvmsgwire_requester_process -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!46 -> prvapiwire_res?46 -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> admsgwire_pub?46 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_subscriber_process" visitedStates="7961" verifyTime="0.17879" testport="//@component.3/@port.0" traceExample="init -> IOTWebAPI_prvmsgwire_requester_request -> prvmsgwire_req!69 -> prvmsgwire_req?69 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!69 -> comwire_req?69 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comwire_writestorage_process -> comwire_res!69 -> comwire_res?69 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!69 -> finwritewire_req?69 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_translog_translogged -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!69 -> finwritewire_res?69 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!69 -> prvmsgwire_res?69 -> IOTWebAPI_iotpub_published -> IOTWebAPI_prvmsgwire_requester_process -> ProvenanceWebApp_prvapiwire_requester_request -> prvapiwire_req!85 -> prvapiwire_req?85 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_publisher_process -> admsgwire_pub!85 -> ProvenanceInt_admsgwire_publisher_Skip -> ProvenanceInt_prvmsgwire_requester_request -> prvmsgwire_req!85 -> prvmsgwire_req?85 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!85 -> comwire_req?85 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comwire_writestorage_process -> comwire_res!85 -> comwire_res?85 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!85 -> finwritewire_req?85 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_translog_translogged -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!85 -> finwritewire_res?85 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!85 -> prvmsgwire_res?85 -> ProvenanceInt_prvmsgwire_requester_process -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!85 -> prvapiwire_res?85 -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> admsgwire_pub?85 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_subscriber_process">
+  <archstyle name="query-responsibility">
+    <connectortype name="QRConnector">
+      <roletype name="querier" porttype="//@archstyle.10/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.2" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.1/@event.0"/>
+        <event xsi:type="arch:Channel" name="res" next="//@archstyle.10/@connectortype.0/@roletype.0/@event.0" type="input"/>
+        <event name="Skip"/>
+      </roletype>
+      <roletype name="readstore" porttype="//@archstyle.10/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.10/@connectortype.0/@roletype.1/@event.2"/>
+        <event xsi:type="arch:Channel" name="res" type="output" bind="//@archstyle.10/@connectortype.0/@roletype.0/@event.2"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="readendpoint">
+      <porttype name="read"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="query"/>
+    </componenttype>
+  </archstyle>
+  <archstyle name="command-responsibility">
+    <connectortype name="CRConnector">
+      <roletype name="readstore" porttype="//@archstyle.11/@componenttype.1/@porttype.0">
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.0/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+      <roletype name="commander" porttype="//@archstyle.11/@componenttype.0/@porttype.0">
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.3"/>
+        <event xsi:type="arch:Channel" name="stmt" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.2" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.0/@event.0"/>
+        <event name="Skip"/>
+        <event xsi:type="arch:Channel" name="cmmd" next="//@archstyle.11/@connectortype.0/@roletype.1/@event.1" type="output" bind="//@archstyle.11/@connectortype.0/@roletype.2/@event.0"/>
+      </roletype>
+      <roletype name="commandstore" porttype="//@archstyle.11/@componenttype.2/@porttype.0">
+        <event xsi:type="arch:Channel" name="cmmd" next="//@archstyle.11/@connectortype.0/@roletype.2/@event.1" type="input"/>
+        <event name="process" next="//@archstyle.11/@connectortype.0/@roletype.2/@event.2"/>
+        <event name="persist"/>
+      </roletype>
+    </connectortype>
+    <componenttype name="commandendpoint">
+      <porttype name="issue"/>
+    </componenttype>
+    <componenttype name="viewdb">
+      <porttype name="update"/>
+    </componenttype>
+    <componenttype name="commanddb">
+      <porttype name="logcommand"/>
+    </componenttype>
+  </archstyle>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop1" model="/" counterExample="" visitedStates="10784" verifyTime="0.3815791" testport="//@component.3/@port.0" traceExample="init -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> prvapiwire_req!64 -> prvapiwire_req?64 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!64 -> admsgwire_pevt?64 -> AdmsgwireLog_logadmsgwire_logged -> AdmsgwireLog_admsgwire_eventstore_process -> admsgwire_sevt!64 -> AdmsgwireLog_admsgwire_eventstore_persist -> admsgwire_sevt?64 -> admsgwire_bevt!64 -> ProvenanceInt_admsgwire_eventpublisher_broadcast -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvmsgwire_requester_process -> prvmsgwire_req!64 -> prvmsgwire_req?64 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_requester_process -> comwire_req!64 -> comwire_req?64 -> CommodityOracle_comwire_responder_invoke -> CommodityOracle_commoditysupply_supplied -> CommodityOracle_oraclecomwire_extsupplier_process -> oraclecomwire_token!64 -> CommodityOracle_comwire_responder_process -> comwire_res!64 -> oraclecomwire_token?64 -> CommodityBlockchain_comappend_appended -> CommodityBlockchain_oraclecomwire_blockstorage_process -> CommodityBlockchain_oraclecomwire_blockstorage_stored -> comwire_res?64 -> BCIntegrator_comwire_requester_Skip -> BCIntegrator_finwritewire_requester_process -> finwritewire_req!64 -> finwritewire_req?64 -> FinanceTransOracle_finwritewire_responder_invoke -> FinanceTransOracle_financetranssupply_supplied -> FinanceTransOracle_oraclefinwritewire_extsupplier_process -> oraclefinwritewire_token!64 -> FinanceTransOracle_finwritewire_responder_process -> finwritewire_res!64 -> oraclefinwritewire_token?64 -> FinanceTransBlockchain_finappend_appended -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_process -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_stored -> finwritewire_res?64 -> BCIntegrator_finwritewire_requester_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!64 -> prvmsgwire_res?64 -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!64 -> prvapiwire_res?64 -> admsgwire_bevt?64 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process" exprText="[]  (ProvenanceInt.prvpub.prvevntpublish -> &lt;> BCIntegrator.bcint.ackstate)">
     <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.0">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" nextExpr="//@verifyProperty.0/@ltlexpr.0/@expr.1"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.9/@port.0/@events.0" operator="EVENTUALLY"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop2" model="/" visitedStates="8720" verifyTime="0.14777659999999998" testport="//@component.3/@port.0" traceExample="init -> IOTWebAPI_prvmsgwire_requester_request -> prvmsgwire_req!59 -> prvmsgwire_req?59 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!59 -> comwire_req?59 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comwire_writestorage_process -> comwire_res!59 -> comwire_res?59 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!59 -> finwritewire_req?59 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_translog_translogged -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!59 -> finwritewire_res?59 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!59 -> prvmsgwire_res?59 -> IOTWebAPI_iotpub_published -> IOTWebAPI_prvmsgwire_requester_process -> ProvenanceWebApp_prvapiwire_requester_request -> prvapiwire_req!89 -> prvapiwire_req?89 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_publisher_process -> admsgwire_pub!89 -> ProvenanceInt_admsgwire_publisher_Skip -> ProvenanceInt_prvmsgwire_requester_request -> prvmsgwire_req!89 -> prvmsgwire_req?89 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!89 -> comwire_req?89 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comwire_writestorage_process -> comwire_res!89 -> comwire_res?89 -> BCIntegrator_bcint_sendtobc -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!89 -> finwritewire_req?89 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_translog_translogged -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!89 -> finwritewire_res?89 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!89 -> prvmsgwire_res?89 -> ProvenanceInt_prvmsgwire_requester_process -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!89 -> prvapiwire_res?89 -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> admsgwire_pub?89 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_subscriber_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.1">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.10/@port.0/@events.0" operator="EVENTUALLY"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" counterExample="" visitedStates="16" verifyTime="0.048000799999999996" testport="//@component.7/@port.0" traceExample="init -> IOTSensor_sense_send -> IOTSensor_iotreqwire_requester_process -> iotreqwire_req!98 -> iotreqwire_req?98 -> IOTWebAPI_iotreqwire_responder_invoke -> IOTWebAPI_iotpub_updatestatus -> IOTWebAPI_prvmsgwire_requester_process -> prvmsgwire_req!98 -> prvmsgwire_req?98 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_requester_process -> comwire_req!98 -> comwire_req?98 -> CommodityOracle_comwire_responder_invoke -> CommodityOracle_commoditysupply_supplied -> CommodityOracle_oraclecomwire_extsupplier_process -> oraclecomwire_token!98 -> CommodityOracle_comwire_responder_process -> comwire_res!98 -> oraclecomwire_token?98 -> CommodityBlockchain_comappend_appended -> CommodityBlockchain_oraclecomwire_blockstorage_process -> CommodityBlockchain_oraclecomwire_blockstorage_stored -> comwire_res?98 -> BCIntegrator_comwire_requester_Skip -> BCIntegrator_finwritewire_requester_process -> finwritewire_req!98 -> finwritewire_req?98 -> FinanceTransOracle_finwritewire_responder_invoke -> FinanceTransOracle_financetranssupply_supplied -> FinanceTransOracle_oraclefinwritewire_extsupplier_process -> oraclefinwritewire_token!98 -> FinanceTransOracle_finwritewire_responder_process -> finwritewire_res!98 -> oraclefinwritewire_token?98 -> FinanceTransBlockchain_finappend_appended -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_process -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_stored -> finwritewire_res?98 -> BCIntegrator_finwritewire_requester_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!98 -> prvmsgwire_res?98 -> IOTWebAPI_prvmsgwire_requester_Skip -> IOTWebAPI_iotreqwire_responder_process -> iotreqwire_res!98 -> iotreqwire_res?98" exprText=" (&lt;> IOTWebAPI.iotpub.updatestatus -> &lt;> BCIntegrator.bcint.ackstate)">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" property="//@verifyProperty.1">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" operator="EVENTUALLY" nextExpr="//@verifyProperty.1/@ltlexpr.0/@expr.1"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.5/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop4" model="/" counterExample="" visitedStates="13" verifyTime="0.0033869" testport="//@component.7/@port.0" traceExample="init -> IOTSensor_iotreqwire_requester_request -> iotreqwire_req!99 -> iotreqwire_req?99 -> IOTWebAPI_iotreqwire_responder_invoke -> IOTWebAPI_prvmsgwire_requester_request -> prvmsgwire_req!99 -> prvmsgwire_req?99 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!99 -> comwire_req?99 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comwire_writestorage_process -> comwire_res!99 -> comwire_res?99 -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!99 -> finwritewire_req?99 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_translog_translogged -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!99 -> finwritewire_res?99 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!99 -> prvmsgwire_res?99 -> IOTWebAPI_iotpub_updatestatus -> IOTWebAPI_prvmsgwire_requester_process -> IOTWebAPI_prvmsgwire_requester_Skip -> IOTWebAPI_iotreqwire_responder_process -> iotreqwire_res!99 -> iotreqwire_res?99 -> IOTSensor_sense_send -> IOTSensor_iotreqwire_requester_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" property="//@verifyProperty.2">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.4/@port.0/@events.0" operator="EVENTUALLY" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.9/@port.0/@events.0" operator="EVENTUALLY"/>
-    </ltlexpr>
-  </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" visitedStates="11" verifyTime="0.0032097" testport="//@component.8/@port.0" traceExample="init -> InternetBanking_ibankwire_requester_request -> ibankwire_req!89 -> ibankwire_req?89 -> DigitalWallet_ibankwire_responder_invoke -> DigitalWallet_access_accessed -> DigitalWallet_ibankwire_responder_process -> ibankwire_res!89 -> ibankwire_res?89 -> InternetBanking_listaccount_renderlist -> InternetBanking_ibankwire_requester_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.10/@port.1/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.1"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop5" model="/" visitedStates="10" verifyTime="0.0433536" testport="//@component.8/@port.0" traceExample="init -> InternetBanking_listaccount_renderlist -> InternetBanking_ibankwire_requester_process -> ibankwire_req!78 -> ibankwire_req?78 -> DigitalWallet_ibankwire_responder_invoke -> DigitalWallet_access_accessed -> DigitalWallet_ibankwire_responder_process -> ibankwire_res!78 -> ibankwire_res?78" exprText="[]  (FinanceTrans.transquery.queried -> &lt;> InternetBanking.listaccount.renderlist)">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.2">
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.10/@port.1/@events.0" nextExpr="//@verifyProperty.2/@ltlexpr.0/@expr.1"/>
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.8/@port.0/@events.0" operator="EVENTUALLY"/>
     </ltlexpr>
   </verifyProperty>
-  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" visitedStates="375" verifyTime="0.0092184" testport="//@component.3/@port.0" traceExample="init -> ProvenanceWebApp_prvapiwire_requester_request -> prvapiwire_req!71 -> prvapiwire_req?71 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_publisher_process -> admsgwire_pub!71 -> ProvenanceInt_admsgwire_publisher_Skip -> ProvenanceInt_prvmsgwire_requester_request -> prvmsgwire_req!71 -> prvmsgwire_req?71 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_comwire_writer_request -> comwire_req!71 -> comwire_req?71 -> Commodity_comwire_writestorage_invoke -> Commodity_logstate_statelogged -> Commodity_comwire_writestorage_process -> comwire_res!71 -> comwire_res?71 -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_writer_process -> BCIntegrator_comwire_writer_Skip -> BCIntegrator_finwritewire_writer_request -> finwritewire_req!71 -> finwritewire_req?71 -> FinanceTrans_finwritewire_writestorage_invoke -> FinanceTrans_translog_translogged -> FinanceTrans_finwritewire_writestorage_process -> finwritewire_res!71 -> finwritewire_res?71 -> BCIntegrator_finwritewire_writer_process -> BCIntegrator_finwritewire_writer_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!71 -> prvmsgwire_res?71 -> ProvenanceInt_prvmsgwire_requester_process -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!71 -> prvapiwire_res?71 -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> admsgwire_pub?71 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_subscriber_process">
-    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.4">
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="prop3" model="/" visitedStates="15614" verifyTime="0.4982106" testport="//@component.3/@port.0" traceExample="init -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> prvapiwire_req!26 -> prvapiwire_req?26 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!26 -> admsgwire_pevt?26 -> AdmsgwireLog_logadmsgwire_logged -> AdmsgwireLog_admsgwire_eventstore_process -> admsgwire_sevt!26 -> AdmsgwireLog_admsgwire_eventstore_persist -> admsgwire_sevt?26 -> admsgwire_bevt!26 -> ProvenanceInt_admsgwire_eventpublisher_broadcast -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvmsgwire_requester_process -> prvmsgwire_req!26 -> prvmsgwire_req?26 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_requester_process -> comwire_req!26 -> comwire_req?26 -> CommodityOracle_comwire_responder_invoke -> CommodityOracle_commoditysupply_supplied -> CommodityOracle_oraclecomwire_extsupplier_process -> oraclecomwire_token!26 -> CommodityOracle_comwire_responder_process -> comwire_res!26 -> oraclecomwire_token?26 -> CommodityBlockchain_comappend_appended -> CommodityBlockchain_oraclecomwire_blockstorage_process -> CommodityBlockchain_oraclecomwire_blockstorage_stored -> comwire_res?26 -> BCIntegrator_comwire_requester_Skip -> BCIntegrator_finwritewire_requester_process -> finwritewire_req!26 -> finwritewire_req?26 -> FinanceTransOracle_finwritewire_responder_invoke -> FinanceTransOracle_financetranssupply_supplied -> FinanceTransOracle_oraclefinwritewire_extsupplier_process -> oraclefinwritewire_token!26 -> FinanceTransOracle_finwritewire_responder_process -> finwritewire_res!26 -> oraclefinwritewire_token?26 -> FinanceTransBlockchain_finappend_appended -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_process -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_stored -> finwritewire_res?26 -> BCIntegrator_finwritewire_requester_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!26 -> prvmsgwire_res?26 -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!26 -> prvapiwire_res?26 -> admsgwire_bevt?26 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process">
+    <ltlexpr xsi:type="arch:LTLNestedExpr" operator="ALWAYS" property="//@verifyProperty.3">
       <expr xsi:type="arch:LTLRegularExpr" event="//@component.0/@port.1/@events.0" operator="EVENTUALLY"/>
-      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" nextExpr="//@verifyProperty.4/@ltlexpr.0/@expr.0"/>
+      <expr xsi:type="arch:LTLRegularExpr" event="//@component.2/@port.0/@events.0" nextExpr="//@verifyProperty.3/@ltlexpr.0/@expr.0"/>
     </ltlexpr>
   </verifyProperty>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="event-centre-admsgwire" visitedStates="15241" verifyTime="0.47214839999999997" testport="//@component.3/@port.0" traceExample="init -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> prvapiwire_req!11 -> prvapiwire_req?11 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!11 -> admsgwire_pevt?11 -> AdmsgwireLog_logadmsgwire_logged -> AdmsgwireLog_admsgwire_eventstore_process -> admsgwire_sevt!11 -> AdmsgwireLog_admsgwire_eventstore_persist -> admsgwire_sevt?11 -> admsgwire_bevt!11 -> ProvenanceInt_admsgwire_eventpublisher_broadcast -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvmsgwire_requester_process -> prvmsgwire_req!11 -> prvmsgwire_req?11 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_requester_process -> comwire_req!11 -> comwire_req?11 -> CommodityOracle_comwire_responder_invoke -> CommodityOracle_commoditysupply_supplied -> CommodityOracle_oraclecomwire_extsupplier_process -> oraclecomwire_token!11 -> CommodityOracle_comwire_responder_process -> comwire_res!11 -> oraclecomwire_token?11 -> CommodityBlockchain_comappend_appended -> CommodityBlockchain_oraclecomwire_blockstorage_process -> CommodityBlockchain_oraclecomwire_blockstorage_stored -> comwire_res?11 -> BCIntegrator_comwire_requester_Skip -> BCIntegrator_finwritewire_requester_process -> finwritewire_req!11 -> finwritewire_req?11 -> FinanceTransOracle_finwritewire_responder_invoke -> FinanceTransOracle_financetranssupply_supplied -> FinanceTransOracle_oraclefinwritewire_extsupplier_process -> oraclefinwritewire_token!11 -> FinanceTransOracle_finwritewire_responder_process -> finwritewire_res!11 -> oraclefinwritewire_token?11 -> FinanceTransBlockchain_finappend_appended -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_process -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_stored -> finwritewire_res?11 -> BCIntegrator_finwritewire_requester_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!11 -> prvmsgwire_res?11 -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!11 -> prvapiwire_res?11 -> admsgwire_bevt?11 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process" exprText="[] (ProvenanceInt.prvpub.prvevntpublish-> &lt;> AdmsgwireLog.admsgwire.eventstore.persist)" connector="//@connector.5"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="secure-writeoraclecomwire" visitedStates="10653" verifyTime="0.3644511" testport="//@component.3/@port.0" traceExample="init -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> prvapiwire_req!33 -> prvapiwire_req?33 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!33 -> admsgwire_pevt?33 -> AdmsgwireLog_logadmsgwire_logged -> AdmsgwireLog_admsgwire_eventstore_process -> admsgwire_sevt!33 -> AdmsgwireLog_admsgwire_eventstore_persist -> admsgwire_sevt?33 -> admsgwire_bevt!33 -> ProvenanceInt_admsgwire_eventpublisher_broadcast -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvmsgwire_requester_process -> prvmsgwire_req!33 -> prvmsgwire_req?33 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_requester_process -> comwire_req!33 -> comwire_req?33 -> CommodityOracle_comwire_responder_invoke -> CommodityOracle_commoditysupply_supplied -> CommodityOracle_oraclecomwire_extsupplier_process -> oraclecomwire_token!33 -> CommodityOracle_comwire_responder_process -> comwire_res!33 -> oraclecomwire_token?33 -> CommodityBlockchain_comappend_appended -> CommodityBlockchain_oraclecomwire_blockstorage_process -> CommodityBlockchain_oraclecomwire_blockstorage_stored -> comwire_res?33 -> BCIntegrator_comwire_requester_Skip -> BCIntegrator_finwritewire_requester_process -> finwritewire_req!33 -> finwritewire_req?33 -> FinanceTransOracle_finwritewire_responder_invoke -> FinanceTransOracle_financetranssupply_supplied -> FinanceTransOracle_oraclefinwritewire_extsupplier_process -> oraclefinwritewire_token!33 -> FinanceTransOracle_finwritewire_responder_process -> finwritewire_res!33 -> oraclefinwritewire_token?33 -> FinanceTransBlockchain_finappend_appended -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_process -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_stored -> finwritewire_res?33 -> BCIntegrator_finwritewire_requester_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!33 -> prvmsgwire_res?33 -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!33 -> prvapiwire_res?33 -> admsgwire_bevt?33 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process" exprText="[] (CommodityOracle.supply.supplied-> &lt;> CommodityBlockchain.oraclecomwire.blockstorage.stored)" connector="//@connector.10"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="secure-writeoraclefinwritewire" visitedStates="10653" verifyTime="0.3573336" testport="//@component.3/@port.0" traceExample="init -> ProvenanceWebApp_prvconsume_provenancerequest -> ProvenanceWebApp_prvapiwire_requester_process -> prvapiwire_req!56 -> prvapiwire_req?56 -> ProvenanceInt_prvapiwire_responder_invoke -> ProvenanceInt_prvpub_prvevntpublish -> ProvenanceInt_admsgwire_eventpublisher_process -> admsgwire_pevt!56 -> admsgwire_pevt?56 -> AdmsgwireLog_logadmsgwire_logged -> AdmsgwireLog_admsgwire_eventstore_process -> admsgwire_sevt!56 -> AdmsgwireLog_admsgwire_eventstore_persist -> admsgwire_sevt?56 -> admsgwire_bevt!56 -> ProvenanceInt_admsgwire_eventpublisher_broadcast -> ProvenanceInt_admsgwire_eventpublisher_Skip -> ProvenanceInt_prvmsgwire_requester_process -> prvmsgwire_req!56 -> prvmsgwire_req?56 -> BCIntegrator_prvmsgwire_responder_invoke -> BCIntegrator_bcint_ackstate -> BCIntegrator_comwire_requester_process -> comwire_req!56 -> comwire_req?56 -> CommodityOracle_comwire_responder_invoke -> CommodityOracle_commoditysupply_supplied -> CommodityOracle_oraclecomwire_extsupplier_process -> oraclecomwire_token!56 -> CommodityOracle_comwire_responder_process -> comwire_res!56 -> oraclecomwire_token?56 -> CommodityBlockchain_comappend_appended -> CommodityBlockchain_oraclecomwire_blockstorage_process -> CommodityBlockchain_oraclecomwire_blockstorage_stored -> comwire_res?56 -> BCIntegrator_comwire_requester_Skip -> BCIntegrator_finwritewire_requester_process -> finwritewire_req!56 -> finwritewire_req?56 -> FinanceTransOracle_finwritewire_responder_invoke -> FinanceTransOracle_financetranssupply_supplied -> FinanceTransOracle_oraclefinwritewire_extsupplier_process -> oraclefinwritewire_token!56 -> FinanceTransOracle_finwritewire_responder_process -> finwritewire_res!56 -> oraclefinwritewire_token?56 -> FinanceTransBlockchain_finappend_appended -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_process -> FinanceTransBlockchain_oraclefinwritewire_blockstorage_stored -> finwritewire_res?56 -> BCIntegrator_finwritewire_requester_Skip -> BCIntegrator_prvmsgwire_responder_process -> prvmsgwire_res!56 -> prvmsgwire_res?56 -> ProvenanceInt_prvmsgwire_requester_Skip -> ProvenanceInt_prvapiwire_responder_process -> prvapiwire_res!56 -> prvapiwire_res?56 -> admsgwire_bevt?56 -> ADWebApp_adnotify_notified -> ADWebApp_admsgwire_eventsubscriber_process" exprText="[] (FinanceTransOracle.supply.supplied-> &lt;> FinanceTransBlockchain.oraclefinwritewire.blockstorage.stored)" connector="//@connector.11"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="secure-readroctrlwire" visitedStates="22" verifyTime="0.0443173" testport="//@component.11/@port.0" traceExample="init -> Controller_monitor_listcommodity -> Controller_ctrlwire_requester_process -> ctrlwire_req!40 -> ctrlwire_req?40 -> Commodity_ctrlwire_responder_invoke -> Commodity_roctrlwire_extquerier_request -> roctrlwire_uid!40 -> roctrlwire_uid?40 -> CommodityBlockchain_comaccess_accessed -> CommodityBlockchain_roctrlwire_blocksupplier_process -> roctrlwire_res!40 -> roctrlwire_res?40 -> Commodity_liststate_listed -> Commodity_roctrlwire_extquerier_process -> Commodity_roctrlwire_extquerier_Skip -> Commodity_ctrlwire_responder_process -> ctrlwire_res!40 -> ctrlwire_res?40" exprText="[] (CommodityBlockchain.roctrlwire.blocksupplier.process-> &lt;> Commodity.liststate.listed)" connector="//@connector.12"/>
+  <verifyProperty xsi:type="arch:BehaviourProperty" name="secure-readrofinreadwire" visitedStates="22" verifyTime="0.044183799999999995" testport="//@component.6/@port.0" traceExample="init -> DigitalWallet_pay_commit -> DigitalWallet_finreadwire_requester_process -> finreadwire_req!53 -> finreadwire_req?53 -> FinanceTrans_finreadwire_responder_invoke -> FinanceTrans_rofinreadwire_extquerier_request -> rofinreadwire_uid!53 -> rofinreadwire_uid?53 -> FinanceTransBlockchain_finaccess_accessed -> FinanceTransBlockchain_rofinreadwire_blocksupplier_process -> rofinreadwire_res!53 -> rofinreadwire_res?53 -> FinanceTrans_transquery_queried -> FinanceTrans_rofinreadwire_extquerier_process -> FinanceTrans_rofinreadwire_extquerier_Skip -> FinanceTrans_finreadwire_responder_process -> finreadwire_res!53 -> finreadwire_res?53" exprText="[] (FinanceTransBlockchain.rofinreadwire.blocksupplier.process-> &lt;> FinanceTrans.transquery.queried)" connector="//@connector.13"/>
   <host name="ADWebServer">
     <node type="APPLICATION_CONTAINER" name="ApacheTomcat" component="//@component.0">
       <port name="port" portNumber="12030" node="//@host.0/@node.0" namedport="//@component.0/@port.0"/>
@@ -451,14 +471,14 @@
     </node>
   </host>
   <host netAccessType="PUBLIC" name="AWSECS">
-    <node type="APPLICATION_CONTAINER" name="AppConontainer" component="//@component.2 //@component.3 //@component.5">
-      <port name="port" portNumber="12033" node="//@host.2/@node.0" namedport="//@component.2/@port.0"/>
-      <port name="port" portNumber="8089" node="//@host.2/@node.0" namedport="//@component.5/@port.0"/>
-      <port name="port" portNumber="13423" node="//@host.2/@node.0" namedport="//@component.5/@port.0"/>
-    </node>
-    <node type="APPLICATION_CONTAINER" name="MySQL" component="//@component.10 //@component.9">
-      <port name="port" portNumber="3306" node="//@host.2/@node.1" namedport="//@component.10/@port.0 //@component.10/@port.1 //@component.9/@port.0"/>
-    </node>
+    <node name="DockerContainer1" component="//@component.5"/>
+    <node name="DockerContainer2" component="//@component.2"/>
+    <node name="DockerContainer3" component="//@component.11"/>
+    <node name="DockerContainer4" component="//@component.3"/>
+    <node type="APPLICATION_CONTAINER" name="Lambda" component="//@component.9 //@component.10"/>
+    <node type="APPLICATION_CONTAINER" name="DynamoDB" component="//@component.12"/>
+    <node name="DockerContainer5" component="//@component.15"/>
+    <node name="DockerContainer6" component="//@component.16"/>
   </host>
   <host netAccessType="PUBLIC" name="IOTWebApp">
     <node type="APPLICATION_CONTAINER" name="IOWebHub" component="//@component.4">
@@ -480,9 +500,15 @@
       <port name="port" portNumber="19802" node="//@host.5/@node.0" namedport="//@component.7/@port.0"/>
     </node>
   </host>
+  <host netAccessType="PUBLIC" name="BCServerNode1">
+    <node type="APPLICATION_CONTAINER" name="Ethereum" component="//@component.14"/>
+  </host>
+  <host netAccessType="PUBLIC" name="BCServerNode2">
+    <node type="APPLICATION_CONTAINER" name="Quorum" component="//@component.13"/>
+  </host>
   <link name="link1" source="//@host.0/@node.0/@port.0" target="//@host.1/@node.0/@port.0"/>
   <link name="link3" networkType="INTERNET"/>
-  <link name="link2" networkType="INTERNET" source="//@host.2/@node.0/@port.0"/>
+  <link name="link2" networkType="INTERNET"/>
   <link name="link4"/>
   <link name="link6"/>
   <link name="link7" networkType="INTERNET" source="//@host.4/@node.0/@port.0"/>
@@ -490,11 +516,11 @@
   <link name="link9" networkType="INTERNET" source="//@host.5/@node.0/@port.0" target="//@host.3/@node.0/@port.1"/>
   <link name="link10"/>
   <link name="link11" linkType="HTTPS" source="//@host.4/@node.1/@port.0" target="//@host.4/@node.0/@port.1"/>
-  <link name="link12" networkType="INTERNET" source="//@host.2/@node.0/@port.0" target="//@host.0/@node.0/@port.1"/>
+  <link name="link12" networkType="INTERNET" target="//@host.0/@node.0/@port.1"/>
   <link name="link12" networkType="INTERNET" source="//@host.3/@node.0/@port.0"/>
-  <link name="link13" source="//@host.3/@node.0/@port.0" target="//@host.2/@node.0/@port.1"/>
-  <link name="link14" source="//@host.2/@node.0/@port.2" target="//@host.2/@node.1/@port.0"/>
-  <link name="link15" networkType="INTERNET" source="//@host.4/@node.0/@port.0" target="//@host.2/@node.1/@port.0"/>
+  <link name="link13" source="//@host.3/@node.0/@port.0"/>
+  <link name="link14"/>
+  <link name="link15" networkType="INTERNET" source="//@host.4/@node.0/@port.0"/>
   <ontologylabel name="RuleEventQuery" expression="REConnector and (hasRole some (reader and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
   <ontologylabel name="EventProcessorPort" subClassOf="Port"/>
   <ontologylabel name="TamperingProofPort" subClassOf="Port"/>
@@ -502,4 +528,5 @@
   <ontologylabel name="RuleSecureWriting" expression="repository and (hasPort some  (TamperingProofPort and (hasAttachment some writestorage)))" subClassOf="RefactorRule"/>
   <ontologylabel name="RuleEventCentre" expression="PSConnector and (hasRole some  (Role and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
   <ontologylabel name="RuleEventCommand" expression="WRConnector and (hasRole some (writer and (isAttachmentOf some EventProcessorPort)))" subClassOf="RefactorRule"/>
+  <ontologylabel name="datastore" expression="blockchain or repository or eventlogger or commanddb or viewdb"/>
 </arch:DesignModel>
