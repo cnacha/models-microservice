@@ -1,0 +1,90 @@
+connector CSConnector { 
+	 role requester(j) = process -> req!j -> res?j -> Skip;
+	 role responder() = req?j -> invoke -> process -> res!j -> responder();
+ }
+connector ROConnector { 
+	 role extquerier(j) = request -> uid!j -> res?j -> process -> Skip;
+	 role blocksupplier() = uid?j -> process -> res!j -> blocksupplier();
+ }
+connector ESConnector { 
+	 role eventpublisher(j) = process -> pevt!j -> sevt?j -> bevt!j -> broadcast -> Skip;
+	 role eventsubscriber() = bevt?j -> process -> eventsubscriber();
+	 role eventstore() = pevt?j -> process -> sevt!j -> persist -> eventstore();
+ }
+connector CRConnector { 
+	 role readstore() = stmt?j -> process -> persist -> readstore();
+	 role commander(j) = process -> stmt!j -> cmmd!j -> Skip;
+	 role commandstore() = cmmd?j -> process -> persist -> commandstore();
+ }
+connector WRConnector { 
+	 role writer(j) = process -> req!j -> res?j -> Skip;
+	 role writestorage() = req?j -> invoke -> process -> res!j -> writestorage();
+ }
+connector REConnector { 
+	 role reader(j) = process -> req!j -> res?j -> Skip;
+	 role readstorage() = req?j -> invoke -> process -> res!j -> readstorage();
+ }
+connector PSConnector { 
+	 role publisher(j) = process -> pub!j -> Skip;
+	 role subscriber() = pub?j -> process -> subscriber();
+ }
+connector QRConnector { 
+	 role querier(j) = process -> stmt!j -> res?j -> Skip;
+	 role readstore() = stmt?j -> process -> res!j -> readstore();
+ }
+connector IOConnector { 
+	 role blockstorage() = token?j -> process -> stored -> blockstorage();
+	 role extsupplier(j) = process -> token!j -> extsupplier(j);
+ }
+component PassengerUI { 
+	 port call() = callride->call();
+	 port pay() = issuepay->pay();
+	 port plogin() = login->plogin();
+}
+component TripMgmt { 
+	 port accept() = acknowledged->accept();
+}
+component DriverUI { 
+	 port notify() = notified->notify();
+	 port dlogin() = login->dlogin();
+	 port locate() = located->locate();
+}
+component DriverRecord { 
+	 port driverquery() = quried->driverquery();
+	 port driverupdate() = updated->driverupdate();
+}
+component Payment { 
+	 port record() = payrecorded->record();
+	 port list() = listed->list();
+}
+component BillingGateway { 
+	 port process() = processed->process();
+}
+component SignOn { 
+	 port auth() = authenticated->auth();
+}
+component UserDB { 
+	 port find() = queried->find();
+}
+system rideshare { 
+	 declare callwire = CSConnector; 
+	 declare assignwire = PSConnector; 
+	 declare driverquerywire = REConnector; 
+	 declare paywire = WRConnector; 
+	 declare payprocesswire = REConnector; 
+	 declare authwire = CSConnector; 
+	 declare userquerywire = REConnector; 
+	 declare driverupdatewire = WRConnector; 
+	 attach PassengerUI.call() = callwire.requester(22);
+	 attach TripMgmt.accept() = callwire.responder() <*> driverquerywire.reader(45) <*> assignwire.publisher(85);
+	 attach DriverUI.notify() = assignwire.subscriber();
+	 attach DriverRecord.driverquery() = driverquerywire.readstorage();
+	 attach DriverRecord.driverupdate() = driverupdatewire.writestorage();
+	 attach Payment.record() = paywire.writestorage();
+	 attach Payment.list() = payprocesswire.readstorage();
+	 attach SignOn.auth() = authwire.responder() <*> userquerywire.reader(43);
+	 attach UserDB.find() = userquerywire.readstorage();
+	 execute PassengerUI.call() || TripMgmt.accept() || DriverUI.notify() || DriverRecord.driverquery() || DriverRecord.driverupdate() || Payment.record() || Payment.list() || SignOn.auth() || UserDB.find()
+}
+assert rideshare |= []  (PassengerUI.call.callride -> <> DriverUI.notify.notified);
+assert rideshare |= ! []  (PassengerUI.call.callride -> <> DriverUI.notify.notified);
